@@ -1,3 +1,12 @@
+## [1.7.0] - 2026-10-18
+
+- Criados manuais Coca-Cola e Burger King, com páginas distintas e ligações diretas a partir do menu, do início e da área de serviço.
+- Índice de capítulos baseado na base única de guiões; pesquisa e filtro por categoria.
+- Consulta passo a passo e leitura integral, áudio de treino, progresso não persistido e notas sobre origem.
+- Roteiro editorial de seis fases por projeto, perguntas frequentes, princípios de comunicação e fontes públicas relacionadas.
+- Reforçadas as distinções entre exemplos de estudo, factos públicos e regras operacionais por confirmar.
+- Acrescentados testes unitários e de interface aos manuais.
+
 ## [1.6.0] - 2026-10-18
 
 - Painel inicial semelhante ao protótipo com leitura por voz e guião orientado.

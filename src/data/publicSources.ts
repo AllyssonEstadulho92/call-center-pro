@@ -22,7 +22,7 @@ export const publicSources: PublicSource[] = [
   {
     id: 'cc-contactos', project: 'coca-cola', title: 'Contactos oficiais Coca-Cola Portugal',
     publisher: 'Coca-Cola Portugal', url: 'https://www.coca-cola.com/pt/pt/about-us/contact-us', confirmed: '18/10/2026',
-    scope: 'Formulário de apoio ao consumidor. A página distingue o apoio ao consumidor de questões comerciais e de distribuição, encaminhadas para a Coca-Cola Europacific Partners.',
+    scope: 'Contacto público ao consumidor: 800 286 286, de segunda a sexta-feira, exceto feriados, das 09h00 às 17h00. A página distingue o apoio ao consumidor de questões comerciais ou de distribuição, encaminhadas para a Coca-Cola Europacific Partners.',
     limitation: 'Este contacto geral não substitui a linha de avarias nem comprova como é registado um pedido técnico.',
   },
   {

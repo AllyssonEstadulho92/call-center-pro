@@ -9,9 +9,11 @@
 ## Entrada, navegação e ecrãs
 `app.html` → `src/main.tsx` → `src/App.tsx`.
 A navegação atual usa estado local tipado `Page`, sem router externo.
-Ecrãs: Início; Coca-Cola; Burger King; Triagem; Respostas rápidas; Perguntas frequentes; Pesquisa; Favoritos; Estudo; Simulações; Versões; Segurança e fontes.
+Ecrãs: Início; Coca-Cola; Burger King; Manual Coca-Cola; Manual Burger King; Triagem; Respostas rápidas; Perguntas frequentes; Pesquisa; Favoritos; Estudo; Simulações; Versões; Segurança e fontes.
 
 ## Componentes
+- `src/components/ManualHub.tsx`: dois manuais de consulta com índice, pesquisa, categoria, etapas, modo de leitura integral e síntese de voz; reutiliza os procedimentos sem os duplicar.
+- `src/data/manuals.ts`: conteúdos editoriais separados por serviço (roteiro, princípios e FAQ), sem classificação indevida como validado; testes em `manuals.test.ts`.
 - `src/components/LiveCallPanel.tsx`: guião de exemplo na página principal.
 - `src/components/SpeechPlayer.tsx`: Web Speech API para leitura de frases; preferir pt-PT, senão voz portuguesa disponível, senão voz predefinida.
 - `src/components/Simulations.tsx`: treino com cenários fictícios e respostas de referência da base.
@@ -42,3 +44,6 @@ A página inicial pública é o `index.html` compilado; o `app.html` é a entrad
 
 ## Acessibilidade
 Foco visível, contraste, navegação por teclado, controlos com nomes acessíveis, e estilos responsivos; a validação manual WCAG 2.2 e VoiceOver continua pendente.
+
+## Manuais por serviço
+Não persistem progresso, texto de pesquisa nem dados de clientes. As etapas são derivadas de `knowledge.ts`. As referências `publicSources.ts` documentam apenas factos públicos e respetivos limites. Não adicionar documentos internos de uma operação à versão pública sem autorização expressa.

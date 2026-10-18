@@ -1,3 +1,11 @@
+## 2026-10-18 | 1.7.0
+
+- Criadas páginas separadas de manuais para Coca-Cola e Burger King.
+- Conteúdo por fases, índice de capítulos, apresentação passo a passo ou integral, consulta de fontes e leitura por voz.
+- Reutilizada a base única de guiões para evitar divergências.
+- Nenhuma regra interna foi considerada validada sem documentação institucional.
+- Mantida a proibição de guardar dados pessoais do cliente.
+
 # Registo técnico de alterações
 
 ## 2026-10-18 | 1.6.0 (integrada na main)

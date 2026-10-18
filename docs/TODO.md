@@ -20,3 +20,12 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 | P2 | Modo offline com estratégia explícita de atualização | Por definir |
 
 **Nunca sinalizar uma tarefa como concluída apenas pela aparência do protótipo ou pela compilação do código.**
+
+## Melhorias v1.7.0
+
+- [x] Criar dois manuais independentes com entrada no menu e atalhos.
+- [x] Consultar guiões com índice, pesquisa, categorias e etapas.
+- [x] Mostrar fonte/estado e impedir selo «Validado» sem confirmação.
+- [ ] Validar os guiões contra manuais internos autorizados; conteúdo original indisponível na sessão.
+- [ ] Rever experiência e voz em iPhone Safari e computador real.
+- [ ] Pedir autorização para uso da ferramenta no equipamento de trabalho.

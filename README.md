@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.6.0
+# Call Center Pro | versão 1.7.0
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -162,3 +162,20 @@ npm run test:e2e
 ```
 
 O workflow `Testes de utilização no browser` verifica o ecrã inicial, a abertura de um atendimento, o teleponto e as simulações em desktop e em tamanho móvel. Isto não substitui os testes no Safari do iPhone ou a validação dos scripts com a supervisão.
+
+## Versão 1.7.0 · Manuais separados para consulta
+
+O menu tem agora dois acessos independentes: **Manual Coca-Cola** e **Manual Burger King**.
+Cada manual apresenta:
+- Visão geral em seis fases, abertura sugerida e princípios para orientação;
+- Índice pesquisável dos guiões do serviço, com filtro por tema;
+- Leitura passo a passo, acesso ao guião integral, progresso local não persistido, botões anterior/seguinte e voz sintetizada;
+- Para cada etapa: frase para o cliente, verificação necessária, o que evitar, nota de origem e próximo assunto a consultar;
+- Fontes públicas com limites explícitos; ausência de validação operacional quando aplicável;
+- Acesso direto ao modo Atendimento em Direto sem introdução de dados de clientes.
+
+A primeira versão dos manuais deriva da base de guiões já existente e de fontes públicas, **não** de documentação interna formalmente validada. As versões Word anteriores não estavam disponíveis neste ambiente. Não publicar manuais internos restritos num repositório GitHub público.
+
+### Testes
+
+`npm run typecheck`, `npm test`, `npm run build` e `npm run test:e2e` compõem a verificação da aplicação, complementada por testes manuais no Safari iOS, VoiceOver e navegadores desktop.

@@ -1,6 +1,6 @@
 export type Project = 'coca-cola' | 'burger-king';
 export type Status = 'validado' | 'por-confirmar' | 'exemplo';
-export type Page = 'inicio' | Project | 'triagem' | 'faq' | 'simulacoes' | 'respostas' | 'pesquisa' | 'favoritos' | 'formacao' | 'versoes' | 'seguranca';
+export type Page = 'inicio' | Project | 'manual-coca-cola' | 'manual-burger-king' | 'triagem' | 'faq' | 'simulacoes' | 'respostas' | 'pesquisa' | 'favoritos' | 'formacao' | 'versoes' | 'seguranca';
 
 export interface CallStep {
   id: string;
