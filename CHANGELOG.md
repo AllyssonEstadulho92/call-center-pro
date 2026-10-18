@@ -1,3 +1,10 @@
+## [1.6.0] - 2026-10-18
+
+- Painel inicial semelhante ao protótipo com leitura por voz e guião orientado.
+- Simulações fictícias, gravação local da própria voz e eliminação manual.
+- Perguntas frequentes, situações recorrentes e navegação móvel.
+- Mantida a separação entre guiões de treino e informação operacional validada.
+
 ## [1.5.0] - 2026-10-18
 
 - Formação alargada a 12 questões e cenários sem dados pessoais.

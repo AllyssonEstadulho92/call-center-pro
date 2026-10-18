@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.5.0
+# Call Center Pro | versão 1.6.0
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -138,3 +138,14 @@ As alterações efetuadas por `GITHUB_TOKEN` podem não ativar um novo ciclo de 
 ## Versão 1.5.0: formação orientada
 
 A área de treino inclui 12 questões fictícias, correção explicada, progresso, resultado final e opção de praticar apenas os erros. As respostas não são guardadas nem transmitidas e os exercícios não substituem formação oficial.
+
+
+## Versão 1.6.0: preparação para o turno
+
+- Ecrã inicial com painel de atendimento guiado, duas áreas e ocorrências frequentes.
+- Leitura das frases em português europeu pelo browser (se houver voz adequada disponível), incluindo ritmo mais lento.
+- Simulações fictícias com gravação temporária apenas da própria voz e sem transmissão nem armazenamento persistente.
+- Nova secção de perguntas frequentes e barra inferior de navegação no telemóvel.
+- Não utilizar a gravação durante chamadas reais nem recolher voz ou dados dos clientes.
+
+O microfone necessita de HTTPS, browser compatível e autorização expressa. Os exercícios e guiões **não são procedimentos institucionais validados**.
