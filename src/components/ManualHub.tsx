@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import {
   ArrowLeft, BookOpen, Check, ChevronLeft, ChevronRight, CircleAlert,
-  ClipboardCheck, ExternalLink, FileText, HelpCircle, List, LockKeyhole,
+  ClipboardCheck, ExternalLink, FileText, List, LockKeyhole,
   Search, ShieldAlert, ShieldCheck, Volume2, X,
 } from 'lucide-react';
 import { procedures } from '../data/knowledge';
