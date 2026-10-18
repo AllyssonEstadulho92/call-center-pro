@@ -6,13 +6,14 @@ Versão publicada: `main` | PR #2 integrado | Aplicação: https://allyssonestad
 ## Objetivo
 Criar uma aplicação web responsiva de consulta e treino individual de atendimento, inspirada na imagem de referência do utilizador, sem ligação aos sistemas oficiais Coca-Cola ou Burger King.
 
-## Implementado na versão 1.6.0
+## Implementado nas versões 1.6.0 e 1.7.0
 - React 19 + TypeScript + Vite; interface desktop e smartphone; pesquisa, favoritos, fluxos e triagem.
 - Painel inicial com dois serviços, guião demonstrativo navegável e situações frequentes.
 - Atendimento em direto com leitura sintetizada de frases em português (quando suportado).
 - Simulações exclusivamente fictícias, com possibilidade de gravar a própria voz temporariamente e ouvir o resultado.
 - Perguntas frequentes e referências públicas; nenhum procedimento interno promovido a «Validado».
 - Barra de navegação inferior no telemóvel.
+- Na v1.7, manuais separados com roteiro inicial, índice pesquisável, 17 capítulos derivados dos guiões, passos detalhados, voz e fontes públicas.
 
 ## Estado de verificação
 A primeira passagem do TypeScript detetou uma importação não utilizada, corrigida. A verificação posterior de TypeScript, os testes unitários e a compilação passaram no GitHub Actions. Os testes de navegação em Chromium desktop e móvel também passaram após corrigir o caminho de base do servidor de teste. A compatibilidade visual e de voz com Safari de iPhone requer teste manual.
@@ -26,9 +27,13 @@ A primeira passagem do TypeScript detetou uma importação não utilizada, corri
 - Não existe autenticação ou integração com sistemas de tickets; não guardar dados reais.
 
 ## Última alteração
+v1.7: manuais separados e consulta editorial orientada desenvolvidos em branch, aguardando integração/verificações finais. As instruções operacionais exigem validação pela chefia.
+
 A versão 1.6.0 foi integrada na branch main e compilada para publicação. O GitHub Actions confirmou typecheck, testes unitários, build, smoke test em desktop e telemóvel (Chromium) e publicação Pages. A análise manual no iPhone Safari ainda não foi realizada.
 
 ## Próximo passo
+Publicar e testar manuais v1.7, verificar navegação em iPhone Safari e rever conteúdo com fontes autorizadas. Depois ampliar guias com documentos internos apenas em local de acesso restrito, se autorizado.
+
 Testar o site num iPhone Safari e num computador real, confirmar funcionamento da voz e permissões de microfone, e rever cada guião com documentos operacionais autorizados.
 
 ## Critério mínimo para teste no trabalho

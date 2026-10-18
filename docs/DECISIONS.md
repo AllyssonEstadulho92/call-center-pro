@@ -20,3 +20,9 @@ Decisão: manter a compilação Vite e o workflow existente enquanto se valida a
 
 ## D-007 | Alterações em PR antes de integrar
 Decisão: usar branch de desenvolvimento, CI e revisão; integrar em `main` só após verificações. Motivo: preservar a versão pública anterior durante o trabalho.
+
+## D-008 | Dois manuais, uma base de guiões
+Decisão: criar áreas independentes «Manual Coca-Cola» e «Manual Burger King», mantendo as frases de cada procedimento em `src/data/knowledge.ts`, sem duplicar blocos operacionais. O novo conteúdo de `src/data/manuals.ts` contextualiza os guiões mas é identificado como editorial/treino, não como política oficial. Motivo: reduzir divergências e ajudar a acompanhar uma chamada sem perder o contexto.
+
+## D-009 | Índice e progresso só em memória
+Decisão: não guardar no dispositivo o progresso da leitura, nomes de clientes ou notas de atendimento. Motivo: facilitar o uso pontual e minimizar exposição de dados num repositório público.
