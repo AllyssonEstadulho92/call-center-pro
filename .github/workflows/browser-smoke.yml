@@ -1,0 +1,26 @@
+name: Testes de utilização no browser
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Preparar Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Testes de interface desktop e telemóvel
+        run: npm run test:e2e
