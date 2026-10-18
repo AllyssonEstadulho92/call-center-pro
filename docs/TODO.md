@@ -23,8 +23,8 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 
 ## Melhorias v1.7.0
 
-- [x] Criar dois manuais independentes com entrada no menu e atalhos.
-- [x] Consultar guiões com índice, pesquisa, categorias e etapas.
+- [x] Criar dois manuais independentes com entrada no menu e atalhos; publicado no GitHub Pages.
+- [x] Consultar guiões com índice, pesquisa, categorias e etapas; testado em Chromium desktop/móvel.
 - [x] Mostrar fonte/estado e impedir selo «Validado» sem confirmação.
 - [ ] Validar os guiões contra manuais internos autorizados; conteúdo original indisponível na sessão.
 - [ ] Rever experiência e voz em iPhone Safari e computador real.

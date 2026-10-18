@@ -5,6 +5,7 @@
 - Reutilizada a base única de guiões para evitar divergências.
 - Nenhuma regra interna foi considerada validada sem documentação institucional.
 - Mantida a proibição de guardar dados pessoais do cliente.
+- PR #3 integrado. TypeScript, Vitest, compilação Vite, testes Playwright em Chromium desktop/móvel e deploy GitHub Pages confirmados com sucesso. Teste real Safari ainda pendente.
 
 # Registo técnico de alterações
 

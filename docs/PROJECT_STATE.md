@@ -27,12 +27,12 @@ A primeira passagem do TypeScript detetou uma importação não utilizada, corri
 - Não existe autenticação ou integração com sistemas de tickets; não guardar dados reais.
 
 ## Última alteração
-v1.7: manuais separados e consulta editorial orientada desenvolvidos em branch, aguardando integração/verificações finais. As instruções operacionais exigem validação pela chefia.
+v1.7: manuais separados e consulta editorial orientada integrados na branch main pelo PR #3. TypeScript, testes unitários, compilação Vite e testes de navegação desktop/móvel Chromium concluídos com sucesso; GitHub Pages publicou os ficheiros compilados. Os procedimentos operacionais continuam a exigir validação pela entidade competente.
 
 A versão 1.6.0 foi integrada na branch main e compilada para publicação. O GitHub Actions confirmou typecheck, testes unitários, build, smoke test em desktop e telemóvel (Chromium) e publicação Pages. A análise manual no iPhone Safari ainda não foi realizada.
 
 ## Próximo passo
-Publicar e testar manuais v1.7, verificar navegação em iPhone Safari e rever conteúdo com fontes autorizadas. Depois ampliar guias com documentos internos apenas em local de acesso restrito, se autorizado.
+Testar os manuais v1.7 visualmente no Safari de um iPhone e num computador real, confirmar síntese de voz, corrigir problemas encontrados e validar os guiões com a documentação operacional autorizada. Conteúdo confidencial apenas em ambiente de acesso controlado e com autorização.
 
 Testar o site num iPhone Safari e num computador real, confirmar funcionamento da voz e permissões de microfone, e rever cada guião com documentos operacionais autorizados.
 
