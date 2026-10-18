@@ -1,0 +1,49 @@
+name: Publicação MANUAL no GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      autorizacao:
+        description: 'Escreve PUBLICO para confirmar que todos os conteúdos são autorizados para publicação pública.'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    if: ${{ inputs.autorizacao == 'PUBLICO' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Verificações
+        run: |
+          npm run typecheck
+          npm test
+          npm run build
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+      - name: Preparar ficheiros estáticos
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4

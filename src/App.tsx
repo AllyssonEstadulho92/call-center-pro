@@ -1,0 +1,182 @@
+import { useEffect, useMemo, useState } from 'react';
+import {
+  BookOpen, Check, CheckCheck, ChevronLeft, ChevronRight, CircleAlert,
+  Coffee, Copy, FileCheck2, Headphones, HelpCircle, History, Home, Info, LockKeyhole,
+  Menu, MessageCircle, MonitorSmartphone, Moon, Search, ShieldCheck, SlidersHorizontal,
+  Sparkles, Star, Sun, X,
+} from 'lucide-react';
+import { procedures, projectLabels, quiz } from './data/knowledge';
+import { searchProcedures } from './lib/search';
+import type { Page, Procedure, Project, Status } from './types';
+
+const VERSION = '1.1.0';
+const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
+
+type ProjectFilter = Project | 'todos';
+
+function getStoredFavorites(): string[] {
+  try {
+    const raw = window.localStorage.getItem(FAVORITES_KEY);
+    const ids: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(ids) ? ids.filter((id): id is string => typeof id === 'string') : [];
+  } catch { return []; }
+}
+
+function StatusTag({ status }: { status: Status }) {
+  const titles = { validado: 'Validado', 'por-confirmar': 'Por confirmar', exemplo: 'Exemplo de formação' };
+  return <span className={`status status-${status}`}><span className="status-dot" />{titles[status]}</span>;
+}
+
+function ProjectMark({ project }: { project: Project }) {
+  return <span className={`project-mark project-mark-${project}`} aria-hidden="true">{project === 'coca-cola' ? 'CC' : 'BK'}</span>;
+}
+
+function ProcedureCard({ data, isFavorite, onOpen, onFavorite }: {
+  data: Procedure; isFavorite: boolean; onOpen: () => void; onFavorite: () => void;
+}) {
+  return <article className="procedure-card">
+    <div className="procedure-card-top"><span className="eyebrow">{data.category}</span><button type="button" className={`icon-button fav ${isFavorite ? 'is-favorite' : ''}`} aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'} aria-pressed={isFavorite} onClick={onFavorite}><Star size={18} fill={isFavorite ? 'currentColor' : 'none'}/></button></div>
+    <h3>{data.title}</h3><p>{data.summary}</p>
+    <div className="procedure-card-bottom"><StatusTag status={data.status}/><button type="button" onClick={onOpen} className="small-link">Abrir guião <ChevronRight size={16}/></button></div>
+  </article>;
+}
+
+function Workflow({ data, onBack, isFavorite, onFavorite }: {
+  data: Procedure; onBack: () => void; isFavorite: boolean; onFavorite: () => void;
+}) {
+  const [index, setIndex] = useState(0);
+  const [completed, setCompleted] = useState<Set<string>>(new Set());
+  const [reading, setReading] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const current = data.steps[index];
+  const progress = Math.round((completed.size / data.steps.length) * 100);
+
+  useEffect(() => { setIndex(0); setCompleted(new Set()); setReading(false); setCopied(false); }, [data.id]);
+  function markStep() {
+    setCompleted((old) => {
+      const updated = new Set(old);
+      if (updated.has(current.id)) updated.delete(current.id); else updated.add(current.id);
+      return updated;
+    });
+  }
+  async function copyScript() {
+    try {
+      await navigator.clipboard.writeText(current.say);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  }
+  return <div className={`workflow ${reading ? 'reading-mode' : ''}`}>
+    <div className="page-crumb"><button type="button" onClick={onBack}><ChevronLeft size={17}/> Voltar aos procedimentos</button></div>
+    <div className="workflow-head">
+      <div><div className="eyebrow">MODO ATENDIMENTO EM DIRETO</div><h2>{data.title}</h2><p>{data.summary}</p></div>
+      <div className="workflow-head-actions"><button className={`outline-button ${isFavorite ? 'is-favorite' : ''}`} type="button" onClick={onFavorite}><Star size={17} fill={isFavorite ? 'currentColor' : 'none'}/>{isFavorite ? 'Guardado' : 'Favorito'}</button><button type="button" className="outline-button" onClick={() => setReading(!reading)}><BookOpen size={17}/>{reading ? 'Vista normal' : 'Teleponto'}</button></div>
+    </div>
+    <div className="validation-banner"><CircleAlert size={19}/><div><strong>Conteúdo não validado institucionalmente</strong><p>Este guião serve de apoio e treino. Confirma sempre os procedimentos reais nos canais autorizados.</p></div></div>
+    <div className="workflow-columns">
+      <div className="workflow-main">
+        <section className="stage-card">
+          <div className="stage-progress-heading"><span>ETAPA {index + 1} DE {data.steps.length}</span><span>{progress}% verificado</span></div>
+          <div className="progress-track"><div style={{ width: `${progress}%` }}/></div>
+          <div className="stage-index"><span>{String(index + 1).padStart(2, '0')}</span><h3>{current.title}</h3></div>
+          <div className="script-label"><MessageCircle size={18}/> O QUE DIZER AO CLIENTE</div>
+          <blockquote className="script-text">“{current.say}”</blockquote>
+          <div className="stage-footer"><button className="outline-button" type="button" onClick={copyScript}><Copy size={16}/>{copied ? 'Frase copiada' : 'Copiar frase'}</button><label className="check-line"><input type="checkbox" checked={completed.has(current.id)} onChange={markStep}/><span>Etapa verificada</span></label></div>
+        </section>
+        <div className="step-navigation"><button type="button" className="outline-button" disabled={index === 0} onClick={() => setIndex(index - 1)}><ChevronLeft size={18}/> Anterior</button><span>Etapa {index + 1} / {data.steps.length}</span><button type="button" className="primary-button" disabled={index === data.steps.length - 1} onClick={() => setIndex(index + 1)}>Próxima etapa <ChevronRight size={18}/></button></div>
+        <section className="step-list"><h3>Etapas da chamada</h3><div className="step-pills">{data.steps.map((s, i) => <button type="button" key={s.id} className={`step-pill ${index === i ? 'active' : ''} ${completed.has(s.id) ? 'done' : ''}`} onClick={() => setIndex(i)} aria-current={index === i ? 'step' : undefined}><span>{completed.has(s.id) ? <Check size={15}/> : i + 1}</span>{s.title}</button>)}</div></section>
+      </div>
+      <aside className="notes-panel">
+        <section className="side-note"><h3><CheckCheck size={18}/> O que verificar</h3><p>{current.verify}</p></section>
+        <section className="side-note note-caution"><h3><CircleAlert size={18}/> O que evitar</h3><p>{current.avoid}</p></section>
+        {current.note && <section className="side-note"><h3><Info size={18}/> Nota interna</h3><p>{current.note}</p></section>}
+        <section className="side-note source-note"><h3><ShieldCheck size={18}/> Fiabilidade</h3><StatusTag status={data.status}/><p><strong>Origem:</strong> {data.source}</p><p><strong>Última validação:</strong> {data.lastValidated ?? 'Não efetuada'}</p></section>
+        <div className="privacy-reminder"><LockKeyhole size={17}/> Não introduzas dados pessoais dos clientes nesta aplicação.</div>
+      </aside>
+    </div>
+  </div>;
+}
+
+function Training() {
+  const [position, setPosition] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const item = quiz[position];
+  const selected = answers[item.id];
+  const answered = selected !== undefined;
+  const correct = Object.entries(answers).filter(([id, answer]) => quiz.find((q) => q.id === id)?.correctIndex === answer).length;
+  return <div className="training-layout"><div className="page-intro"><div className="eyebrow">FORMAÇÃO PROFISSIONAL</div><h2>Treina as respostas antes de atender</h2><p>Cenários fictícios sobre comunicação, segurança e rigor. Não constituem procedimentos oficiais.</p></div>
+    <div className="training-card"><div className="training-summary"><span>Questão {position + 1} de {quiz.length}</span><span>{correct} respostas certas</span></div><h3>{item.question}</h3><div className="answer-list">{item.choices.map((answer, idx) => <button key={answer} type="button" disabled={answered} onClick={() => setAnswers({ ...answers, [item.id]: idx })} className={`answer-button ${answered && idx === item.correctIndex ? 'correct' : ''} ${answered && selected === idx && idx !== item.correctIndex ? 'incorrect' : ''}`}><span>{String.fromCharCode(65 + idx)}</span>{answer}</button>)}</div>
+    {answered && <div className={`training-feedback ${selected === item.correctIndex ? 'feedback-correct' : 'feedback-error'}`}><strong>{selected === item.correctIndex ? 'Resposta correta' : 'Resposta a rever'}</strong><p>{item.explanation}</p></div>}
+    <div className="training-actions"><button className="outline-button" type="button" onClick={() => { setAnswers({}); setPosition(0); }}>Reiniciar</button><button type="button" className="primary-button" onClick={() => setPosition((position + 1) % quiz.length)}>{position === quiz.length - 1 ? 'Voltar ao início' : 'Próxima questão'}<ChevronRight size={16}/></button></div></div></div>;
+}
+
+function App() {
+  const [page, setPage] = useState<Page>('inicio');
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
+  const [searchProject, setSearchProject] = useState<ProjectFilter>('todos');
+  const [favorites, setFavorites] = useState<string[]>(getStoredFavorites);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const selected = procedures.find((p) => p.id === selectedId) ?? null;
+  const filtered = useMemo(() => searchProcedures(procedures, query, searchProject), [query, searchProject]);
+  const favoriteProcedures = procedures.filter((p) => favorites.includes(p.id));
+
+  useEffect(() => { try { window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites)); } catch { /* Funcionamento sem armazenamento quando bloqueado. */ } }, [favorites]);
+  useEffect(() => { document.documentElement.classList.toggle('dark', darkMode); return () => document.documentElement.classList.remove('dark'); }, [darkMode]);
+
+  function navigate(target: Page) { setPage(target); setSelectedId(null); setMenuOpen(false); }
+  function openProcedure(p: Procedure) { setSelectedId(p.id); setPage(p.project); setMenuOpen(false); window.scrollTo(0, 0); }
+  function toggleFavorite(id: string) { setFavorites((old) => old.includes(id) ? old.filter((x) => x !== id) : [...old, id]); }
+  function openSearch() { navigate('pesquisa'); }
+
+  const navigation: { id: Page; label: string; icon: typeof Home; secondary?: string }[] = [
+    { id: 'inicio', label: 'Início', icon: Home },
+    { id: 'coca-cola', label: 'Coca-Cola', icon: Coffee, secondary: 'Serviços de Avarias' },
+    { id: 'burger-king', label: 'Burger King', icon: Headphones, secondary: 'Apoio ao Cliente' },
+    { id: 'pesquisa', label: 'Pesquisa', icon: Search },
+    { id: 'favoritos', label: 'Favoritos', icon: Star },
+    { id: 'formacao', label: 'Área de estudo', icon: BookOpen },
+    { id: 'versoes', label: 'Histórico de versões', icon: History },
+    { id: 'seguranca', label: 'Segurança e fontes', icon: ShieldCheck },
+  ];
+  const pageName: Record<Page, string> = { inicio: 'Visão geral', 'coca-cola': 'Coca-Cola', 'burger-king': 'Burger King', pesquisa: 'Pesquisa', favoritos: 'Favoritos', formacao: 'Área de estudo', versoes: 'Versões', seguranca: 'Segurança e fontes' };
+
+  function renderCards(items: Procedure[]) {
+    return items.length ? <div className="procedures-grid">{items.map((p) => <ProcedureCard key={p.id} data={p} isFavorite={favorites.includes(p.id)} onOpen={() => openProcedure(p)} onFavorite={() => toggleFavorite(p.id)} />)}</div> : <div className="empty-state"><Search size={28}/><h3>Nenhum procedimento encontrado</h3><p>Experimenta outras palavras ou muda o filtro de pesquisa.</p></div>;
+  }
+  return <div className="app-shell">
+    <button className="mobile-menu-button" type="button" aria-label="Abrir menu" onClick={() => setMenuOpen(!menuOpen)}><Menu size={23}/></button>
+    {menuOpen && <button className="mobile-scrim" aria-label="Fechar menu" type="button" onClick={() => setMenuOpen(false)} />}
+    <aside className={`sidebar ${menuOpen ? 'sidebar-open' : ''}`}>
+      <div className="brand"><span className="brand-icon"><Headphones size={27}/></span><span><strong>Call Center Pro</strong><small>O teu apoio no atendimento</small></span><button className="mobile-close" type="button" aria-label="Fechar menu" onClick={() => setMenuOpen(false)}><X size={20}/></button></div>
+      <div className="sidebar-label">ESPAÇO DE TRABALHO</div><nav aria-label="Navegação principal">{navigation.map(({ id, label, secondary, icon: Icon }) => <button key={id} type="button" className={`nav-item ${page === id ? 'active' : ''}`} onClick={() => navigate(id)} aria-current={page === id ? 'page' : undefined}><Icon size={19}/><span>{label}{secondary && <small>{secondary}</small>}</span>{id === 'favoritos' && favorites.length > 0 && <span className="nav-counter">{favorites.length}</span>}</button>)}</nav>
+      <div className="sidebar-bottom"><div className="sidebar-tip"><ShieldCheck size={18}/><span>Consulta e formação.<br/>Não é uma ferramenta oficial.</span></div><small>Versão {VERSION} · Sem dados de clientes</small></div>
+    </aside>
+    <div className="main-area">
+      <header className="topbar"><div className="topbar-breadcrumb"><span>Call Center Pro</span><ChevronRight size={14}/><strong>{pageName[page]}</strong></div><div className="top-actions"><button type="button" className="quick-search" onClick={openSearch}><Search size={17}/> Pesquisar procedimentos <span>⌕</span></button><button type="button" className="icon-button theme-switch" title={darkMode ? 'Modo claro' : 'Modo escuro'} aria-label={darkMode ? 'Ativar modo claro' : 'Ativar modo escuro'} onClick={() => setDarkMode(!darkMode)}>{darkMode ? <Sun size={19}/> : <Moon size={19}/>}</button><span className="account-avatar">A</span></div></header>
+      <main className="main-content">
+        {page === 'inicio' && <>
+          <div className="home-top"><div className="eyebrow"><Sparkles size={14}/> PAINEL DE ATENDIMENTO</div><h1>Bom atendimento começa com informação certa.</h1><p>Escolhe o serviço ou encontra rapidamente o guião de que precisas. Tudo organizado para consulta durante a chamada.</p></div>
+          <div className="metrics"><div className="metric"><span>Áreas de atendimento</span><strong>02</strong><small>Coca-Cola e Burger King</small></div><div className="metric"><span>Guiões disponíveis</span><strong>{String(procedures.length).padStart(2, '0')}</strong><small>Exemplos e conteúdos por confirmar</small></div><div className="metric"><span>Conteúdos validados</span><strong>00</strong><small>Sem documentação oficial recebida</small></div><div className="metric"><span>Versão atual</span><strong>{VERSION}</strong><small>Primeira implementação funcional</small></div></div>
+          <div className="section-heading"><div><h2>Escolher área de atendimento</h2><p>Os dois serviços mantêm guiões e encaminhamentos separados.</p></div></div>
+          <div className="project-grid"><button type="button" className="project-hero cc-hero" onClick={() => navigate('coca-cola')}><div className="project-hero-top"><ProjectMark project="coca-cola"/><span>ÁREA 01</span></div><div><div className="project-hero-label">COCA-COLA</div><h3>Serviços de Avarias</h3><p>Equipamentos, refrigeração, distribuição e manutenção.</p></div><span className="project-hero-link">Consultar procedimentos <ChevronRight size={19}/></span><div className="hero-decoration" aria-hidden="true"><Headphones size={140} strokeWidth={1.2}/></div></button>
+            <button type="button" className="project-hero bk-hero" onClick={() => navigate('burger-king')}><div className="project-hero-top"><ProjectMark project="burger-king"/><span>ÁREA 02</span></div><div><div className="project-hero-label">BURGER KING</div><h3>Apoio ao Cliente</h3><p>Pedidos, entregas, reclamações e suporte digital.</p></div><span className="project-hero-link">Consultar procedimentos <ChevronRight size={19}/></span><div className="hero-decoration" aria-hidden="true"><MessageCircle size={150} strokeWidth={1.2}/></div></button></div>
+          <div className="section-heading secondary-heading"><div><h2>Acessos rápidos</h2><p>As ferramentas essenciais durante o teu turno.</p></div></div>
+          <div className="quick-links"><button onClick={openSearch}><span className="quick-link-icon blue"><Search/></span><strong>Pesquisar situação</strong><small>Encontra o guião certo</small><ChevronRight size={18}/></button><button onClick={() => navigate('formacao')}><span className="quick-link-icon violet"><BookOpen/></span><strong>Treinar atendimento</strong><small>Praticar comunicação</small><ChevronRight size={18}/></button><button onClick={() => navigate('favoritos')}><span className="quick-link-icon amber"><Star/></span><strong>Os meus favoritos</strong><small>Acesso aos guiões guardados</small><ChevronRight size={18}/></button></div>
+        </>}
+        {(page === 'coca-cola' || page === 'burger-king') && (selected ? <Workflow key={selected.id} data={selected} onBack={() => setSelectedId(null)} isFavorite={favorites.includes(selected.id)} onFavorite={() => toggleFavorite(selected.id)} /> : <><div className={`service-header service-${page}`}><ProjectMark project={page}/><div><div className="eyebrow">BIBLIOTECA DE ATENDIMENTO</div><h1>{projectLabels[page]}</h1><p>Seleciona a situação relatada para abrir o atendimento orientado.</p></div></div><div className="alert-lite"><Info size={17}/> Guiões de apoio e treino. Nenhum procedimento desta versão está validado institucionalmente.</div><div className="section-heading"><div><h2>Situações e procedimentos</h2><p>{procedures.filter((p) => p.project === page).length} guiões disponíveis</p></div></div>{renderCards(procedures.filter((p) => p.project === page))}</>)}
+        {page === 'pesquisa' && <><div className="page-intro"><div className="eyebrow"><SlidersHorizontal size={14}/> PESQUISA DE PROCEDIMENTOS</div><h1>De que precisas para esta chamada?</h1><p>Pesquisa pela expressão utilizada pelo cliente, por exemplo «não faz frio», «pedido incompleto» ou «aplicação».</p></div><div className="search-panel"><label className="search-input"><Search size={21}/><input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Escreve o problema ou assunto..." aria-label="Pesquisar por problema ou assunto"/>{query && <button type="button" aria-label="Limpar pesquisa" onClick={() => setQuery('')}><X size={17}/></button>}</label><div className="filter-line"><span><SlidersHorizontal size={16}/> Filtrar por área:</span><div className="filter-buttons">{([['todos', 'Todas'], ['coca-cola', 'Coca-Cola'], ['burger-king', 'Burger King']] as const).map(([value, label]) => <button type="button" key={value} className={searchProject === value ? 'selected' : ''} onClick={() => setSearchProject(value)}>{label}</button>)}</div></div></div><div className="section-heading"><div><h2>Resultados <span className="result-count">{filtered.length}</span></h2><p>Resultados incluem sinónimos e descrições das situações.</p></div></div>{renderCards(filtered)}</>}
+        {page === 'favoritos' && <><div className="page-intro"><div className="eyebrow"><Star size={15}/> ACESSOS GUARDADOS</div><h1>Os teus procedimentos favoritos</h1><p>Guarda os guiões mais frequentes. Apenas os identificadores dos favoritos são armazenados neste dispositivo.</p></div>{favoriteProcedures.length ? renderCards(favoriteProcedures) : <div className="empty-state"><Star size={35}/><h3>Ainda não guardaste favoritos</h3><p>Abre uma área de atendimento e seleciona a estrela de um guião.</p><button className="primary-button" onClick={() => navigate('inicio')}>Ver áreas <ChevronRight size={16}/></button></div>}</>}
+        {page === 'formacao' && <Training/>}
+        {page === 'versoes' && <><div className="page-intro"><div className="eyebrow"><History size={14}/> REGISTO DE EVOLUÇÃO</div><h1>Histórico de versões</h1><p>As alterações ao projeto devem ser registadas e testadas antes da publicação.</p></div><div className="timeline-card"><span className="version-pill">v1.1.0</span><h3>Primeira implementação entregue</h3><p>Interface responsiva, separação por serviços, guiões passo a passo, teleponto, pesquisa sem acentos, favoritos locais, treino e indicadores de validação.</p><small>18 de outubro de 2026</small></div><div className="timeline-card muted"><span className="version-pill">Próximas versões</span><h3>Melhorias condicionadas a documentação</h3><p>Validação institucional de procedimentos, revisão do conteúdo, avaliação de acessibilidade e melhorias funcionais após testes com utilizadores.</p></div></>}
+        {page === 'seguranca' && <><div className="page-intro"><div className="eyebrow"><LockKeyhole size={15}/> BOAS PRÁTICAS</div><h1>Segurança, fontes e limites</h1><p>O Call Center Pro é uma ferramenta independente de apoio pessoal ao atendimento, sem ligação aos sistemas oficiais das marcas.</p></div><div className="info-grid"><section className="info-card"><ShieldCheck size={24}/><h3>Estado da informação</h3><p><strong>Validado:</strong> requer fonte institucional e data de confirmação. Nenhum conteúdo inicial foi classificado como validado.</p><p><strong>Por confirmar:</strong> precisa de confirmação do responsável competente.</p><p><strong>Exemplo:</strong> texto útil para treino, não vinculativo.</p></section><section className="info-card"><LockKeyhole size={24}/><h3>Dados pessoais</h3><p>Não introduzas dados de clientes, NIF, moradas, telefones, números de encomenda, credenciais ou informação de chamadas nesta aplicação.</p><p>Os favoritos guardam apenas identificadores de guiões no navegador.</p></section><section className="info-card"><MonitorSmartphone size={24}/><h3>Publicação no GitHub</h3><p>O GitHub Pages serve páginas estáticas e não proporciona autenticação do conteúdo. Só publica informação que esteja autorizada para divulgação pública.</p><p>Procedimentos internos devem ficar num sistema com acesso controlado.</p></section><section className="info-card"><FileCheck2 size={24}/><h3>Fontes e revisão</h3><p>Os conteúdos disponíveis foram preparados a partir do relato do operador ou criados como exemplos de formação. Ainda não foram recebidos documentos oficiais para validação.</p><p>Confirma sempre as ações operacionais no sistema e nas instruções internas autorizadas.</p></section></div></>}
+      </main>
+      <footer className="app-footer"><span><HelpCircle size={15}/> Ferramenta de apoio independente. Confirma as instruções operacionais antes de as aplicares.</span><span>Call Center Pro · v{VERSION}</span></footer>
+    </div>
+  </div>;
+}
+
+export default App;

@@ -1,0 +1,32 @@
+name: Verificação de qualidade
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Gerar package-lock.json no primeiro npm install e adicioná-lo ao repositório.
+      # Depois substituir "npm install" por "npm ci" para instalações reprodutíveis.
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Verificar tipagem TypeScript
+        run: npm run typecheck
+      - name: Executar testes
+        run: npm test
+      - name: Compilar para produção
+        run: npm run build
