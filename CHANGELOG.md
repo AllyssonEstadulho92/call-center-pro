@@ -1,3 +1,9 @@
+## [1.5.0] - 2026-10-18
+
+- Formação alargada a 12 questões e cenários sem dados pessoais.
+- Resultado final, correções comentadas e repetição das questões incorretas.
+- Navegação para a questão anterior, progresso e reinício.
+
 ## [1.4.0] - 2026-10-18
 
 - Nova biblioteca de respostas rápidas com pesquisa, filtros por serviço e acesso ao guião completo.
