@@ -15,7 +15,7 @@ Criar uma aplicação web responsiva de consulta e treino individual de atendime
 - Barra de navegação inferior no telemóvel.
 
 ## Estado de verificação
-A primeira passagem do TypeScript detetou uma importação não utilizada, removida no PR. Os testes de regressão e a compilação estão sujeitos à execução final de GitHub Actions. A compatibilidade visual com Safari de iPhone e outros browsers requer ainda teste manual no dispositivo real.
+A primeira passagem do TypeScript detetou uma importação não utilizada, corrigida. A verificação posterior de TypeScript, os testes unitários e a compilação passaram no GitHub Actions. Os testes de navegação em Chromium desktop e móvel também passaram após corrigir o caminho de base do servidor de teste. A compatibilidade visual e de voz com Safari de iPhone requer teste manual.
 
 ## Restrições / Riscos
 - O repositório e o GitHub Pages são públicos; não publicar processos internos restritos ou materiais das marcas sem autorização.

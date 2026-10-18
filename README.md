@@ -149,3 +149,16 @@ A área de treino inclui 12 questões fictícias, correção explicada, progress
 - Não utilizar a gravação durante chamadas reais nem recolher voz ou dados dos clientes.
 
 O microfone necessita de HTTPS, browser compatível e autorização expressa. Os exercícios e guiões **não são procedimentos institucionais validados**.
+
+
+### Testes de navegação no browser
+
+Para executar testes de aceitação automatizados no Chromium:
+
+```bash
+npm install
+npx playwright install chromium
+npm run test:e2e
+```
+
+O workflow `Testes de utilização no browser` verifica o ecrã inicial, a abertura de um atendimento, o teleponto e as simulações em desktop e em tamanho móvel. Isto não substitui os testes no Safari do iPhone ou a validação dos scripts com a supervisão.

@@ -7,6 +7,8 @@
 - Incluídas perguntas frequentes, acessos rápidos e navegação inferior no telemóvel.
 - Conservada a política de não apresentar procedimentos como validados institucionalmente.
 - Correção de importação TypeScript não utilizada identificada no CI.
+- Acrescentados testes de ponta a ponta com Playwright em Chromium desktop e móvel; corrigido o caminho base do servidor de testes.
+- TypeScript, testes unitários, compilação e testes de browser concluídos com sucesso na branch do PR.
 - Documentadas arquitetura, decisões, risco e próximos passos.
 
 ## Fases anteriores
