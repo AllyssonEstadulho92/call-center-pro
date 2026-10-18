@@ -96,3 +96,18 @@ O código-fonte foi preparado e os ficheiros TypeScript foram analisados sintati
 - Expandir testes automatizados e acessibilidade.
 
 Ver [CHANGELOG.md](CHANGELOG.md).
+
+
+## Versão 1.3.0: fontes e triagem
+
+A área **Decidir encaminhamento** orienta a identificação do canal, mas não consulta bases de dados de clientes.
+A área **Segurança e fontes** oferece ligações públicas verificadas e descreve exatamente o que demonstram e o que não comprovam.
+Os manuais pessoais disponibilizados pelo utilizador foram utilizados como referência para compreender situações frequentes; **não foram publicados no repositório nem foram copiados textos operacionais confidenciais**. As regras concretas de campanha continuam por confirmar com a supervisão.
+
+Fontes públicas consultadas em 18/10/2026:
+- https://www.burgerking.pt/support
+- https://www.coca-cola.com/pt/pt/about-us/contact-us
+- https://www.coca-cola.com/pt/pt/about-us/faq
+- https://www.livroreclamacoes.pt/INICIO/
+
+Nunca publicar dados pessoais dos clientes, credenciais ou documentos internos no repositório público.

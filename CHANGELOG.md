@@ -1,3 +1,12 @@
+## [1.3.0] - 2026-10-18
+
+- Adicionada triagem por origem do pedido e assunto, sem recolha de dados pessoais.
+- Acrescentadas quatro fontes públicas consultáveis, com âmbito e limites explícitos.
+- Incluídos cinco guiões adicionais de formação e consulta (Coca-Cola e Burger King), todos por confirmar operacionalmente.
+- Associadas fontes públicas relacionadas aos guiões aplicáveis, sem as apresentar como confirmação das regras internas.
+- Incluídos testes automáticos de encaminhamento, fontes HTTPS e separação de canais.
+- Mantida desativada a publicação automática no GitHub Pages até haver autorização dos conteúdos.
+
 # Histórico de versões
 
 ## 1.2.0 · 18 de outubro de 2026
