@@ -1,4 +1,13 @@
-# Histórico de alterações
+# Histórico de versões
+
+## 1.2.0 · 18 de outubro de 2026
+
+- Novo seletor «Iniciar atendimento» com filtragem de serviço, pesquisa e abertura direta do guião.
+- Controlo manual da saudação em cada chamada («bom dia» / «boa tarde»).
+- Leitura do teleponto com tamanho de letra regulável e botão «Recomeçar».
+- Atalho de teclado Ctrl/Cmd + K para abrir a pesquisa.
+- Testes unitários para a saudação, sem tratar exemplos como instruções institucionais.
+- Mantida a política de não recolher dados pessoais de clientes.
 
 ## [1.1.0] - 2026-10-18
 
