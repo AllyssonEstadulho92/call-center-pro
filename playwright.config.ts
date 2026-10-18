@@ -16,6 +16,9 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npx vite --host 127.0.0.1 --port 4173',
+    // Em GitHub Actions o Vite deteta GITHUB_REPOSITORY e aplica /call-center-pro/.
+    // Para testes E2E locais forçamos base='/' e URL /app.html.
+    env: { GITHUB_REPOSITORY: '' },
     url: 'http://127.0.0.1:4173/app.html',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
