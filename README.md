@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.1.0
+# Call Center Pro | versão 1.2.0
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -7,7 +7,11 @@ Aplicação web independente de apoio à **consulta e ao treino do atendimento t
 ## Funcionalidades
 
 - Duas áreas independentes: Coca-Cola (avarias de equipamentos) e Burger King (apoio ao cliente).
+- **Iniciar atendimento** abre rapidamente um seletor de serviço e situação, com pesquisa por expressões de clientes.
 - **Modo Atendimento em Direto** com etapas navegáveis e indicador de etapas verificadas.
+- **Saudação ajustável** entre «bom dia» e «boa tarde», sem alterar a origem dos guiões.
+- **Teleponto ajustável** com tamanho de letra de 20 a 40 px e opção de recomeçar a sequência.
+- **Atalho Ctrl/Cmd + K** para pesquisar procedimentos sem navegar pelos menus.
 - **Teleponto** com o texto sugerido em maior destaque.
 - Três campos por etapa: «O que dizer», «O que verificar» e «O que evitar».
 - Pesquisa por palavras-chave, sinónimos e expressões sem diferenciação de acentos.
@@ -43,24 +47,11 @@ npm run preview
 
 O comando `npm run build` cria `dist/`. O `npm test` executa os testes da pesquisa e da base inicial. Se tudo funcionar, executa `npm install` uma primeira vez e adiciona o `package-lock.json` ao GitHub; depois podes substituir `npm install` por `npm ci` nos workflows para instalações mais reprodutíveis.
 
-## Criar repositório no GitHub
+## Repositório GitHub existente
 
-1. Na tua conta GitHub, cria um repositório **privado** com o nome `call-center-pro`.
-2. Descompacta o ZIP e abre o terminal na pasta `call-center-pro`.
-3. Executa:
+O código deste projeto é mantido em [`AllyssonEstadulho92/call-center-pro`](https://github.com/AllyssonEstadulho92/call-center-pro). O repositório está **público**, pelo que os conteúdos enviados para o GitHub ficam acessíveis a terceiros.
 
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "feat: primeira versão funcional Call Center Pro 1.1.0"
-git remote add origin https://github.com/UTILIZADOR/call-center-pro.git
-git push -u origin main
-```
-
-Substitui `UTILIZADOR` pelo teu nome de utilizador GitHub. A autenticação pode exigir Git Credential Manager, SSH ou um token adequado. **Nunca incluas tokens nos ficheiros.**
-
-4. Consulta o separador **Actions**. O workflow «Verificação de qualidade» executa verificações quando há atualizações.
+A cada alteração, verifica o workflow **Verificação de qualidade** no separador Actions. Não publiques instruções internas nem dados de clientes. A distribuição web pelo GitHub Pages permanece **manual** e exige verificação prévia de autorização de divulgação pública.
 
 ### Publicação no GitHub Pages
 
