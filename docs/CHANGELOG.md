@@ -1,6 +1,6 @@
 # Registo técnico de alterações
 
-## 2026-10-18 | 1.6.0 (branch de preparação para quarta-feira)
+## 2026-10-18 | 1.6.0 (integrada na main)
 - Integrado painel guiado na página inicial, com seleção de serviço e progresso.
 - Implementada leitura por voz sintetizada das frases do teleponto.
 - Criado estúdio de simulações fictícias com captação temporária da própria voz, condicionada a permissão.
@@ -13,3 +13,8 @@
 
 ## Fases anteriores
 Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenvolvimento foi realizado em branch separada.
+
+### Integração final
+- PR #2 integrado com verificação TypeScript, testes Vitest, build Vite e testes Playwright desktop/móvel bem-sucedidos.
+- GitHub Pages publicou os artefactos compilados da versão 1.6.0.
+- Safari, VoiceOver e microfone em iPhone real ainda requerem validação manual.
