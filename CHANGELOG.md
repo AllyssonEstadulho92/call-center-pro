@@ -1,3 +1,12 @@
+## [1.4.0] - 2026-10-18
+
+- Nova biblioteca de respostas rápidas com pesquisa, filtros por serviço e acesso ao guião completo.
+- Texto de resposta obtido dos próprios procedimentos, sem duplicação de regras internas.
+- Pesquisa com ordenação por relevância e testes de regressão.
+- Preferência de tema persistente e melhorias de acessibilidade, teclado e movimento reduzido.
+- Proteção visual contra erros inesperados da interface.
+- Mantidos os avisos de procedimentos não validados e a política de não recolher dados pessoais.
+
 ## [1.3.0] - 2026-10-18
 
 - Adicionada triagem por origem do pedido e assunto, sem recolha de dados pessoais.

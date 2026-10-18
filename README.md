@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.3.1
+# Call Center Pro | versão 1.4.0
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -120,3 +120,16 @@ O GitHub Pages estava a servir diretamente `index.html`, que carregava `/src/mai
 **Acesso público esperado:** https://allyssonestadulho92.github.io/call-center-pro/
 
 As alterações efetuadas por `GITHUB_TOKEN` podem não ativar um novo ciclo de publicação do Pages. Se a compilação terminar e o site não atualizar, executa um commit normal no ramo `main` para disparar a publicação da fonte de branch.
+
+
+## Versão 1.4.0: respostas rápidas e acessibilidade
+
+- **Respostas rápidas** na navegação lateral e na página inicial: pesquisa, filtro por serviço, frase sugerida, verificação, cautela e acesso ao guião completo.
+- As frases são extraídas da mesma base de conhecimento dos guiões, evitando manter versões contraditórias.
+- Pesquisa com relevância ordenada por título, sinónimos e categoria.
+- Tema claro/escuro guardado no dispositivo (sem dados de clientes).
+- Atalho para saltar diretamente ao conteúdo, realce de foco do teclado e respeito pelas preferências de movimento reduzido.
+- Ecrã de recuperação caso ocorra um erro inesperado da interface.
+- Novos testes unitários e requisitos de não validação indevida dos guiões.
+
+**Nota de segurança:** nenhuma frase desta versão equivale à validação operacional por uma entidade responsável.
