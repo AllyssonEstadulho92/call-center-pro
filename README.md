@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.2.0
+# Call Center Pro | versão 1.3.1
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -34,7 +34,7 @@ npm install
 npm run dev
 ```
 
-Acede ao endereço local apresentado no terminal (normalmente `http://localhost:5173`).
+Acede ao endereço local apresentado no terminal (normalmente `http://localhost:5173/app.html`).
 
 ## Verificações
 
@@ -111,3 +111,12 @@ Fontes públicas consultadas em 18/10/2026:
 - https://www.livroreclamacoes.pt/INICIO/
 
 Nunca publicar dados pessoais dos clientes, credenciais ou documentos internos no repositório público.
+
+
+## Correção da página em branco (v1.3.1)
+
+O GitHub Pages estava a servir diretamente `index.html`, que carregava `/src/main.tsx` sem compilação. A fonte React passou a estar em `app.html`. O workflow [Construir aplicação para GitHub Pages](.github/workflows/build-static-site.yml) executa testes, compila com Vite e grava o `index.html` e `assets/` compilados na raiz para publicação pela fonte **main / root**. ` .nojekyll` evita a transformação Jekyll. O projeto permanece público, sem dados reais nem procedimentos internos autorizados.
+
+**Acesso público esperado:** https://allyssonestadulho92.github.io/call-center-pro/
+
+As alterações efetuadas por `GITHUB_TOKEN` podem não ativar um novo ciclo de publicação do Pages. Se a compilação terminar e o site não atualizar, executa um commit normal no ramo `main` para disparar a publicação da fonte de branch.
