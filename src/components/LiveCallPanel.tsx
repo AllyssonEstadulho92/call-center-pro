@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, ChevronLeft, ChevronRight, CircleAlert, Headphones, RotateCcw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CircleAlert, Headphones, RotateCcw } from 'lucide-react';
 import { procedures } from '../data/knowledge';
 import { formatGreeting, getDefaultGreeting } from '../lib/greeting';
 import { SpeechPlayer } from './SpeechPlayer';
