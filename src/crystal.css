@@ -579,3 +579,27 @@ body{background:var(--bg)}
   .speech-options label:last-child { flex: 0 0 auto; width: 100%; }
 }
 /* End v1.8.1 mobile adaptation. Never disable pinch-to-zoom. */
+
+
+/* Auditoria de fontes e procedimentos | v1.9 */
+.evidence-audit { margin-top: 24px; min-width: 0; }
+.evidence-audit-summary { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin: 15px 0; }
+.evidence-audit-summary > div { padding: 15px; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; }
+.evidence-audit-summary strong { display:block; font-size:25px; color:var(--text); font-weight:850; }
+.evidence-audit-summary span { display:block; font-size:11px; line-height:1.5; margin-top:5px; color:var(--muted); }
+.evidence-audit-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.evidence-audit-card { min-width:0; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px; }
+.evidence-audit-card h3 { display:flex; align-items:center; gap:8px; font-size:14px; margin:0 0 14px; color:var(--text); }
+.evidence-audit-claim { padding:13px 0; border-top:1px solid var(--line); }
+.evidence-audit-claim strong { font-size:12.5px; line-height:1.55; color:var(--text); display:block; }
+.evidence-audit-claim p { font-size:11.5px; line-height:1.65; color:var(--muted); margin:8px 0; }
+.evidence-audit-claim p svg {display:inline; vertical-align:-3px; color:#b87937}
+.evidence-audit-claim>div {display:flex; gap:9px; flex-wrap:wrap}
+.evidence-audit-claim a { display:inline-flex; align-items:center; gap:5px; text-decoration:underline; text-underline-offset:2px; font-size:11.5px; color:#2572cc }
+.evidence-audit-pending .evidence-audit-claim small { font-size:10.5px; color:#a37632; line-height:1.5; }
+.evidence-audit-footer { display:flex; align-items:flex-start; gap:9px; padding:15px; border-radius:10px; background:var(--soft); font-size:11.5px; line-height:1.7; color:var(--muted); }
+.evidence-audit-footer svg { flex:0 0 17px; }
+.dark .evidence-audit-claim a {color:#a9d3ff}
+.dark .evidence-audit-pending .evidence-audit-claim small {color:#f6cf8c}
+@media(max-width:860px){.evidence-audit-columns{grid-template-columns:1fr}.evidence-audit-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){.evidence-audit-summary>div{padding:11px}.evidence-audit-card{padding:13px}}

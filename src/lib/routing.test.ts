@@ -24,4 +24,13 @@ describe('triagem e fontes oficiais', () => {
   it('devolve somente fontes pedidas', () => {
     expect(getPublicSources(['bk-suporte']).map(s => s.id)).toEqual(['bk-suporte']);
   });
+  it('formula orientações digitais BK de maneira condicional, sem negar acesso sem prova', () => {
+    for (const channel of ['aplicacao', 'website'] as const) {
+      const advice = getRoutingAdvice('burger-king', channel, 'encomenda');
+      expect(advice.say.toLowerCase()).not.toContain('não consigo consultar');
+      expect(advice.verify).toContain('permissões da linha');
+      expect(advice.sourceIds).toEqual(['bk-suporte']);
+    }
+  });
+
 });
