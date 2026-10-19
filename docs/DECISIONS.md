@@ -26,3 +26,13 @@ Decisão: criar áreas independentes «Manual Coca-Cola» e «Manual Burger King
 
 ## D-009 | Índice e progresso só em memória
 Decisão: não guardar no dispositivo o progresso da leitura, nomes de clientes ou notas de atendimento. Motivo: facilitar o uso pontual e minimizar exposição de dados num repositório público.
+
+
+## D-010 | Interface iluminada e contida
+Criar um dashboard de estilo cristal, com gradientes discretos e cartões claros, preservando contraste e compreensão. As ilustrações são SVG originais e não cópias de fotografias e logótipos.
+
+## D-011 | Métricas reais, não inventadas
+Exibir apenas quantidade de guiões, favoritos locais e validações efetivas provenientes da base existente. Não inventar chamadas, percentagens de satisfação nem duração média.
+
+## D-012 | Voz selecionável do browser
+Permitir escolher voz portuguesa disponível, ritmo, pausa, repetição e paragem. Não alegar naturalidade humana garantida: a Web Speech API depende do sistema/browser. Não há API key, serviço externo de síntese contratado ou recolha de chamadas.
