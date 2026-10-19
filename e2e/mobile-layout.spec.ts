@@ -62,7 +62,7 @@ test('menus e ações acessíveis em ecrã estreito de 320px', async ({ page }) 
   expect(headerBox!.width).toBeLessThanOrEqual(320);
   await page.getByRole('button', { name: 'Iniciar atendimento' }).first().click();
   await expect(page.getByRole('dialog', { name: 'Iniciar atendimento' })).toBeVisible();
-  await page.getByRole('button', { name: 'Fechar' }).click();
+  await page.getByRole('dialog', { name: 'Iniciar atendimento' }).getByRole('button', { name: 'Fechar', exact: true }).click();
   await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Pesquisa' }).click();
   await expect(page.getByRole('heading', { name: /De que precisas para esta chamada/ })).toBeVisible();
   await expectFitsViewport(page, 320, 'Pesquisa');
