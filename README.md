@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.8.0
+# Call Center Pro | versão 1.8.1
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -192,3 +192,13 @@ No Atendimento em Direto escolhe o assunto e a etapa e utiliza **Ouvir frase**, 
 
 ### Verificações
 `npm run typecheck`, `npm test`, `npm run build` e `npm run test:e2e`. A compatibilidade e a qualidade de áudio no Safari e VoiceOver têm de ser testadas num iPhone real.
+
+## Ajustes móveis | v1.8.1
+
+- Corrigido conflito de estilos no cabeçalho: pesquisa mantinha largura mínima de 230px em ecrãs pequenos, alargando a página.
+- Estilos específicos para 320, 360, 375, 390, 430 e 768px sem alterar a escala real do browser.
+- Cabeçalho compacto com título truncado quando necessário, botões adequados ao toque e menu móvel.
+- Cartões dos serviços mais baixos e melhor espaçamento; conteúdos de atendimento, manuais e simulações continuam acessíveis.
+- O zoom de acessibilidade do browser não é bloqueado.
+
+**Validação:** executar `npm run test:e2e` e os restantes comandos do projeto. O teste automatizado verifica excesso horizontal e proporções em vários viewports, mas não substitui testes no Safari de iPhone real.

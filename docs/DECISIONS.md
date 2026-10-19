@@ -36,3 +36,9 @@ Exibir apenas quantidade de guiões, favoritos locais e validações efetivas pr
 
 ## D-012 | Voz selecionável do browser
 Permitir escolher voz portuguesa disponível, ritmo, pausa, repetição e paragem. Não alegar naturalidade humana garantida: a Web Speech API depende do sistema/browser. Não há API key, serviço externo de síntese contratado ou recolha de chamadas.
+
+## D-013 | Não mascarar erro de responsive com zoom forçado
+Optou-se por corrigir a causa CSS, com media queries móveis após os estilos de v1.8. Não adicionar `user-scalable=no`, `maximum-scale=1` ou `overflow-x:hidden` global para esconder componentes fora do ecrã. Motivo: manter zoom de acessibilidade e evitar que botões desapareçam lateralmente.
+
+## D-014 | Compactar sem reduzir alvos de toque
+Optou-se por botões de cabeçalho com cerca de 39–41px (a barra de navegação inferior mantém área maior), cartões de serviço menos altos mas integralmente acionáveis, e títulos responsivos. Medir em 320–768px e repetir nos principais fluxos em browser real.

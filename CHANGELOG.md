@@ -1,3 +1,10 @@
+## [1.8.1] - 2026-10-19
+
+- Corrigida largura mínima indevida do botão de pesquisa no modo móvel.
+- Compactados cabeçalho, cartões dos serviços e espaçamentos mantendo legibilidade e áreas clicáveis.
+- Prevenido conteúdo fora da largura visível em ecrãs estreitos, sem bloquear o zoom.
+- Adicionados testes de regressão para 320, 360, 375, 390, 430 e 768px, manuais, simulações e pesquisa.
+
 ## [1.8.0] - 2026-10-19
 
 - Dashboard Cristal: interface responsiva, espaçamento consistente, manuais e fontes mais visíveis.

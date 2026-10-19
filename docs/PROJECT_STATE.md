@@ -1,48 +1,35 @@
 # Call Center Pro | Estado do projeto
 
-Atualizado: 18-10-2026 | Entrega de referência: quarta-feira, 21-10-2026
-Versão publicada: `main` | PR #2 integrado | Aplicação: https://allyssonestadulho92.github.io/call-center-pro/
+Atualizado em 19-10-2026.
+Versão publicada antes desta correção: 1.8.0.
+Branch de correção: `fix/mobile-responsive-viewport-v1-8-1`.
 
-## Objetivo
-Criar uma aplicação web responsiva de consulta e treino individual de atendimento, inspirada na imagem de referência do utilizador, sem ligação aos sistemas oficiais Coca-Cola ou Burger King.
+## Problema reportado
+No browser do telemóvel a interface aparecia demasiado grande, obrigando a reduzir o zoom para visualizar menus e funcionalidades.
 
-## Implementado nas versões 1.6.0 e 1.7.0
-- React 19 + TypeScript + Vite; interface desktop e smartphone; pesquisa, favoritos, fluxos e triagem.
-- Painel inicial com dois serviços, guião demonstrativo navegável e situações frequentes.
-- Atendimento em direto com leitura sintetizada de frases em português (quando suportado).
-- Simulações exclusivamente fictícias, com possibilidade de gravar a própria voz temporariamente e ouvir o resultado.
-- Perguntas frequentes e referências públicas; nenhum procedimento interno promovido a «Validado».
-- Barra de navegação inferior no telemóvel.
-- Na v1.7, manuais separados com roteiro inicial, índice pesquisável, 17 capítulos derivados dos guiões, passos detalhados, voz e fontes públicas.
+## Factos confirmados no código
+- Ambas as páginas HTML têm `meta viewport width=device-width, initial-scale=1.0`, sem bloquear pinch-to-zoom.
+- `src/styles.css` já contém media queries para smartphone e tablet.
+- A camada `src/crystal.css`, carregada posteriormente, redefinia globalmente `.quick-search` com `min-width:230px`, anulando a regra móvel anterior `min-width:0`. Esta divergência pode expandir o cabeçalho e a largura horizontal do documento.
+- Os cartões tinham dimensões elevadas para smartphones, e alguns elementos da barra superior não admitiam encolhimento.
 
-## Estado de verificação
-A primeira passagem do TypeScript detetou uma importação não utilizada, corrigida. A verificação posterior de TypeScript, os testes unitários e a compilação passaram no GitHub Actions. Os testes de navegação em Chromium desktop e móvel também passaram após corrigir o caminho de base do servidor de teste. A compatibilidade visual e de voz com Safari de iPhone requer teste manual.
+## Implementação proposta
+- Media queries finais em `src/crystal.css` para 820px, 480px e 360px e correção explícita da pesquisa na topbar.
+- Cabeçalho com largura flexível, truncagem do nome da página, botões compactos e menu.
+- Cartões de acesso dimensionados para smartphones; ajuste dos espaçamentos sem reduzir o texto abaixo do utilizável.
+- Limites `min-width:0` e `max-width:100%` nos contentores efetivamente flexíveis, sem ocultar overflow horizontal no documento.
+- `e2e/mobile-layout.spec.ts` verifica largura, menu, navegação, cartões e ausência de desativação do zoom.
 
-## Restrições / Riscos
-- O repositório e o GitHub Pages são públicos; não publicar processos internos restritos ou materiais das marcas sem autorização.
-- A imagem fornecida é um protótipo, não prova de funcionalidade nem de validação institucional. Os indicadores verdes «Validado» no protótipo não são factos confirmados.
-- A síntese de voz pode usar vozes diferentes consoante o dispositivo; nunca prometer sotaque pt-PT específico.
-- O microfone requer HTTPS, permissão explícita e compatibilidade com MediaRecorder. Não utilizar a gravação em chamadas reais.
-- Os scripts continuam de apoio/treino, por confirmar pela operação e chefia.
-- Não existe autenticação ou integração com sistemas de tickets; não guardar dados reais.
+## Estado de validação
+Pendente da execução completa TypeScript, Vitest, Vite e Playwright no PR; Safari iOS real ainda não foi testado.
+
+## Riscos
+- Testes em Chromium não garantem equivalência absoluta com Safari e acessibilidade dinâmica do iPhone.
+- O trabalho é exclusivamente de interface. Preservar os guiões, fontes, permissões e limitações existentes.
+- O site GitHub Pages e o repositório são públicos; não carregar dados ou procedimentos internos restritos.
 
 ## Última alteração
-v1.7: manuais separados e consulta editorial orientada integrados na branch main pelo PR #3. TypeScript, testes unitários, compilação Vite e testes de navegação desktop/móvel Chromium concluídos com sucesso; GitHub Pages publicou os ficheiros compilados. Os procedimentos operacionais continuam a exigir validação pela entidade competente.
-
-A versão 1.6.0 foi integrada na branch main e compilada para publicação. O GitHub Actions confirmou typecheck, testes unitários, build, smoke test em desktop e telemóvel (Chromium) e publicação Pages. A análise manual no iPhone Safari ainda não foi realizada.
+Correção responsiva iniciada numa branch isolada para não afetar a versão 1.8.0 em produção.
 
 ## Próximo passo
-Testar os manuais v1.7 visualmente no Safari de um iPhone e num computador real, confirmar síntese de voz, corrigir problemas encontrados e validar os guiões com a documentação operacional autorizada. Conteúdo confidencial apenas em ambiente de acesso controlado e com autorização.
-
-Testar o site num iPhone Safari e num computador real, confirmar funcionamento da voz e permissões de microfone, e rever cada guião com documentos operacionais autorizados.
-
-## Critério mínimo para teste no trabalho
-É possível usar para **estudo e consulta de frases genéricas**, mas não para tomar decisões operacionais não validadas. Validar previamente com a supervisão se a ferramenta pessoal pode ser aberta no equipamento da empresa.
-
-
-## 19-10-2026: melhoria visual v1.8.0 (PR #4)
-**Objetivo:** aproximar o dashboard da referência visual mantendo uma aplicação operacional, clara, responsiva e sem direitos de imagem de terceiros.
-**Implementado na branch:** novos cartões ilustrados com SVG original, secção de manuais e fontes, situações frequentes, números derivados da biblioteca real, redesign responsivo, seleção de qualquer guião no painel inicial e leitura em voz portuguesa configurável com pausa e repetição.
-**Riscos:** repositório público; nenhum procedimento interno foi validado institucionalmente; não adicionar métricas fictícias nem gravações de clientes. A naturalidade da voz depende do dispositivo e do browser.
-**Verificação:** TypeScript, Vitest, Vite e Playwright em Chromium desktop/móvel concluídos com sucesso na PR #4; build GitHub Pages e publicação final concluídos. **Pendente:** teste visual e áudio em Safari iPhone, além da validação dos procedimentos com a supervisão.
-**Próximo passo:** testar num iPhone Safari e computador real, recolher problemas concretos de usabilidade e corrigir, sem ultrapassar o âmbito autorizado.
+Aprovar CI, confirmar ausência de overflow, integrar e publicar; pedir teste no iPhone real e corrigir eventuais diferenças no Safari.
