@@ -1,43 +1,37 @@
 # Call Center Pro | Estado do projeto
 
-Atualizado em 19-10-2026.
-Versão publicada: **1.9.0**, branch `main`, PR #6 integrado.
-Alteração integrada: PR #5, com verificação automatizada e GitHub Pages concluídos.
+Data da revisão: 19/10/2026
+Versão publicada antes desta alteração: 1.9.0.
+Branch de trabalho: `fix/viewport-safearea-ios-v1-9-1`
+Entrega proposta: 1.9.1.
 
-## Problema reportado
-No browser do telemóvel a interface aparecia demasiado grande, obrigando a reduzir o zoom para visualizar menus e funcionalidades.
+## Objetivo
+Verificar dimensões e viewport dos ecrãs desktop, tablet e iPhone, preservando os guiões e os serviços existentes, e corrigir a escala sem exigir zoom manual no Safari.
 
-## Factos confirmados no código
-- Ambas as páginas HTML têm `meta viewport width=device-width, initial-scale=1.0`, sem bloquear pinch-to-zoom.
-- `src/styles.css` já contém media queries para smartphone e tablet.
-- A camada `src/crystal.css`, carregada posteriormente, redefinia globalmente `.quick-search` com `min-width:230px`, anulando a regra móvel anterior `min-width:0`. Esta divergência pode expandir o cabeçalho e a largura horizontal do documento.
-- Os cartões tinham dimensões elevadas para smartphones, e alguns elementos da barra superior não admitiam encolhimento.
+## Factos confirmados
+- `app.html` e o `index.html` público já usavam `width=device-width, initial-scale=1.0`, sem bloquear o zoom.
+- A folha `src/styles.css` continha regras móveis até 820px e a camada `src/crystal.css` regras posteriores que controlavam o layout.
+- Em ecrãs iPhone na horizontal, a largura CSS pode ultrapassar 820px e apresentar indevidamente o menu de computador.
+- Os inputs da pesquisa, manuais, seleção de voz e diálogo de atendimento tinham alguns tamanhos de letra inferiores a 16px, o que pode desencadear zoom automático no Safari.
+- A barra móvel já usava `env(safe-area-inset-bottom)`, mas o HTML ainda não declarava `viewport-fit=cover` e não existia tratamento coordenado dos quatro lados seguros.
 
-## Implementação publicada
-- Media queries finais em `src/crystal.css` para 820px, 480px e 360px e correção explícita da pesquisa na topbar.
-- Cabeçalho com largura flexível, truncagem do nome da página, botões compactos e menu.
-- Cartões de acesso dimensionados para smartphones; ajuste dos espaçamentos sem reduzir o texto abaixo do utilizável.
-- Limites `min-width:0` e `max-width:100%` nos contentores efetivamente flexíveis, sem ocultar overflow horizontal no documento.
-- `e2e/mobile-layout.spec.ts` verifica largura, menu, navegação, cartões e ausência de desativação do zoom.
+## Implementação em revisão
+- `viewport-fit=cover` em `app.html`; a página `index.html` compilada é produzida automaticamente pelo workflow.
+- Breakpoint de menu móvel até 980px, incluindo smartphone na horizontal; manuais usam a mesma largura.
+- Tokens CSS `env(safe-area-inset-*, 0px)` para barras, cabeçalho, menu, área principal e janela de atendimento.
+- Altura dinâmica `100dvh` com fallback `100vh` para ecrãs e modais.
+- Inputs de texto e selects com fonte mínima de 16px para reduzir o zoom involuntário no iOS.
+- Botões de acesso rápido do cabeçalho com aproximadamente 44px.
+- Testes de viewport em retrato (320, 360, 375, 390, 430), horizontal (844, 932, 980) e desktop (1024); CI com Chromium e emulação WebKit de iPhone.
 
-## Estado de validação
-CI aprovado no PR #5: TypeScript, Vitest, compilação Vite e 34 testes de Playwright em projetos desktop e mobile Chromium. Os novos testes validaram a ausência de scroll horizontal em 320, 360, 375, 390, 430 e 768px para ecrã inicial, manual e simulações; teste do menu e pesquisa em 320px. Compilação e deploy GitHub Pages concluídos com sucesso. Safari iOS real ainda não foi testado.
-
-## Riscos
-- Testes em Chromium não garantem equivalência absoluta com Safari e acessibilidade dinâmica do iPhone.
-- O trabalho é exclusivamente de interface. Preservar os guiões, fontes, permissões e limitações existentes.
-- O site GitHub Pages e o repositório são públicos; não carregar dados ou procedimentos internos restritos.
+## Riscos e validação
+- A emulação WebKit em Linux não reproduz fielmente a barra inferior e a câmara de um iPhone físico.
+- Visualização em Safari real, VoiceOver, teclado virtual e rotação continuam por confirmar no dispositivo.
+- Nenhuma regra operacional dos dois projetos foi alterada.
+- Publicação GitHub Pages continua aberta ao público; não colocar dados internos ou pessoais no repositório.
 
 ## Última alteração
-Correção integrada e compilada em `main`; CSS público atualizado com layout móvel fluido.
+Implementação do viewport e testes na branch, aguardando os resultados do CI para integração.
 
 ## Próximo passo
-Solicitar ao utilizador confirmação do layout em Safari no iPhone, incluindo zoom normal, páginas principais, teclado, menu, leitura de voz, aumento de texto e rotação. Se houver diferenças reais, reproduzir e corrigir sem alterar os guiões.
-
-## 19-10-2026: auditoria completa proposta (v1.9.0)
-**Objetivo:** executar alterações de qualidade e segurança com fontes fiáveis e sem inventar procedimentos.
-**Factos:** 17 guiões existentes; nenhum validado internamente, 5 referências públicas verificadas na data acima, 4 factos públicos descritos com fonte e limite.
-**Última alteração:** corrigidas afirmações BK sem documentação, criada vista de auditoria, adicionados testes, lockfile npm real, CI com auditoria e SHA pinning, Dependabot e entradas de publicação.
-**Estado:** PR #6 integrado. TypeScript, 34 testes unitários, compilação Vite e testes Playwright em desktop/mobile aprovados; auditoria npm identificou 0 vulnerabilidades conhecidas após atualizar o Vitest para 5.0.5; build GitHub Pages e publicação concluídos. Não foram efetuados testes físicos no Safari iPhone.
-**Riscos:** sem documentação interna autorizada; testes de Safari real, VoiceOver e autorização de uso no trabalho continuam pendentes. Publicação GitHub Pages permanece pública.
-**Próximo passo:** testar a v1.9.0 em Safari iPhone e computador real; conferir acessibilidade VoiceOver; obter manuais internos autorizados e aprovação específica dos procedimentos; revisar proteções da branch `main`.
+Validar TypeScript, Vitest, compilação e Playwright Chromium/WebKit; corrigir regressões; integrar em main após sucesso, confirmar publicação Pages e solicitar teste real no Safari do iPhone.

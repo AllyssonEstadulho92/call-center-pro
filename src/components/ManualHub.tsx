@@ -38,7 +38,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
     setStage(0);
     setShowAll(false);
     setDoneSteps([]);
-    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 820px)').matches) {
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 980px)').matches) {
       window.setTimeout(() => articleRef.current?.scrollIntoView({ block: 'start' }), 0);
     }
   }

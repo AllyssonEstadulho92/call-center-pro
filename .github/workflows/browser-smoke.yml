@@ -20,7 +20,7 @@ jobs:
           node-version: '22'
       - name: Instalar dependências
         run: npm ci --no-audit --no-fund
-      - name: Preparar Chromium
-        run: npx playwright install --with-deps chromium
-      - name: Testes de interface desktop e telemóvel
+      - name: Preparar Chromium e WebKit
+        run: npx playwright install --with-deps chromium webkit
+      - name: Testes de interface desktop, telemóvel e emulação Safari WebKit
         run: npm run test:e2e

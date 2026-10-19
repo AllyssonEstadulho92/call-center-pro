@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.9.0
+# Call Center Pro | versão 1.9.1
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -212,3 +212,11 @@ Consulta `docs/FONTES-PUBLICAS-VERIFICADAS.md` e `docs/AUDITORIA-2026-10-19.md`.
 A instalação utiliza `package-lock.json` real e `npm ci`. A pipeline realiza verificação TypeScript, testes, compilação e auditoria npm, sem atribuir certificação de segurança total. A publicação em GitHub Pages é pública.
 
 Executa os testes locais com `npm ci && npm run typecheck && npm test && npm run build && npm run test:e2e`.
+
+## Viewport e utilização em iPhone (v1.9.1)
+
+A página usa `width=device-width, initial-scale=1.0, viewport-fit=cover` e espaçamento para as quatro zonas seguras do ecrã. No iPhone, o cabeçalho, o menu e os botões inferiores adaptam-se ao retrato e à orientação horizontal. A pesquisa e os campos de seleção têm letra mínima de 16px para evitar o zoom automático do Safari ao focar.
+
+**O zoom manual continua disponível.** A configuração não desativa o gesto de aproximação.
+
+Testes de interface: `npm run test:e2e`, com Chromium desktop, Chromium móvel e emulação WebKit para o viewport iPhone. A verificação de safe areas e do teclado real deve ser feita adicionalmente no Safari do dispositivo.

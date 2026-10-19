@@ -71,3 +71,13 @@ Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação
 - Workflows: `npm ci`, `npm audit`, GitHub Actions pinned com SHAs dos projetos oficiais e atualização Dependabot.
 - `app.html`: redireciona visitantes de GitHub Pages para a entrada pública compilada, preservando Vite em desenvolvimento.
 - Publicação automática continua pela branch, mas mantém apenas assets atuais e da geração anterior. A alternativa de deploy apenas por artefactos requer alteração controlada das configurações Pages.
+
+## Viewport iPhone e navegação móvel 1.9.1
+- Fonte do HTML: `app.html` com `width=device-width, initial-scale=1.0, viewport-fit=cover`. `index.html` é gerado pela compilação; não alterar manualmente o ficheiro gerado.
+- `src/styles.css` e `src/crystal.css`: regras móveis até 980px; cabeçalho compacto, sidebar recolhida, navegação inferior e grelhas fluidas.
+- `src/crystal.css`: `--viewport-safe-*` baseadas em `env(safe-area-inset-*)`, alturas `100dvh`, padding das zonas seguras e inputs >=16px para evitar zoom de foco no iPhone.
+- `src/components/ManualHub.tsx`: o scroll para o capítulo usa o mesmo breakpoint de 980px que a navegação.
+- `playwright.config.ts`: projetos desktop Chromium, mobile Chromium e emulação mobile WebKit (apenas testes específicos de viewport); `e2e/viewport-ios.spec.ts` cobre retrato, horizontal, escala e ecrã grande.
+- `.github/workflows/browser-smoke.yml`: prepara Chromium e WebKit para verificar a navegação.
+
+**Limites:** WebKit do Playwright não equivale a Safari num iPhone físico. Não bloquear pinch-to-zoom, não usar overflow-x:hidden global para mascarar problemas e não alterar os guiões durante alterações de layout.
