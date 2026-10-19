@@ -46,8 +46,8 @@ jobs:
           test -s package-lock.json
           # Conservar os assets da publicação imediatamente anterior para evitar
           # falhas quando um browser ainda tem em cache o HTML anterior.
-          previous_js=$(grep -oE 'assets/app-[^"]+\\.js' index.html | head -n 1 || true)
-          previous_css=$(grep -oE 'assets/app-[^"]+\\.css' index.html | head -n 1 || true)
+          previous_js=$(grep -oE 'assets/app-[^"/]+[.]js' index.html | head -n 1 || true)
+          previous_css=$(grep -oE 'assets/app-[^"/]+[.]css' index.html | head -n 1 || true)
           mkdir -p assets
           find assets -maxdepth 1 -type f \( -name 'app-*.js' -o -name 'app-*.css' \) -print0 | while IFS= read -r -d '' file; do
             if [ "$file" != "$previous_js" ] && [ "$file" != "$previous_css" ]; then rm -f "$file"; fi
