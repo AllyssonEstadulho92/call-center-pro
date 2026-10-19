@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.7.0
+# Call Center Pro | versão 1.8.0
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -179,3 +179,16 @@ A primeira versão dos manuais deriva da base de guiões já existente e de font
 ### Testes
 
 `npm run typecheck`, `npm test`, `npm run build` e `npm run test:e2e` compõem a verificação da aplicação, complementada por testes manuais no Safari iOS, VoiceOver e navegadores desktop.
+
+
+## Versão 1.8.0 | Dashboard Cristal
+
+O painel apresenta cartões próprios para Coca-Cola e Burger King, manuais independentes, simulações, acesso a fontes públicas e procedimentos frequentes. A interface é responsiva, com uma camada CSS separada em `src/crystal.css` e ilustrações SVG originais.
+
+Os únicos contadores do painel são o número de guiões disponíveis, favoritos guardados no dispositivo e guiões validados na base; não há métricas de desempenho de chamadas, nem garantia de procedimentos aprovados.
+
+### Leitura por voz
+No Atendimento em Direto escolhe o assunto e a etapa e utiliza **Ouvir frase**, **Pausar**, **Repetir** e **Parar**. A lista permite selecionar as vozes portuguesas disponibilizadas pelo teu browser e a velocidade. A qualidade da voz depende do equipamento e não está garantida uma voz humana; a aplicação não contrata um serviço externo de síntese.
+
+### Verificações
+`npm run typecheck`, `npm test`, `npm run build` e `npm run test:e2e`. A compatibilidade e a qualidade de áudio no Safari e VoiceOver têm de ser testadas num iPhone real.
