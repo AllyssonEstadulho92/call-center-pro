@@ -27,3 +27,12 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - PR #2 integrado com verificação TypeScript, testes Vitest, build Vite e testes Playwright desktop/móvel bem-sucedidos.
 - GitHub Pages publicou os artefactos compilados da versão 1.6.0.
 - Safari, VoiceOver e microfone em iPhone real ainda requerem validação manual.
+
+
+## 19-10-2026 | Proposta v1.8.0
+- Interface dashboard redesenhada e adaptativa, com recursos de marca substituídos por SVG próprios.
+- Guiões, manuais e fontes em destaque; números derivados dos conteúdos existentes.
+- Atendimento direto com seleção livre de assuntos, verificação, cópia e voz controlável.
+- Leitor de voz atualizado com vozes portuguesas disponíveis, ritmo, pausa, repetir e parar.
+- PR #4 com testes TypeScript, Vitest e Playwright; validação final e deploy a registar após execução.
+

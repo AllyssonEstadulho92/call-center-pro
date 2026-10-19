@@ -1,3 +1,12 @@
+## [1.8.0] - 2026-10-19
+
+- Dashboard Cristal: interface responsiva, espaçamento consistente, manuais e fontes mais visíveis.
+- Cartões dos dois serviços com arte SVG criada para o projeto, sem usar logótipos ou fotografias de terceiros.
+- Números calculados a partir da biblioteca, sem indicadores fictícios de chamadas.
+- Atendimento inicial com seleção livre de serviço e ocorrência, notas e progresso.
+- Leitor de voz com escolha das vozes portuguesas instaladas, velocidade, pausa e repetição.
+- Regressões cobertas por testes Chromium para desktop e mobile.
+
 ## [1.7.0] - 2026-10-18
 
 - Criados manuais Coca-Cola e Burger King, com páginas distintas e ligações diretas a partir do menu, do início e da área de serviço.

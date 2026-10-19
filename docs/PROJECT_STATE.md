@@ -38,3 +38,11 @@ Testar o site num iPhone Safari e num computador real, confirmar funcionamento d
 
 ## Critério mínimo para teste no trabalho
 É possível usar para **estudo e consulta de frases genéricas**, mas não para tomar decisões operacionais não validadas. Validar previamente com a supervisão se a ferramenta pessoal pode ser aberta no equipamento da empresa.
+
+
+## 19-10-2026: melhoria visual v1.8.0 (PR #4)
+**Objetivo:** aproximar o dashboard da referência visual mantendo uma aplicação operacional, clara, responsiva e sem direitos de imagem de terceiros.
+**Implementado na branch:** novos cartões ilustrados com SVG original, secção de manuais e fontes, situações frequentes, números derivados da biblioteca real, redesign responsivo, seleção de qualquer guião no painel inicial e leitura em voz portuguesa configurável com pausa e repetição.
+**Riscos:** repositório público; nenhum procedimento interno foi validado institucionalmente; não adicionar métricas fictícias nem gravações de clientes. A naturalidade da voz depende do dispositivo e do browser.
+**Verificação pendente:** resultado final de TypeScript, Vitest e Playwright no PR; teste visual em Safari iPhone e validação com a supervisão.
+**Próximo passo:** corrigir problemas identificados, integrar apenas após CI aprovado, confirmar publicação e realizar teste manual no equipamento do utilizador.

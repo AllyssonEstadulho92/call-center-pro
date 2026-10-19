@@ -47,3 +47,13 @@ Foco visível, contraste, navegação por teclado, controlos com nomes acessíve
 
 ## Manuais por serviço
 Não persistem progresso, texto de pesquisa nem dados de clientes. As etapas são derivadas de `knowledge.ts`. As referências `publicSources.ts` documentam apenas factos públicos e respetivos limites. Não adicionar documentos internos de uma operação à versão pública sem autorização expressa.
+
+
+## Dashboard Cristal v1.8
+- `src/crystal.css`: camada visual posterior ao CSS existente; tokens e estilos responsivos para desktop e smartphone, com modo escuro.
+- `src/components/ServiceArtwork.tsx`: ilustrações SVG originais não licenciadas por marcas.
+- `src/components/DashboardResources.tsx`: manuais, simulações, frequentes, fontes públicas e métricas reais da biblioteca.
+- `src/components/LiveCallPanel.tsx`: seleção de serviço, guião e etapa, verificação e cópia; estado apenas em memória.
+- `src/components/SpeechPlayer.tsx`: seleção de voz portuguesa disponibilizada pelo browser, velocidade, pausa e repetição; persiste apenas a preferência da voz e velocidade no armazenamento local.
+- `e2e/dashboard.spec.ts`: testes de navegação em desktop e móvel.
+**Segurança:** não existe endpoint de chamadas, gravações ou análise de satisfação. Não carregar documentação interna nem recursos protegidos num alojamento público.

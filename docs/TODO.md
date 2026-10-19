@@ -29,3 +29,16 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [ ] Validar os guiões contra manuais internos autorizados; conteúdo original indisponível na sessão.
 - [ ] Rever experiência e voz em iPhone Safari e computador real.
 - [ ] Pedir autorização para uso da ferramenta no equipamento de trabalho.
+
+
+## Revisão v1.8.0 (19-10-2026)
+- [x] Inspecionar código, CSS, dependências, documentação e limites das fontes.
+- [x] Criar layout limpo e responsivo próximo da referência, com SVG original.
+- [x] Reorganizar manuais, fontes, guiões e estudo na visão geral.
+- [x] Manter apenas contagens reais, sem indicadores fictícios.
+- [x] Atualizar leitor de voz com seleção de idioma e controlos de reprodução.
+- [x] Adicionar testes Playwright para o novo dashboard.
+- [ ] Confirmar testes e compilação de PR #4, corrigir eventuais regressões.
+- [ ] Publicar versão estável depois do CI.
+- [ ] Validar contraste, VoiceOver, layout e vozes em Safari iPhone real.
+- [ ] Confirmar se há autorização da operação para utilização no posto de trabalho e conteúdos internos.

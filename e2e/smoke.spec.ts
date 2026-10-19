@@ -4,7 +4,7 @@ test('página inicial abre sem erros e mostra os dois serviços', async ({ page 
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/app.html');
-  await expect(page.getByRole('heading', { name: /Bom atendimento começa/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Bem-vindo ao teu espaço de atendimento/ })).toBeVisible();
   await expect(page.getByRole('button', { name: /serviços de avarias/i }).last()).toBeVisible();
   await expect(page.getByRole('button', { name: /apoio ao cliente/i }).last()).toBeVisible();
   await expect(page.getByRole('region', { name: 'Pré-visualização do atendimento em direto' })).toBeVisible();
