@@ -276,3 +276,45 @@ body{background:var(--bg)}
 .dark .live-dashboard-mode{background:#20543f;color:#d0f5e6}
 .dark .live-dashboard-steps span{background:#254666;border-color:#4d6c8b}
 .dark .app-footer{background:#122a47;border-color:#3c5879}
+
+
+/* V1.8: controlador de voz, pausas e situação selecionável */
+.speech-player{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin:9px 0 6px}
+.speech-primary-controls{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.speech-primary-controls button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:35px;padding:8px 10px;white-space:nowrap;border-radius:9px;font-size:11px;font-weight:800}
+.speech-primary-controls .speech-action{background:#1975e5;border:1px solid #1975e5;color:white;box-shadow:0 3px 9px #1a7be127}
+.speech-primary-controls .speech-speed{background:#fff;color:#2b619f;border:1px solid #cfe0f5}
+.speech-primary-controls .speech-stop{background:#eaf3fe;border:1px solid #d5e6f9;color:#386d9e;min-width:34px}
+.speech-primary-controls button:disabled{opacity:.42;cursor:not-allowed}
+.speech-options{display:flex;gap:8px;flex-wrap:wrap}
+.speech-options label{font-size:10px;line-height:1.5;font-weight:800;color:#52749a;display:flex;flex-direction:column;gap:5px;flex:1 1 113px;min-width:0}
+.speech-options label:last-child{flex:2 1 165px}
+.speech-options select{width:100%;min-width:0;max-width:100%;background:#fff;border:1px solid #d1e1f3;border-radius:8px;padding:7px 8px;color:#21456f;font-size:11px;min-height:34px}
+.speech-device-note{font-size:10px;line-height:1.55;color:#59789b;margin:1px 0 0}
+.live-situation-picker{display:flex;flex-direction:column;gap:6px;margin:12px 0 15px;font-size:11px;color:#5e7b9b;font-weight:800}
+.live-situation-picker select{width:100%;background:#f5f9ff;color:#173e69;border:1px solid #d3e3f5;border-radius:9px;min-height:39px;padding:7px 10px;font-size:12px}
+.live-dashboard-steps{margin:3px 0 0}
+.live-say-title{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.live-say-title>button{background:#e3efff;color:#226bc5;border:0;border-radius:7px;display:inline-flex;gap:5px;align-items:center;padding:7px;font-size:10px;font-weight:800}
+.live-speech-label{font-size:10px;color:#3b6b9e;font-weight:850;margin-bottom:5px}
+.live-copy-status{color:#2a744f;font-size:10.5px;margin:6px 0}
+.live-verification{border:1px solid #dae8f7;background:#f7fbff;border-radius:11px;margin-top:12px;padding:12px}
+.live-verification>strong{display:flex;align-items:center;gap:7px;color:#234d83;font-size:11.5px}
+.live-verification>p,.live-verification details p{font-size:11.5px;color:#597696;line-height:1.6;margin:8px 0 0}
+.live-verification details{margin-top:9px;border-top:1px solid #dbe7f6;padding-top:9px}
+.live-verification summary{display:flex;gap:7px;align-items:center;list-style:none;font-weight:750;font-size:11px;color:#895b26;cursor:pointer}
+.live-verification summary::-webkit-details-marker{display:none}
+.live-verification summary:after{content:"+";margin-left:auto;font-size:16px}
+.live-verification details[open] summary:after{content:"−"}
+.live-dashboard-check{font-size:11.5px}
+.dark .speech-primary-controls .speech-speed,.dark .speech-options select{background:#2c4c6d;border-color:#4c6d90;color:#ecf4ff}
+.dark .speech-primary-controls .speech-stop{background:#244769;color:#eaf4ff;border-color:#486a8c}
+.dark .speech-options label,.dark .speech-device-note{color:#c6d9f1}
+.dark .live-situation-picker{color:#c0d8f4}
+.dark .live-situation-picker select,.dark .live-verification{background:#234666;color:#f0f6ff;border-color:#426c98}
+.dark .live-say-title>button{background:#355a83;color:#e9f4ff}
+.dark .live-speech-label,.dark .live-verification>strong{color:#c8e2ff}
+.dark .live-verification>p,.dark .live-verification details p{color:#c3d8ee}
+.dark .live-verification details{border-color:#44678c}
+.dark .live-verification summary{color:#f2c991}
+@media(max-width:620px){.speech-primary-controls button{flex:1 1 auto}.speech-primary-controls button:last-child{flex:0 0 37px}.speech-options label{flex-basis:115px}.speech-options label:last-child{flex-basis:155px}}
