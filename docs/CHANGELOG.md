@@ -65,3 +65,9 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - GitHub Actions aprovou tipagem, 34 testes unitários, build Vite e os testes de browser desktop/mobile.
 - PR #6 integrado e versão compilada publicada no GitHub Pages. Ficheiros compilados antigos reduzidos à geração anterior.
 - Pendente: Safari iPhone/VoiceOver, proteção de branch e validação das regras internas por quem tem competência.
+
+## 19/10/2026 | v1.9.1 (viewport móvel)
+- Meta viewport com `viewport-fit=cover`, mantendo zoom do utilizador.
+- Safe areas em quatro direções, altura dinâmica, cabeçalho e navegação móvel até 980px.
+- Campos móveis >=16px e alvos de toque maiores; guias e procedimentos preservados.
+- Testes Chromium e emulação mobile WebKit de dimensões, inputs, modal e reflow, a executar em CI.

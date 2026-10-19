@@ -64,3 +64,13 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [ ] Testar no Safari iPhone real e com VoiceOver.
 - [ ] Obter manual interno autorizado e validação formal de cada procedimento sem publicar dados restritos.
 - [ ] Rever proteção de branch/rulesets do GitHub e migrar Pages para deploy por artefacto numa fase dedicada.
+
+## Viewport v1.9.1 (19/10/2026)
+- [x] Confirmar as configurações de viewport e os componentes com dimensões fixas.
+- [x] Acrescentar viewport-fit=cover e zonas seguras iOS, sem bloquear pinch-to-zoom.
+- [x] Ajustar menu, cabeçalho, rodapé, modal e manuais para retrato e horizontal.
+- [x] Aplicar fonte mínima de 16px aos campos móveis.
+- [x] Criar testes de reflow/viewport incluindo emulação mobile WebKit.
+- [ ] Confirmar TypeScript, Vitest, build e Playwright antes de integrar.
+- [ ] Confirmar publicação no GitHub Pages.
+- [ ] Validar num iPhone real Safari, VoiceOver, teclado e rotação.

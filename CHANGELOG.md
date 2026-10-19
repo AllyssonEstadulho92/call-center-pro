@@ -1,3 +1,12 @@
+## [1.9.1] - 2026-10-19
+
+- Configuração de viewport com `viewport-fit=cover` e margens seguras em iPhone.
+- Navegação móvel até 980px, incluindo smartphones na horizontal.
+- Evitado zoom involuntário no foco de pesquisa com inputs/selects de 16px.
+- Altura dinâmica do viewport, modal e barra de navegação ajustados ao espaço útil.
+- Ampliados botões de cabeçalho e testes de retrato, horizontal e emulação WebKit.
+- Preservadas as funcionalidades, os manuais e os estados de validação.
+
 ## [1.9.0] - 2026-10-19
 
 - Revisão das fontes oficiais com limites de aplicabilidade e rastreabilidade.

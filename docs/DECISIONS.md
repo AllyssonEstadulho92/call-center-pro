@@ -54,3 +54,12 @@ Gerar `package-lock.json` real no runner npm, usar `npm ci`, auditar vulnerabili
 
 ## D-018 | Publicação incremental sem quebrar caches imediatas
 Preservar o workflow branch/Pages existente nesta revisão e apenas limpar assets antigos, mantendo a geração anterior e a atual. A publicação de emergência por artefacto deve criar `dist/index.html`. Rever migração Pages num trabalho próprio com verificação de Settings.
+
+## D-019 | Viewport real e áreas de segurança iOS
+Decisão: manter `width=device-width, initial-scale=1.0` e acrescentar `viewport-fit=cover` com tratamento explícito das quatro safe areas via CSS. Não impor maximum-scale nem user-scalable=no. Motivo: utilizar a largura real do iPhone e respeitar a câmara/barra do sistema sem reduzir acessibilidade.
+
+## D-020 | Unificar breakpoint a 980px
+Decisão: colocar a navegação móvel e a leitura dos manuais até 980px, abrangendo iPhones de maiores dimensões na horizontal; preservar sidebar em desktop de 1024px ou mais. Motivo: o limite anterior de 820px podia apresentar uma navegação desktop em smartphones horizontais.
+
+## D-021 | Evitar zoom involuntário do Safari nos formulários
+Decisão: definir tamanho mínimo de 16px para inputs e selects no modo móvel, mantendo zoom voluntário do utilizador. Testar com Chromium e WebKit emulado, requerendo ainda Safari real para validação completa.
