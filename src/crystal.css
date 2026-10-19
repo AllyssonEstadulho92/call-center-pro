@@ -629,8 +629,24 @@ body{background:var(--bg)}
     padding-left: calc(64px + var(--viewport-safe-left));
     padding-right: calc(12px + var(--viewport-safe-right));
   }
+  /* Alvos de toque de 44px sem retirar espaço ao título responsivo. */
+  .quick-search,
+  .start-call-top,
+  .theme-switch {
+    flex: 0 0 44px;
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
   .mobile-menu-button {
-    top: calc(11px + var(--viewport-safe-top));
+    width: 44px;
+    height: 44px;
+  }
+  .mobile-menu-button {
+    top: calc(10px + var(--viewport-safe-top));
     left: calc(12px + var(--viewport-safe-left));
   }
   .sidebar {

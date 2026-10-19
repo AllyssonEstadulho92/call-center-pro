@@ -13,6 +13,7 @@ export default defineConfig({
   projects: [
     { name: 'desktop-chromium', use: { ...devices['Desktop Chrome'] } },
     { name: 'mobile-chromium', use: { ...devices['Pixel 7'] } },
+    { name: 'mobile-webkit', testMatch: '**/viewport-ios.spec.ts', use: { ...devices['iPhone 13'] } },
   ],
   webServer: {
     command: 'npx vite --host 127.0.0.1 --port 4173',
