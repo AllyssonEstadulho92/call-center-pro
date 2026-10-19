@@ -35,7 +35,8 @@ test('viewport adaptado sem impedir zoom e com áreas de segurança no HTML', as
     viewportHeight: getComputedStyle(document.querySelector('.app-shell')!).minHeight,
     envVariable: getComputedStyle(document.documentElement).getPropertyValue('--viewport-safe-bottom').trim(),
   }));
-  expect(computed.envVariable).toContain('safe-area-inset-bottom');
+  // O browser resolve env(safe-area-inset-bottom) para 0px quando não há recorte.
+  expect(parseFloat(computed.envVariable)).toBeGreaterThanOrEqual(0);
   expect(parseFloat(computed.bottom)).toBeGreaterThanOrEqual(8);
   expect(parseFloat(computed.viewportHeight)).toBeGreaterThan(0);
 });
