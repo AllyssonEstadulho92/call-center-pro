@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.8.1
+# Call Center Pro | versão 1.9.0
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -202,3 +202,13 @@ No Atendimento em Direto escolhe o assunto e a etapa e utiliza **Ouvir frase**, 
 - O zoom de acessibilidade do browser não é bloqueado.
 
 **Validação:** executar `npm run test:e2e` e os restantes comandos do projeto. O teste automatizado verifica excesso horizontal e proporções em vários viewports, mas não substitui testes no Safari de iPhone real.
+
+## Auditoria de informação e segurança | v1.9.0
+
+Os guiões continuam classificados como exemplos ou «Por confirmar». Os portais oficiais públicos confirmam apenas os dados explicitamente publicados. A nova área **Segurança e fontes** mostra quatro factos públicos verificados com fontes e limites, e seis grupos de procedimentos internos por validar.
+
+Consulta `docs/FONTES-PUBLICAS-VERIFICADAS.md` e `docs/AUDITORIA-2026-10-19.md`.
+
+A instalação utiliza `package-lock.json` real e `npm ci`. A pipeline realiza verificação TypeScript, testes, compilação e auditoria npm, sem atribuir certificação de segurança total. A publicação em GitHub Pages é pública.
+
+Executa os testes locais com `npm ci && npm run typecheck && npm test && npm run build && npm run test:e2e`.

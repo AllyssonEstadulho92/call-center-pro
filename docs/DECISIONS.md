@@ -42,3 +42,15 @@ Optou-se por corrigir a causa CSS, com media queries móveis após os estilos de
 
 ## D-014 | Compactar sem reduzir alvos de toque
 Optou-se por botões de cabeçalho com cerca de 39–41px (a barra de navegação inferior mantém área maior), cartões de serviço menos altos mas integralmente acionáveis, e títulos responsivos. Medir em 320–768px e repetir nos principais fluxos em browser real.
+
+## D-015 | Veracidade por afirmação, não pelo logótipo da fonte
+Separar factos públicos confirmados de orientações de treino e regras internas pendentes. Registar URL, data e limitação. O portal oficial de uma marca não aprova os scripts da campanha.
+
+## D-016 | Acesso operacional não presumido
+Retirar formulações categóricas sem documentação sobre a impossibilidade de a linha consultar pedidos online Burger King. A frase passa a instruir consulta ao procedimento vigente antes de encaminhar.
+
+## D-017 | Supply chain reprodutível
+Gerar `package-lock.json` real no runner npm, usar `npm ci`, auditar vulnerabilidades com limiares e pinar ações a SHAs verificados em 19/10/2026. Dependabot atualiza através de PRs. Não forjar versões nem afirmar ausência total de vulnerabilidades.
+
+## D-018 | Publicação incremental sem quebrar caches imediatas
+Preservar o workflow branch/Pages existente nesta revisão e apenas limpar assets antigos, mantendo a geração anterior e a atual. A publicação de emergência por artefacto deve criar `dist/index.html`. Rever migração Pages num trabalho próprio com verificação de Settings.

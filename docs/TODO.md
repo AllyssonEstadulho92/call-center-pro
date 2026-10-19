@@ -51,3 +51,16 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] TypeScript, Vitest, Vite e Playwright aprovados na PR #5; 34 testes completos.
 - [x] PR #5 integrado e versão estática 1.8.1 publicada no GitHub Pages.
 - [ ] Verificar presencialmente iPhone Safari (incluindo texto maior, zoom e orientação).
+
+## v1.9.0 | Auditoria factual e robustez
+- [x] Rever e corrigir guiões/triagem digitais com afirmações não comprovadas.
+- [x] Separar factos públicos e procedimentos internos no conteúdo e interface.
+- [x] Atualizar fontes oficiais, datas e limitações; acrescentar rastreabilidade.
+- [x] Gerar package-lock.json via npm no runner GitHub e instalar com npm ci.
+- [x] Adicionar auditoria npm, Dependabot e Actions fixadas por SHA.
+- [x] Corrigir acesso a app.html publicado e saída do deploy manual; reduzir assets antigos com salvaguarda da versão anterior.
+- [x] Criar testes unitários/E2E para origem e limites do conteúdo.
+- [ ] Rever e integrar após CI passar sem falhas.
+- [ ] Testar no Safari iPhone real e com VoiceOver.
+- [ ] Obter manual interno autorizado e validação formal de cada procedimento sem publicar dados restritos.
+- [ ] Rever proteção de branch/rulesets do GitHub e migrar Pages para deploy por artefacto numa fase dedicada.

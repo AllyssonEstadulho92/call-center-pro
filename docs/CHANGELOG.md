@@ -50,3 +50,11 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - TypeScript, testes unitários, compilação e Playwright desktop/móvel aprovados.
 - Artefactos estáticos do Vite e publicação GitHub Pages concluídos; ligação: https://allyssonestadulho92.github.io/call-center-pro/.
 - Teste físico de Safari/VoiceOver e qualidade de voz continua pendente.
+
+## 19-10-2026 | v1.9.0 (auditoria e fontes)
+- Fontes públicas rechecadas: Coca-Cola Portugal, Burger King Portugal, Livro de Reclamações e ASAE, com estado e limites visíveis.
+- Removidas afirmações não documentadas sobre acesso a pedidos digitais da linha Burger King.
+- Gerado lockfile npm real; CI com npm ci, npm audit, Dependabot e GitHub Actions com SHAs oficiais.
+- Entrada app.html pública com redirecionamento controlado; deploy manual gera index.html; limpeza de assets preserva a geração anterior.
+- Novos testes sobre veracidade, navegação e triagem.
+- Pendente CI e testes físicos Safari.
