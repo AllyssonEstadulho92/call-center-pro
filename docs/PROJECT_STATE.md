@@ -44,5 +44,5 @@ Testar o site num iPhone Safari e num computador real, confirmar funcionamento d
 **Objetivo:** aproximar o dashboard da referência visual mantendo uma aplicação operacional, clara, responsiva e sem direitos de imagem de terceiros.
 **Implementado na branch:** novos cartões ilustrados com SVG original, secção de manuais e fontes, situações frequentes, números derivados da biblioteca real, redesign responsivo, seleção de qualquer guião no painel inicial e leitura em voz portuguesa configurável com pausa e repetição.
 **Riscos:** repositório público; nenhum procedimento interno foi validado institucionalmente; não adicionar métricas fictícias nem gravações de clientes. A naturalidade da voz depende do dispositivo e do browser.
-**Verificação pendente:** resultado final de TypeScript, Vitest e Playwright no PR; teste visual em Safari iPhone e validação com a supervisão.
-**Próximo passo:** corrigir problemas identificados, integrar apenas após CI aprovado, confirmar publicação e realizar teste manual no equipamento do utilizador.
+**Verificação:** TypeScript, Vitest, Vite e Playwright em Chromium desktop/móvel concluídos com sucesso na PR #4; build GitHub Pages e publicação final concluídos. **Pendente:** teste visual e áudio em Safari iPhone, além da validação dos procedimentos com a supervisão.
+**Próximo passo:** testar num iPhone Safari e computador real, recolher problemas concretos de usabilidade e corrigir, sem ultrapassar o âmbito autorizado.

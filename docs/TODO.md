@@ -38,7 +38,7 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Manter apenas contagens reais, sem indicadores fictícios.
 - [x] Atualizar leitor de voz com seleção de idioma e controlos de reprodução.
 - [x] Adicionar testes Playwright para o novo dashboard.
-- [ ] Confirmar testes e compilação de PR #4, corrigir eventuais regressões.
-- [ ] Publicar versão estável depois do CI.
+- [x] Confirmar TypeScript, Vitest, Vite e Playwright desktop/móvel do PR #4, corrigindo a ambiguidade de acessibilidade do seletor de voz.
+- [x] Integrar PR #4 e publicar v1.8.0 no GitHub Pages.
 - [ ] Validar contraste, VoiceOver, layout e vozes em Safari iPhone real.
 - [ ] Confirmar se há autorização da operação para utilização no posto de trabalho e conteúdos internos.

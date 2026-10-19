@@ -36,3 +36,9 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Leitor de voz atualizado com vozes portuguesas disponíveis, ritmo, pausa, repetir e parar.
 - PR #4 com testes TypeScript, Vitest e Playwright; validação final e deploy a registar após execução.
 
+
+### Publicação final v1.8.0
+- PR #4 integrado na branch main após correção da identificação acessível do seletor de voz.
+- TypeScript, testes unitários, compilação e Playwright desktop/móvel aprovados.
+- Artefactos estáticos do Vite e publicação GitHub Pages concluídos; ligação: https://allyssonestadulho92.github.io/call-center-pro/.
+- Teste físico de Safari/VoiceOver e qualidade de voz continua pendente.
