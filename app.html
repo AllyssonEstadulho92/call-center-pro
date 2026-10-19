@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#132237" />
+    <script>
+      // No GitHub Pages a entrada pública compilada é a raiz, não /app.html.
+      if (location.hostname.endsWith('.github.io') && location.pathname.endsWith('/app.html')) {
+        location.replace(new URL('./', location.href).href);
+      }
+    </script>
     <meta name="description" content="Call Center Pro: ferramenta pessoal de consulta e formação em atendimento telefónico. Não oficial." />
     <title>Call Center Pro | Apoio ao Atendimento</title>
   </head>

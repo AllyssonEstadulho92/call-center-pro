@@ -7,6 +7,7 @@ on:
       - 'app.html'
       - 'src/**'
       - 'package.json'
+      - 'package-lock.json'
       - 'vite.config.ts'
       - 'tsconfig.json'
       - '.github/workflows/build-static-site.yml'
@@ -24,13 +25,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Obter código
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Instalar Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
       - name: Instalar dependências
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
+      - name: Verificar vulnerabilidades graves nas dependências de produção
+        run: npm audit --omit=dev --audit-level=high
       - name: Verificar TypeScript, testes e compilação
         run: |
           npm run typecheck
@@ -40,9 +43,17 @@ jobs:
         run: |
           test -s dist/app.html
           test -d dist/assets
-          cp dist/app.html index.html
+          test -s package-lock.json
+          # Conservar os assets da publicação imediatamente anterior para evitar
+          # falhas quando um browser ainda tem em cache o HTML anterior.
+          previous_js=$(grep -oE 'assets/app-[^"]+\\.js' index.html | head -n 1 || true)
+          previous_css=$(grep -oE 'assets/app-[^"]+\\.css' index.html | head -n 1 || true)
           mkdir -p assets
+          find assets -maxdepth 1 -type f \( -name 'app-*.js' -o -name 'app-*.css' \) -print0 | while IFS= read -r -d '' file; do
+            if [ "$file" != "$previous_js" ] && [ "$file" != "$previous_css" ]; then rm -f "$file"; fi
+          done
           cp -R dist/assets/. assets/
+          cp dist/app.html index.html
           touch .nojekyll
           if grep -q '/src/main.tsx' index.html; then
             echo 'Erro: o index.html publicado ainda referencia TypeScript' >&2
@@ -52,7 +63,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets .nojekyll
+          git add -A index.html assets .nojekyll
           if ! git diff --cached --quiet; then
             git commit -m "build: atualizar versão web compilada"
             git push
