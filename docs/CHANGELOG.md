@@ -58,3 +58,10 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Entrada app.html pública com redirecionamento controlado; deploy manual gera index.html; limpeza de assets preserva a geração anterior.
 - Novos testes sobre veracidade, navegação e triagem.
 - Pendente CI e testes físicos Safari.
+
+### Fecho da auditoria 1.9.0
+- O relatório inicial do npm identificou 2 vulnerabilidades críticas em tinypool e 1 moderada em @vitest/mocker, através de Vitest 3.x.
+- Vitest atualizado para 5.0.5; lockfile regenerado pelo npm; nova auditoria encontrou 0 vulnerabilidades conhecidas.
+- GitHub Actions aprovou tipagem, 34 testes unitários, build Vite e os testes de browser desktop/mobile.
+- PR #6 integrado e versão compilada publicada no GitHub Pages. Ficheiros compilados antigos reduzidos à geração anterior.
+- Pendente: Safari iPhone/VoiceOver, proteção de branch e validação das regras internas por quem tem competência.

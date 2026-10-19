@@ -1,7 +1,7 @@
 # Call Center Pro | Estado do projeto
 
 Atualizado em 19-10-2026.
-Versão pública anterior à integração: 1.8.1 (main). Proposta de revisão: 1.9.0 (branch feature/auditoria-fontes-seguranca-v1-9).
+Versão publicada: **1.9.0**, branch `main`, PR #6 integrado.
 Alteração integrada: PR #5, com verificação automatizada e GitHub Pages concluídos.
 
 ## Problema reportado
@@ -38,6 +38,6 @@ Solicitar ao utilizador confirmação do layout em Safari no iPhone, incluindo z
 **Objetivo:** executar alterações de qualidade e segurança com fontes fiáveis e sem inventar procedimentos.
 **Factos:** 17 guiões existentes; nenhum validado internamente, 5 referências públicas verificadas na data acima, 4 factos públicos descritos com fonte e limite.
 **Última alteração:** corrigidas afirmações BK sem documentação, criada vista de auditoria, adicionados testes, lockfile npm real, CI com auditoria e SHA pinning, Dependabot e entradas de publicação.
-**Estado:** aguardando testes GitHub Actions e integração; confirmar pelo registo do PR e do workflow.
+**Estado:** PR #6 integrado. TypeScript, 34 testes unitários, compilação Vite e testes Playwright em desktop/mobile aprovados; auditoria npm identificou 0 vulnerabilidades conhecidas após atualizar o Vitest para 5.0.5; build GitHub Pages e publicação concluídos. Não foram efetuados testes físicos no Safari iPhone.
 **Riscos:** sem documentação interna autorizada; testes de Safari real, VoiceOver e autorização de uso no trabalho continuam pendentes. Publicação GitHub Pages permanece pública.
-**Próximo passo:** verificar CI, resolver eventuais falhas de dependências e navegador, integrar apenas após sucesso e confirmar publicação.
+**Próximo passo:** testar a v1.9.0 em Safari iPhone e computador real; conferir acessibilidade VoiceOver; obter manuais internos autorizados e aprovação específica dos procedimentos; revisar proteções da branch `main`.

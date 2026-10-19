@@ -37,3 +37,10 @@ Só integrar após os workflows TypeScript/testes/build e navegador em desktop/m
 
 ## Registo de decisões
 Ver `docs/DECISIONS.md`, incluindo a separação de factos públicos e regras internas, a nova política de CI e a manutenção temporária do mecanismo de publicação existente.
+
+## Resultado efetivo da integração em 19/10/2026
+- **PR:** https://github.com/AllyssonEstadulho92/call-center-pro/pull/6 — integrado na branch `main`.
+- **Qualidade:** 34 testes unitários aprovados; compilação TypeScript/Vite e navegação Chromium desktop e móvel aprovadas.
+- **Dependências:** npm reportou inicialmente 2 falhas críticas em `tinypool` e 1 moderada em `@vitest/mocker`, via Vitest 3.x. Após atualização do Vitest para 5.0.5 e do lockfile, a auditoria npm reportou 0 vulnerabilidades conhecidas na data.
+- **Site:** nova compilação publicada no GitHub Pages e `index.html` com caminho compilado verificado.
+- **Limites:** não foi testado Safari/VoiceOver em dispositivo real e não existe validação documental institucional dos 17 guiões.
