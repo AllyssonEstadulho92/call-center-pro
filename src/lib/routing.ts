@@ -26,8 +26,8 @@ export function getRoutingAdvice(project: Project, channel: ContactChannel, subj
   if (channel === 'aplicacao' || channel === 'website') {
     return {
       heading: 'Pedido efetuado em canal digital',
-      say: 'Obrigado pela confirmação. Nesta linha não consigo consultar diretamente o pedido efetuado por esse canal. Para apresentar a situação, pode recorrer ao apoio oficial Burger King Portugal. Vou indicar-lhe a página de suporte.',
-      verify: `Confirmar o motivo (${subject}) e se a limitação de acesso descrita pelo operador continua válida. O portal oficial contém categorias de apoio.`,
+      say: 'Obrigado por confirmar o canal. Vou verificar quais as informações que esta linha pode prestar e, se for necessário apoio digital, indicar-lhe a página pública oficial do Burger King Portugal.',
+      verify: `Confirmar o motivo (${subject}), as permissões da linha no sistema autorizado e se o suporte público corresponde à ocorrência. O portal oficial contém categorias de apoio.`,
       avoid: 'Não prometer reembolso, cancelamento, intervenção imediata ou prazo de resposta. Não pedir credenciais nem dados bancários.',
       sourceIds: ['bk-suporte'], status: 'por-confirmar',
     };
