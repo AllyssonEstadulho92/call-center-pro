@@ -57,3 +57,7 @@ Não persistem progresso, texto de pesquisa nem dados de clientes. As etapas sã
 - `src/components/SpeechPlayer.tsx`: seleção de voz portuguesa disponibilizada pelo browser, velocidade, pausa e repetição; persiste apenas a preferência da voz e velocidade no armazenamento local.
 - `e2e/dashboard.spec.ts`: testes de navegação em desktop e móvel.
 **Segurança:** não existe endpoint de chamadas, gravações ou análise de satisfação. Não carregar documentação interna nem recursos protegidos num alojamento público.
+
+## Layout mobile v1.8.1
+A camada `src/crystal.css` contém o último conjunto de media queries e deve prevalecer sobre o CSS geral para `.quick-search`. O cabeçalho passa a ter ações de largura limitada (39px), título `flex:1` com `min-width:0` e elipse se for comprido, mantendo botões acessíveis. Os cartões de serviço são compactos até 480px; as secções da biblioteca continuam de largura fluida. O conteúdo não deve gerar scroll horizontal nas larguras 320–768px. O atributo `meta viewport` preserva o zoom do utilizador.
+Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação e opções de acessibilidade pendentes.

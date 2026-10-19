@@ -42,3 +42,12 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Integrar PR #4 e publicar v1.8.0 no GitHub Pages.
 - [ ] Validar contraste, VoiceOver, layout e vozes em Safari iPhone real.
 - [ ] Confirmar se há autorização da operação para utilização no posto de trabalho e conteúdos internos.
+
+## v1.8.1 | Reparação do tamanho no telemóvel
+- [x] Rever viewport, cascata de CSS e larguras fixas.
+- [x] Corrigir mínimo de 230px no botão de pesquisa do cabeçalho móvel.
+- [x] Adaptar cabeçalho, cartões, painel e menus entre 320 e 820px.
+- [x] Criar testes que medem scroll horizontal e abertura dos principais ecrãs.
+- [ ] Confirmar TypeScript, Vitest, Vite e Playwright no PR.
+- [ ] Confirmar publicação no GitHub Pages.
+- [ ] Verificar presencialmente iPhone Safari (incluindo texto maior, zoom e orientação).
