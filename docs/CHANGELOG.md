@@ -3,7 +3,8 @@
 - Identificado conflito de `min-width:230px` no botão de pesquisa, após as media queries móveis.
 - Cabeçalho, cartões e espaços adaptados a largura 320–820px, preservando zoom.
 - Adicionados testes E2E de layouts em vários viewports e ecrãs.
-- CI e publicação por validar no PR.
+- TypeScript, Vitest, Vite e Playwright com 34 testes concluídos com sucesso; correção da seleção do botão «Fechar» nos testes.
+- PR #5 integrado na branch main, compilação estática e GitHub Pages concluídos; teste físico Safari pendente.
 
 ## 2026-10-18 | 1.7.0
 

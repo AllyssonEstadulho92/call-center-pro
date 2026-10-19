@@ -48,6 +48,6 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Corrigir mínimo de 230px no botão de pesquisa do cabeçalho móvel.
 - [x] Adaptar cabeçalho, cartões, painel e menus entre 320 e 820px.
 - [x] Criar testes que medem scroll horizontal e abertura dos principais ecrãs.
-- [ ] Confirmar TypeScript, Vitest, Vite e Playwright no PR.
-- [ ] Confirmar publicação no GitHub Pages.
+- [x] TypeScript, Vitest, Vite e Playwright aprovados na PR #5; 34 testes completos.
+- [x] PR #5 integrado e versão estática 1.8.1 publicada no GitHub Pages.
 - [ ] Verificar presencialmente iPhone Safari (incluindo texto maior, zoom e orientação).
