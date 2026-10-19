@@ -61,3 +61,13 @@ Não persistem progresso, texto de pesquisa nem dados de clientes. As etapas sã
 ## Layout mobile v1.8.1
 A camada `src/crystal.css` contém o último conjunto de media queries e deve prevalecer sobre o CSS geral para `.quick-search`. O cabeçalho passa a ter ações de largura limitada (39px), título `flex:1` com `min-width:0` e elipse se for comprido, mantendo botões acessíveis. Os cartões de serviço são compactos até 480px; as secções da biblioteca continuam de largura fluida. O conteúdo não deve gerar scroll horizontal nas larguras 320–768px. O atributo `meta viewport` preserva o zoom do utilizador.
 Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação e opções de acessibilidade pendentes.
+
+## Revisão v1.9.0: fontes e supply chain
+- `src/data/evidence.ts`: factos públicos com fonte, data e limitação, mais lista explícita dos assuntos operacionais sem aprovação.
+- `src/components/EvidenceAuditPanel.tsx`: vista de rastreabilidade em Segurança e fontes.
+- `src/data/publicSources.ts`: contactos e portais oficiais, nunca apresentados como prova de SLAs ou competências da linha.
+- `src/data/knowledge.ts` e `src/lib/routing.ts`: comunicação digital BK deixa de afirmar impossibilidade de acesso não documentada.
+- `package-lock.json`: versões e integridade geradas pelo npm no GitHub Actions.
+- Workflows: `npm ci`, `npm audit`, GitHub Actions pinned com SHAs dos projetos oficiais e atualização Dependabot.
+- `app.html`: redireciona visitantes de GitHub Pages para a entrada pública compilada, preservando Vite em desenvolvimento.
+- Publicação automática continua pela branch, mas mantém apenas assets atuais e da geração anterior. A alternativa de deploy apenas por artefactos requer alteração controlada das configurações Pages.

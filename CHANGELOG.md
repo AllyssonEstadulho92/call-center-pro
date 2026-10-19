@@ -1,3 +1,13 @@
+## [1.9.0] - 2026-10-19
+
+- Revisão das fontes oficiais com limites de aplicabilidade e rastreabilidade.
+- Corrigidas afirmações categóricas BK sobre ausência de acesso a pedidos digitais sem documentação.
+- Novo painel de auditoria e testes de conteúdo.
+- Lockfile npm gerado pelo npm; CI com instalação reproduzível e auditoria de dependências.
+- GitHub Actions fixadas a commits oficiais; Dependabot configurado.
+- Publicação pública corrigida para URL app.html e preparação do deploy manual de emergência.
+- Documentados riscos operacionais e validações pendentes.
+
 ## [1.8.1] - 2026-10-19
 
 - Corrigida largura mínima indevida do botão de pesquisa no modo móvel.

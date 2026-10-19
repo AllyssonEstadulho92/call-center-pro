@@ -1,6 +1,10 @@
 import type { Project } from '../types';
 
-/** Só ligações publicamente verificadas. A existência de uma página de apoio não valida regras de campanha. */
+/**
+ * Ligações públicas verificadas manualmente em 19/10/2026.
+ * Uma página oficial comprova os factos nela publicados, não os procedimentos da linha.
+ * Não atualizar a data sem voltar a consultar o conteúdo original.
+ */
 export interface PublicSource {
   id: string;
   project: Project | 'geral';
@@ -14,40 +18,70 @@ export interface PublicSource {
 
 export const publicSources: PublicSource[] = [
   {
-    id: 'bk-suporte', project: 'burger-king', title: 'Apoio oficial Burger King Portugal',
-    publisher: 'Burger King Portugal', url: 'https://www.burgerking.pt/support', confirmed: '18/10/2026',
-    scope: 'Portal de apoio com categorias para pedidos de entrega e recolha, experiências em restaurante, informações e sugestões.',
-    limitation: 'A existência deste portal não prova que a linha telefónica tenha acesso aos pedidos, nem confirma prazos de reembolso ou resposta.',
+    id: 'bk-suporte',
+    project: 'burger-king',
+    title: 'Portal de apoio oficial Burger King Portugal',
+    publisher: 'Burger King Portugal',
+    url: 'https://www.burgerking.pt/support',
+    confirmed: '19/10/2026',
+    scope: 'O portal apresenta categorias de apoio a entrega, recolha, experiência no restaurante, pedidos de informação e sugestões.',
+    limitation: 'Não comprova acesso do operador a encomendas, competências desta linha, resultados de reclamações, reembolsos ou prazos.',
   },
   {
-    id: 'cc-contactos', project: 'coca-cola', title: 'Contactos oficiais Coca-Cola Portugal',
-    publisher: 'Coca-Cola Portugal', url: 'https://www.coca-cola.com/pt/pt/about-us/contact-us', confirmed: '18/10/2026',
-    scope: 'Contacto público ao consumidor: 800 286 286, de segunda a sexta-feira, exceto feriados, das 09h00 às 17h00. A página distingue o apoio ao consumidor de questões comerciais ou de distribuição, encaminhadas para a Coca-Cola Europacific Partners.',
-    limitation: 'Este contacto geral não substitui a linha de avarias nem comprova como é registado um pedido técnico.',
+    id: 'cc-contactos',
+    project: 'coca-cola',
+    title: 'Contactos públicos Coca-Cola Portugal',
+    publisher: 'Coca-Cola Portugal',
+    url: 'https://www.coca-cola.com/pt/pt/about-us/contact-us',
+    confirmed: '19/10/2026',
+    scope: 'Contacto ao consumidor 800 286 286 de segunda a sexta-feira, exceto feriados, das 09h00 às 17h00. A página também disponibiliza contactos Coca-Cola Europacific Partners.',
+    limitation: 'O número do consumidor não é prova de contacto para a linha interna de avarias nem das regras de assistência aos equipamentos comerciais.',
   },
   {
-    id: 'cc-faq', project: 'coca-cola', title: 'Perguntas frequentes Coca-Cola Portugal',
-    publisher: 'Coca-Cola Portugal', url: 'https://www.coca-cola.com/pt/pt/about-us/faq', confirmed: '18/10/2026',
-    scope: 'Informação pública sobre assuntos de consumo e aplicação Coca-Cola.',
-    limitation: 'As orientações da aplicação de consumidor não devem ser confundidas com assistência a equipamentos comerciais.',
+    id: 'cc-faq',
+    project: 'coca-cola',
+    title: 'Perguntas frequentes Coca-Cola Portugal',
+    publisher: 'Coca-Cola Portugal',
+    url: 'https://www.coca-cola.com/pt/pt/about-us/faq',
+    confirmed: '19/10/2026',
+    scope: 'Perguntas e informações publicadas pela Coca-Cola sobre assuntos de consumidores e formas de contacto.',
+    limitation: 'As perguntas frequentes não validam guiões técnicos, classificação SAP, prazos de intervenção ou encaminhamentos operacionais.',
   },
   {
-    id: 'reclamacoes', project: 'geral', title: 'Livro de Reclamações Eletrónico',
-    publisher: 'Portal do Livro de Reclamações', url: 'https://www.livroreclamacoes.pt/INICIO/', confirmed: '18/10/2026',
-    scope: 'Portal de reclamações, consulta do estado de reclamações, pedidos de informação e sugestões.',
-    limitation: 'Não substitui a gestão interna das reclamações nem confirma o resultado de um processo.',
+    id: 'reclamacoes',
+    project: 'geral',
+    title: 'Livro de Reclamações Eletrónico',
+    publisher: 'Portal oficial do Livro de Reclamações',
+    url: 'https://www.livroreclamacoes.pt/INICIO/',
+    confirmed: '19/10/2026',
+    scope: 'Portal formal para reclamações, pedidos de informação, consulta de reclamações, elogios e sugestões.',
+    limitation: 'O acesso ao portal não confirma a tramitação interna de reclamações, decisões ou prazos da Coca-Cola ou Burger King.',
+  },
+  {
+    id: 'reclamacoes-asae',
+    project: 'geral',
+    title: 'Explicação legal sobre o Livro de Reclamações',
+    publisher: 'ASAE',
+    url: 'https://www.asae.gov.pt/reclamacoes-e-denuncias/livro-de-reclamacoes.aspx',
+    confirmed: '19/10/2026',
+    scope: 'Explica o enquadramento do livro de reclamações em formatos físico e eletrónico e o respetivo âmbito legal.',
+    limitation: 'Não fornece instruções de registo nos sistemas privados das duas marcas.',
   },
 ];
 
 export function getPublicSources(ids: string[]): PublicSource[] {
-  return publicSources.filter((source) => ids.includes(source.id));
+  return publicSources.filter(source => ids.includes(source.id));
 }
 
-/** Ligação meramente informativa: fontes públicas não validam procedimentos privados. */
+/** Relação informativa; nunca atribui validação operacional aos guiões. */
 const procedureReferences: Record<string, string[]> = {
-  'bk-app': ['bk-suporte'], 'bk-reclamacao': ['bk-suporte', 'reclamacoes'],
-  'bk-canais': ['bk-suporte'], 'bk-faturas': ['bk-suporte'], 'bk-telefone': ['bk-suporte'],
-  'cc-consumidor': ['cc-contactos'], 'cc-comercial': ['cc-contactos'],
+  'bk-app': ['bk-suporte'],
+  'bk-reclamacao': ['bk-suporte', 'reclamacoes', 'reclamacoes-asae'],
+  'bk-canais': ['bk-suporte'],
+  'bk-faturas': ['bk-suporte'],
+  'bk-telefone': ['bk-suporte'],
+  'cc-consumidor': ['cc-contactos', 'cc-faq'],
+  'cc-comercial': ['cc-contactos'],
 };
 
 export function getProcedureSources(procedureId: string): PublicSource[] {
