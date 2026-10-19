@@ -137,7 +137,7 @@ export function SpeechPlayer({ text, compact = false }: SpeechPlayerProps) {
           </select>
         </label>
         <label>Voz portuguesa
-          <select value={voices.some(v => v.voiceURI === selectedVoice) ? selectedVoice : ''} onChange={event => changeVoice(event.target.value)}>
+          <select aria-label="Selecionar voz portuguesa" value={voices.some(v => v.voiceURI === selectedVoice) ? selectedVoice : ''} onChange={event => changeVoice(event.target.value)}>
             <option value="">Automática (dispositivo)</option>
             {voices.map(voice => <option key={voice.voiceURI} value={voice.voiceURI}>{voice.name} ({voice.lang})</option>)}
           </select>

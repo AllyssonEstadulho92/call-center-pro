@@ -27,7 +27,7 @@ test('voz tem opções de velocidade e seleção do dispositivo sem gravação a
   await page.goto('/app.html');
   const live = page.getByRole('region', { name: 'Pré-visualização do atendimento em direto' });
   await expect(live.getByRole('button', { name: 'Ouvir frase em voz portuguesa' })).toBeVisible();
-  await expect(live.getByLabel('Voz portuguesa')).toBeVisible();
+  await expect(live.getByRole('combobox', { name: 'Selecionar voz portuguesa' })).toBeVisible();
   await expect(live.getByLabel('Velocidade')).toBeVisible();
   await expect(live.getByRole('button', { name: 'Pausar leitura da frase' })).toBeDisabled();
   await expect(live.getByText(/qualidade depende do sistema|vozes portuguesas instaladas/)).toBeVisible();
