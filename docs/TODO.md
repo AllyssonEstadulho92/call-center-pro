@@ -71,6 +71,6 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Ajustar menu, cabeçalho, rodapé, modal e manuais para retrato e horizontal.
 - [x] Aplicar fonte mínima de 16px aos campos móveis.
 - [x] Criar testes de reflow/viewport incluindo emulação mobile WebKit.
-- [ ] Confirmar TypeScript, Vitest, build e Playwright antes de integrar.
-- [ ] Confirmar publicação no GitHub Pages.
+- [x] TypeScript, Vitest, build e auditoria npm aprovados antes da integração.
+- [x] PR #17 integrado e GitHub Pages publicado; 68 testes Chromium/WebKit aprovados.
 - [ ] Validar num iPhone real Safari, VoiceOver, teclado e rotação.

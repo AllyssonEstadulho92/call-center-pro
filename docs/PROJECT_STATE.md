@@ -1,9 +1,9 @@
 # Call Center Pro | Estado do projeto
 
 Data da revisão: 19/10/2026
-Versão publicada antes desta alteração: 1.9.0.
-Branch de trabalho: `fix/viewport-safearea-ios-v1-9-1`
-Entrega proposta: 1.9.1.
+Versão publicada: **1.9.1**, branch `main`, PR #17 integrado.
+Branch de origem: `fix/viewport-safearea-ios-v1-9-1` (PR #17 aprovado e integrado)
+Entrega concluída: 1.9.1.
 
 ## Objetivo
 Verificar dimensões e viewport dos ecrãs desktop, tablet e iPhone, preservando os guiões e os serviços existentes, e corrigir a escala sem exigir zoom manual no Safari.
@@ -31,7 +31,7 @@ Verificar dimensões e viewport dos ecrãs desktop, tablet e iPhone, preservando
 - Publicação GitHub Pages continua aberta ao público; não colocar dados internos ou pessoais no repositório.
 
 ## Última alteração
-Implementação do viewport e testes na branch, aguardando os resultados do CI para integração.
+Viewport publicado: `viewport-fit=cover`, safe areas iOS, inputs de 16px, menu móvel até 980px e alturas dinâmicas. TypeScript, Vitest, npm audit, build Vite e **68 testes de navegação Chromium/WebKit** concluídos com sucesso. GitHub Pages publicado com `index.html` compilado e meta viewport correta. A primeira execução dos testes falhou apenas por esperar a expressão `env(...)` em vez do valor computado `0px`; teste corrigido e reexecutado com sucesso.
 
 ## Próximo passo
-Validar TypeScript, Vitest, compilação e Playwright Chromium/WebKit; corrigir regressões; integrar em main após sucesso, confirmar publicação Pages e solicitar teste real no Safari do iPhone.
+Verificar no Safari do iPhone real os tamanhos em retrato/horizontal, teclado, focos, safe areas e VoiceOver. Se houver diferenças, documentar e corrigir sem alterar guiões. Continua pendente a validação operacional dos conteúdos.

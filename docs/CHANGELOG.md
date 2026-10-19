@@ -70,4 +70,6 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Meta viewport com `viewport-fit=cover`, mantendo zoom do utilizador.
 - Safe areas em quatro direções, altura dinâmica, cabeçalho e navegação móvel até 980px.
 - Campos móveis >=16px e alvos de toque maiores; guias e procedimentos preservados.
-- Testes Chromium e emulação mobile WebKit de dimensões, inputs, modal e reflow, a executar em CI.
+- Testes Chromium e WebKit de dimensões, inputs, modal e reflow: 68 aprovados após ajustar expectativa do valor computado das safe areas.
+- TypeScript, Vitest, npm audit e Vite aprovados. PR #17 integrado e GitHub Pages publicado com viewport correto.
+- Validação em Safari e VoiceOver de iPhone real continua pendente.
