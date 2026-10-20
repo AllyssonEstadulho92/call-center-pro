@@ -73,3 +73,11 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Testes Chromium e WebKit de dimensões, inputs, modal e reflow: 68 aprovados após ajustar expectativa do valor computado das safe areas.
 - TypeScript, Vitest, npm audit e Vite aprovados. PR #17 integrado e GitHub Pages publicado com viewport correto.
 - Validação em Safari e VoiceOver de iPhone real continua pendente.
+
+## 20-10-2026 | 1.9.2 (em revisão)
+- Pesquisa principal deixa de focar automaticamente o input em dispositivos tácteis; mantém o foco rápido em desktop.
+- «Iniciar atendimento» foca inicialmente Fechar em dispositivos tácteis, evitando abertura automática do teclado.
+- Campos editáveis e selects com 16px também em tablets de ecrã largo.
+- Regressões E2E de foco, pesquisa e overflow ampliadas para WebKit e Chromium.
+- Zoom manual, guiões, dados e funcionalidades existentes preservados.
+- Integração, publicação e teste Safari físico por confirmar.

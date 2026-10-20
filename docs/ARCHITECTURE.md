@@ -81,3 +81,11 @@ Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação
 - `.github/workflows/browser-smoke.yml`: prepara Chromium e WebKit para verificar a navegação.
 
 **Limites:** WebKit do Playwright não equivale a Safari num iPhone físico. Não bloquear pinch-to-zoom, não usar overflow-x:hidden global para mascarar problemas e não alterar os guiões durante alterações de layout.
+
+## Gestão de foco em ecrãs tácteis (v1.9.2)
+- `src/App.tsx`: função `shouldAutoFocusTextInput()` distingue computador com `(hover: hover) and (pointer: fine)` de interações tácteis.
+- Ao entrar em Pesquisa, o campo só ganha foco automaticamente no computador. No modal, o foco táctil inicial passa para o botão Fechar, preservando o ciclo de tabulação e o restauro do foco.
+- O atalho Ctrl/Cmd+K continua a focar a pesquisa de forma explícita.
+- `src/crystal.css`: campos editáveis e seletores com tamanho mínimo 16px em ecrãs móveis e em `(pointer: coarse)`, mesmo acima de 980px.
+- `e2e/viewport-ios.spec.ts`: testes de foco, introdução de texto e reflow em Chromium e WebKit emulado; validação Safari físico ainda pendente.
+- Sem alteração de APIs, armazenamento, regras de negócio ou dados operacionais.

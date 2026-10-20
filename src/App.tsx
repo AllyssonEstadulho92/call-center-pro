@@ -24,7 +24,7 @@ import { formatGreeting, getDefaultGreeting } from './lib/greeting';
 import type { Greeting } from './lib/greeting';
 import type { Page, Procedure, Project, Status } from './types';
 
-const VERSION = '1.8.0';
+const VERSION = '1.9.2';
 const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
 const THEME_KEY = 'call-center-pro-tema-v1';
 
@@ -35,6 +35,11 @@ function getPreferredDarkMode(): boolean {
 
 type ProjectFilter = Project | 'todos';
 
+// Evita abrir o teclado automaticamente em dispositivos tácteis.
+function shouldAutoFocusTextInput(): boolean {
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+}
+
 function CallLauncher({ onClose, onChoose }: { onClose: () => void; onChoose: (procedure: Procedure) => void }) {
   const [project, setProject] = useState<ProjectFilter>('todos');
   const [term, setTerm] = useState('');
@@ -44,7 +49,11 @@ function CallLauncher({ onClose, onChoose }: { onClose: () => void; onChoose: (p
 
   useEffect(() => {
     const priorFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    inputRef.current?.focus();
+    if (shouldAutoFocusTextInput()) {
+      inputRef.current?.focus({ preventScroll: true });
+    } else {
+      dialogRef.current?.querySelector<HTMLElement>('.launcher-close')?.focus({ preventScroll: true });
+    }
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') { event.preventDefault(); onClose(); return; }
       if (event.key !== 'Tab' || !dialogRef.current) return;
@@ -176,6 +185,12 @@ function App() {
   useEffect(() => { try { window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites)); } catch { /* Funcionamento sem armazenamento quando bloqueado. */ } }, [favorites]);
   useEffect(() => { document.documentElement.classList.toggle('dark', darkMode); try { window.localStorage.setItem(THEME_KEY, darkMode ? 'dark' : 'light'); } catch { /* Preferência opcional. */ } return () => document.documentElement.classList.remove('dark'); }, [darkMode]);
 
+  useEffect(() => {
+    if (page === 'pesquisa' && shouldAutoFocusTextInput()) {
+      document.getElementById('procedure-search')?.focus({ preventScroll: true });
+    }
+  }, [page]);
+
   function navigate(target: Page) { setPage(target); setSelectedId(null); setMenuOpen(false); }
   function openProcedure(p: Procedure) { setSelectedId(p.id); setPage(p.project); setMenuOpen(false); window.scrollTo(0, 0); }
   function toggleFavorite(id: string) { setFavorites((old) => old.includes(id) ? old.filter((x) => x !== id) : [...old, id]); }
@@ -267,7 +282,7 @@ function App() {
         {page === 'faq' && <FrequentlyAsked/>}
         {page === 'simulacoes' && <Simulations/>}
         {page === 'respostas' && <QuickAnswers onOpen={openProcedure} />}
-        {page === 'pesquisa' && <><div className="page-intro"><div className="eyebrow"><SlidersHorizontal size={14}/> PESQUISA DE PROCEDIMENTOS</div><h1>De que precisas para esta chamada?</h1><p>Pesquisa pela expressão utilizada pelo cliente, por exemplo «não faz frio», «pedido incompleto» ou «aplicação».</p></div><div className="search-panel"><label className="search-input"><Search size={21}/><input id="procedure-search" autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Escreve o problema ou assunto..." aria-label="Pesquisar por problema ou assunto"/>{query && <button type="button" aria-label="Limpar pesquisa" onClick={() => setQuery('')}><X size={17}/></button>}</label><div className="filter-line"><span><SlidersHorizontal size={16}/> Filtrar por área:</span><div className="filter-buttons">{([['todos', 'Todas'], ['coca-cola', 'Coca-Cola'], ['burger-king', 'Burger King']] as const).map(([value, label]) => <button type="button" key={value} className={searchProject === value ? 'selected' : ''} onClick={() => setSearchProject(value)}>{label}</button>)}</div></div></div><div className="section-heading"><div><h2>Resultados <span className="result-count">{filtered.length}</span></h2><p>Resultados incluem sinónimos e descrições das situações.</p></div></div>{renderCards(filtered)}</>}
+        {page === 'pesquisa' && <><div className="page-intro"><div className="eyebrow"><SlidersHorizontal size={14}/> PESQUISA DE PROCEDIMENTOS</div><h1>De que precisas para esta chamada?</h1><p>Pesquisa pela expressão utilizada pelo cliente, por exemplo «não faz frio», «pedido incompleto» ou «aplicação».</p></div><div className="search-panel"><label className="search-input"><Search size={21}/><input id="procedure-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Escreve o problema ou assunto..." aria-label="Pesquisar por problema ou assunto"/>{query && <button type="button" aria-label="Limpar pesquisa" onClick={() => setQuery('')}><X size={17}/></button>}</label><div className="filter-line"><span><SlidersHorizontal size={16}/> Filtrar por área:</span><div className="filter-buttons">{([['todos', 'Todas'], ['coca-cola', 'Coca-Cola'], ['burger-king', 'Burger King']] as const).map(([value, label]) => <button type="button" key={value} className={searchProject === value ? 'selected' : ''} onClick={() => setSearchProject(value)}>{label}</button>)}</div></div></div><div className="section-heading"><div><h2>Resultados <span className="result-count">{filtered.length}</span></h2><p>Resultados incluem sinónimos e descrições das situações.</p></div></div>{renderCards(filtered)}</>}
         {page === 'favoritos' && <><div className="page-intro"><div className="eyebrow"><Star size={15}/> ACESSOS GUARDADOS</div><h1>Os teus procedimentos favoritos</h1><p>Guarda os guiões mais frequentes. Apenas os identificadores dos favoritos são armazenados neste dispositivo.</p></div>{favoriteProcedures.length ? renderCards(favoriteProcedures) : <div className="empty-state"><Star size={35}/><h3>Ainda não guardaste favoritos</h3><p>Abre uma área de atendimento e seleciona a estrela de um guião.</p><button className="primary-button" onClick={() => navigate('inicio')}>Ver áreas <ChevronRight size={16}/></button></div>}</>}
         {page === 'formacao' && <Training/>}
         {page === 'versoes' && <><div className="page-intro"><div className="eyebrow"><History size={14}/> REGISTO DE EVOLUÇÃO</div><h1>Histórico de versões</h1><p>As alterações ao projeto devem ser registadas e testadas antes da publicação.</p></div><div className="timeline-card"><span className="version-pill">v1.8.0</span><h3>Dashboard Cristal e consulta rápida</h3><p>Hierarquia visual mais simples, cartões ilustrados originais, manuais em destaque, fontes públicas visíveis, números reais da biblioteca e controlos de voz mais completos.</p><small>19 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.7.0</span><h3>Manuais separados com consulta orientada</h3><p>Manuais Coca-Cola e Burger King, índice pesquisável, etapas, fontes e leitura por voz com distinção entre informação pública e procedimentos por confirmar.</p><small>18 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.6.0</span><h3>Voz, simulações e painel em direto</h3><p>Leitura por voz em português, treino com gravação local da própria voz, perguntas frequentes e navegação móvel.</p><small>18 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.5.0</span><h3>Treino e correção dos erros</h3><p>Mais cenários, pontuação e repetição das perguntas incorretas.</p><small>18 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.4.0</span><h3>Respostas rápidas e melhorias de utilização</h3><p>Consulta rápida por assunto, leitura e cópia de frases, acesso ao guião completo, preferência de tema persistente, acessibilidade e tratamento de erros.</p><small>18 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.3.0</span><h3>Triagem e referências públicas verificadas</h3><p>Seleção orientada por canal, links oficiais com âmbito e limites claros e novos guiões de consulta, sem expor documentação interna.</p><small>18 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.2.0</span><h3>Início de chamada e teleponto melhorados</h3><p>Seleção rápida do serviço e situação, pesquisa num único ecrã, saudação ajustável, aumento da letra no teleponto e atalho Ctrl/Cmd + K.</p><small>18 de outubro de 2026</small></div><div className="timeline-card"><span className="version-pill">v1.1.0</span><h3>Primeira implementação entregue</h3><p>Interface responsiva, separação por serviços, guiões passo a passo, teleponto, pesquisa sem acentos, favoritos locais, treino e indicadores de validação.</p><small>18 de outubro de 2026</small></div><div className="timeline-card muted"><span className="version-pill">Próximas versões</span><h3>Melhorias condicionadas a documentação</h3><p>Validação institucional de procedimentos, revisão do conteúdo, avaliação de acessibilidade e melhorias funcionais após testes com utilizadores.</p></div></>}
