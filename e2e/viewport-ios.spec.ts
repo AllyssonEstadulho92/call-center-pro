@@ -51,10 +51,15 @@ for (const width of portraitWidths) {
     await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Pesquisa' }).click();
     const search = page.getByRole('textbox', { name: 'Pesquisar por problema ou assunto' });
     await expect(search).toBeVisible();
+    if (await page.evaluate(() => matchMedia('(pointer: coarse)').matches)) {
+      await expect(search, 'Pesquisa por toque não deve abrir o teclado').not.toBeFocused();
+    }
     const fontSize = await search.evaluate(el => parseFloat(getComputedStyle(el).fontSize));
     expect(fontSize, 'Pesquisa deve ter pelo menos 16px para evitar zoom do Safari').toBeGreaterThanOrEqual(16);
     await search.focus();
-    await checkNoHorizontalOverflow(page, 'Pesquisa');
+    await search.fill('frio');
+    await expect(search).toHaveValue('frio');
+    await checkNoHorizontalOverflow(page, 'Pesquisa com texto');
     await page.getByRole('button', { name: 'Abrir menu' }).click();
     await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('button', { name: /Manual Coca-Cola/ }).click();
     const input = page.getByRole('searchbox', { name: 'Pesquisar neste manual' });
@@ -75,8 +80,13 @@ for (const width of landscapeWidths) {
     const dialog = page.getByRole('dialog', { name: 'Iniciar atendimento' });
     await expect(dialog).toBeVisible();
     const input = dialog.getByRole('textbox', { name: 'Pesquisar situação de atendimento' });
+    if (await page.evaluate(() => matchMedia('(pointer: coarse)').matches)) {
+      await expect(input, 'Modal táctil não deve ativar o teclado').not.toBeFocused();
+    }
     expect(await input.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
-    await checkNoHorizontalOverflow(page, 'Modal horizontal');
+    await input.fill('frio');
+    await expect(input).toHaveValue('frio');
+    await checkNoHorizontalOverflow(page, 'Modal horizontal com texto');
   });
 }
 
@@ -87,4 +97,36 @@ test('desktop de 1024px continua com a navegação lateral', async ({ page }) =>
   await expect(page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' })).toBeHidden();
   await expect(page.getByRole('navigation', { name: 'Navegação principal' })).toBeVisible();
   await checkNoHorizontalOverflow(page, 'Desktop');
+});
+
+test('tablet táctil largo não ativa automaticamente a pesquisa e mantém inputs legíveis', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Apenas dispositivos com emulação táctil.');
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.goto('/app.html');
+  await page.locator('.topbar .quick-search').click();
+  const search = page.getByRole('textbox', { name: 'Pesquisar por problema ou assunto' });
+  await expect(search).toBeVisible();
+  await expect(search).not.toBeFocused();
+  expect(await search.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
+  await search.fill('aplicação');
+  await expect(search).toHaveValue('aplicação');
+  await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('button', { name: /Manual Coca-Cola/ }).click();
+  const manualSearch = page.getByRole('searchbox', { name: 'Pesquisar neste manual' });
+  const category = page.locator('.manual-category-label select');
+  expect(await manualSearch.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
+  expect(await category.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
+  await checkNoHorizontalOverflow(page, 'Tablet táctil');
+});
+
+test('desktop mantém foco rápido na pesquisa e atalho de teclado', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Apenas computador.');
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/app.html');
+  await page.locator('.topbar .quick-search').click();
+  const search = page.getByRole('textbox', { name: 'Pesquisar por problema ou assunto' });
+  await expect(search).toBeFocused();
+  await search.fill('frio');
+  await expect(search).toHaveValue('frio');
+  await page.keyboard.press('ControlOrMeta+k');
+  await expect(search).toBeFocused();
 });

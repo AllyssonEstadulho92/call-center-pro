@@ -74,3 +74,12 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] TypeScript, Vitest, build e auditoria npm aprovados antes da integração.
 - [x] PR #17 integrado e GitHub Pages publicado; 68 testes Chromium/WebKit aprovados.
 - [ ] Validar num iPhone real Safari, VoiceOver, teclado e rotação.
+
+## 20/10/2026 | 1.9.2, pesquisa sem zoom involuntário
+- [x] Inspecionar `autoFocus` e foco programático da pesquisa e do modal.
+- [x] Aplicar gestão de foco própria para rato/teclado e toque, preservando a acessibilidade.
+- [x] Reforçar tipografia mínima de campos em dispositivos tácteis largos.
+- [x] Acrescentar testes de foco, pesquisa e viewport para iPhone, tablet e desktop.
+- [ ] Confirmar CI: TypeScript, Vitest, compilação e Playwright.
+- [ ] Integrar PR após testes aprovados e confirmar a publicação GitHub Pages.
+- [ ] Testar em iPhone Safari real: abertura de Pesquisa, introdução de texto, fecho do teclado e rotação, sem zoom involuntário.

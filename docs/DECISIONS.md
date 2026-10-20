@@ -63,3 +63,9 @@ Decisão: colocar a navegação móvel e a leitura dos manuais até 980px, abran
 
 ## D-021 | Evitar zoom involuntário do Safari nos formulários
 Decisão: definir tamanho mínimo de 16px para inputs e selects no modo móvel, mantendo zoom voluntário do utilizador. Testar com Chromium e WebKit emulado, requerendo ainda Safari real para validação completa.
+
+## D-022 | Evitar foco automático em pesquisas tácteis
+Decisão: retirar `autoFocus` indiscriminado da Pesquisa e evitar `focus()` no campo do diálogo «Iniciar atendimento» em dispositivos tácteis, mantendo o foco inicial num controlo não editável e preservando a gestão acessível do diálogo. Em computadores mantém-se o foco rápido e o atalho Ctrl/Cmd+K. Motivo: evitar abrir automaticamente o teclado e alterar a área visível do Safari. A confirmação do comportamento exige iPhone físico.
+
+## D-023 | Tipografia mínima nos campos tácteis
+Decisão: aplicar tamanho de letra de 16px aos campos editáveis, seletores e textarea em qualquer dispositivo de `pointer: coarse`, incluindo tablets de largura superior a 980px. Não bloquear pinch-to-zoom, não usar `maximum-scale=1` e não mascarar overflow horizontal.

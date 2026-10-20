@@ -729,3 +729,14 @@ body{background:var(--bg)}
   }
   .mobile-menu-button { left: calc(9px + var(--viewport-safe-left)); }
 }
+
+/* v1.9.2: controlar o zoom involuntário também em tablets tácteis largos.
+   Mantém o zoom voluntário e o reflow natural da página. */
+@media (pointer: coarse) {
+  .main-area input:not([type="checkbox"]):not([type="radio"]),
+  .main-area select,
+  .main-area textarea,
+  .launcher-dialog input:not([type="checkbox"]):not([type="radio"]) {
+    font-size: 16px;
+  }
+}
