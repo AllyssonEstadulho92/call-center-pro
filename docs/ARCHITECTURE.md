@@ -89,3 +89,11 @@ Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação
 - `src/crystal.css`: campos editáveis e seletores com tamanho mínimo 16px em ecrãs móveis e em `(pointer: coarse)`, mesmo acima de 980px.
 - `e2e/viewport-ios.spec.ts`: testes de foco, introdução de texto e reflow em Chromium e WebKit emulado; validação Safari físico ainda pendente.
 - Sem alteração de APIs, armazenamento, regras de negócio ou dados operacionais.
+
+## Revisão de segurança de comunicação e qualidade (v1.9.3)
+- Mantém-se o mesmo catálogo de 17 procedimentos em `src/data/knowledge.ts`. Três guiões técnicos Coca-Cola acrescentam etapas de identificação do equipamento/referência e contacto/horário condicionados às necessidades do sistema oficial.
+- A etapa comum de fecho Coca-Cola separa texto neutro, confirmação do registo e encaminhamento pendente, sem prometer assistência ou prazo. A informação condicional surge na nota da etapa, não representa uma integração SAP.
+- `src/data/manuals.ts`: descrição dos passos distingue perguntas de treino e obrigatoriedade operacional por validar. Os procedimentos Burger King deixam de pressupor incapacidade da linha ou conclusão de encomenda sem confirmação.
+- `src/App.tsx`: etapas percorridas são «consultadas», não «verificadas» operacionalmente; percentagem apenas de leitura.
+- Testes de conteúdo e Playwright para percursos revistos. A aplicação pública não guarda dados de clientes nem grava chamadas reais.
+- QA e verificação de dependências não certificam a aplicação para a operação: continua pendente autorização institucional, documentação e testes Safari/VoiceOver físicos.

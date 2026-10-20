@@ -15,9 +15,11 @@ test('manual Coca-Cola: capítulos, voz e consulta das etapas', async ({ page, i
   await expect(page.getByRole('heading', { level: 2, name: 'Equipamento não refrigera' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Ouvir frase em voz portuguesa' })).toBeVisible();
   await page.getByRole('button', { name: /Seguinte/ }).click();
-  await expect(page.locator('.manual-chapter-progress span').first()).toHaveText('Etapa 2 de 6');
+  await expect(page.locator('.manual-chapter-progress span').first()).toHaveText('Etapa 2 de 8');
   await page.getByRole('button', { name: 'Ler guião completo' }).click();
-  await expect(page.locator('.manual-step')).toHaveCount(6);
+  await expect(page.locator('.manual-step')).toHaveCount(8);
+  await expect(page.locator('.manual-steps-region')).toContainText('Identificar equipamento e referência');
+  await expect(page.locator('.manual-steps-region')).toContainText('Se continuar pendente');
   await expect(page.getByText(/Não existe validação institucional registada/)).toBeVisible();
 });
 

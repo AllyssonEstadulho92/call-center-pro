@@ -24,7 +24,7 @@ import { formatGreeting, getDefaultGreeting } from './lib/greeting';
 import type { Greeting } from './lib/greeting';
 import type { Page, Procedure, Project, Status } from './types';
 
-const VERSION = '1.9.2';
+const VERSION = '1.9.3';
 const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
 const THEME_KEY = 'call-center-pro-tema-v1';
 
@@ -147,12 +147,12 @@ function Workflow({ data, onBack, isFavorite, onFavorite }: {
     <div className="workflow-columns">
       <div className="workflow-main">
         <section className="stage-card">
-          <div className="stage-progress-heading"><span>ETAPA {index + 1} DE {data.steps.length}</span><span>{progress}% verificado</span></div>
+          <div className="stage-progress-heading"><span>ETAPA {index + 1} DE {data.steps.length}</span><span>{progress}% consultado</span></div>
           <div className="progress-track"><div style={{ width: `${progress}%` }}/></div>
           <div className="stage-index"><span>{String(index + 1).padStart(2, '0')}</span><h3>{current.title}</h3></div>
           <div className="script-tools"><div className="script-label"><MessageCircle size={18}/> O QUE DIZER AO CLIENTE</div><div className="script-controls">{current.id === 'abertura' && <div className="greeting-switch" role="group" aria-label="Selecionar saudação"><button type="button" className={greeting === 'bom dia' ? 'active' : ''} aria-pressed={greeting === 'bom dia'} onClick={() => setGreeting('bom dia')}>Bom dia</button><button type="button" className={greeting === 'boa tarde' ? 'active' : ''} aria-pressed={greeting === 'boa tarde'} onClick={() => setGreeting('boa tarde')}>Boa tarde</button></div>}{reading && <div className="font-switch" role="group" aria-label="Tamanho de letra"><button type="button" aria-label="Diminuir tamanho da letra" disabled={fontSize <= 20} onClick={() => setFontSize(n => Math.max(20,n-2))}><ZoomOut size={17}/></button><span>{fontSize}px</span><button type="button" aria-label="Aumentar tamanho da letra" disabled={fontSize >= 40} onClick={() => setFontSize(n => Math.min(40,n+2))}><ZoomIn size={17}/></button></div>}</div></div>
           <blockquote className="script-text" style={reading ? {fontSize: `${fontSize}px`} : undefined}>“{readableScript}”</blockquote><SpeechPlayer text={readableScript}/>
-          <div className="stage-footer"><button className="outline-button" type="button" onClick={copyScript}><Copy size={16}/>{copied ? 'Frase copiada' : 'Copiar frase'}</button><label className="check-line"><input type="checkbox" checked={completed.has(current.id)} onChange={markStep}/><span>Etapa verificada</span></label></div>{copyError && <p className="copy-error" role="alert">Não foi possível copiar. Seleciona a frase manualmente.</p>}
+          <div className="stage-footer"><button className="outline-button" type="button" onClick={copyScript}><Copy size={16}/>{copied ? 'Frase copiada' : 'Copiar frase'}</button><label className="check-line"><input type="checkbox" checked={completed.has(current.id)} onChange={markStep}/><span>Etapa consultada</span></label></div>{copyError && <p className="copy-error" role="alert">Não foi possível copiar. Seleciona a frase manualmente.</p>}
         </section>
         <div className="step-navigation"><button type="button" className="outline-button" disabled={index === 0} onClick={() => setIndex(index - 1)}><ChevronLeft size={18}/> Anterior</button><span>Etapa {index + 1} / {data.steps.length}</span><button type="button" className="primary-button" disabled={index === data.steps.length - 1} onClick={() => setIndex(index + 1)}>Próxima etapa <ChevronRight size={18}/></button></div>
         <section className="step-list"><h3>Etapas da chamada</h3><div className="step-pills">{data.steps.map((s, i) => <button type="button" key={s.id} className={`step-pill ${index === i ? 'active' : ''} ${completed.has(s.id) ? 'done' : ''}`} onClick={() => setIndex(i)} aria-current={index === i ? 'step' : undefined}><span>{completed.has(s.id) ? <Check size={15}/> : i + 1}</span>{s.title}</button>)}</div></section>

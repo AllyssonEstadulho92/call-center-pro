@@ -82,3 +82,11 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Zoom manual, guiões, dados e funcionalidades existentes preservados.
 - PR #18 integrada, verificações automáticas de qualidade e Playwright aprovadas, build Vite e GitHub Pages concluídos com sucesso.
 - Validação no Safari de iPhone físico e VoiceOver ainda pendente.
+
+## 20-10-2026 | v1.9.3 (em revisão, auditoria de utilização)
+- Complementada a triagem dos três guiões principais de avaria Coca-Cola com tipo de equipamento, RF/CC, contacto e horário apenas quando aplicáveis.
+- Fecho de ocorrências passa a distinguir registo efetivamente confirmado de estado pendente, evitando garantias não verificadas.
+- Guião Burger King digital deixa de pressupor incapacidade da linha para resolver o assunto; fecho de encomenda telefónica exige confirmação real no sistema.
+- Percentagem e marcação de etapas do teleponto passam a representar consulta, não validação operacional.
+- Alargados testes unitários e Playwright para as correções de conteúdo.
+- Uso profissional condicionado a autorização e manuais oficiais. CI, publicação e Safari físico ainda por confirmar.

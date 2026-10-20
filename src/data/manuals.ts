@@ -32,14 +32,14 @@ export const manualGuides: Record<Project, ManualProjectGuide> = {
     subtitle: 'Serviços de Avarias · Consulta orientada',
     audience: 'Apoio à descrição, classificação e encaminhamento de ocorrências em equipamentos.',
     opening: 'Serviços de Avarias Coca-Cola, bom dia, fala o Allysson. Em que posso ajudar?',
-    introduction: 'Este manual reúne os guiões existentes por situação. A sequência de perguntas sobre contribuinte, estabelecimento e localidade foi comunicada pelo operador e precisa de confirmação na operação. Introduz os dados reais apenas no sistema autorizado.',
+    introduction: 'Este manual reúne os guiões existentes por situação. A sequência de perguntas sobre contribuinte, estabelecimento, localidade, equipamento, referência RF/CC, contacto e horário foi comunicada ou proposta para treino e precisa de confirmação na operação. Pergunta apenas o que for necessário. Introduz os dados reais apenas no sistema autorizado.',
     phases: [
       { title: 'Abertura', guidance: 'Cumprimenta, identifica a linha e deixa o cliente explicar a ocorrência.', notice: 'Não antecipar a causa do problema.' },
-      { title: 'Identificação', guidance: 'Confirma no sistema autorizado os dados do estabelecimento que a operação exigir.', notice: 'A necessidade de NIF, morada ou contacto depende do procedimento aprovado.' },
+      { title: 'Identificação', guidance: 'Confirma no sistema autorizado o estabelecimento, o equipamento e os contactos necessários ao pedido.', notice: 'NIF, RF/CC, morada, telefone e horário só são pedidos quando aplicáveis segundo o procedimento aprovado.' },
       { title: 'Descrição objetiva', guidance: 'Pergunta o que acontece, desde quando e que produto ou equipamento foi afetado.', notice: 'Regista factos, não diagnósticos técnicos.' },
       { title: 'Classificação', guidance: 'Distingue avaria de equipamentos, falta de produto, limpeza, pedido comercial ou assunto de consumidor.', notice: 'São assuntos potencialmente distintos; não os encaminhar automaticamente para o mesmo canal.' },
       { title: 'Encaminhamento', guidance: 'Segue a informação aprovada na ferramenta operacional e confirma se o registo ficou concluído.', notice: 'Não prometer técnico, reparação, substituição ou prazo sem confirmação.' },
-      { title: 'Fecho', guidance: 'Resume apenas o que foi efetivamente confirmado e pergunta se é necessário mais algum esclarecimento.', notice: 'Não dizer que a assistência está marcada se não estiver.' },
+      { title: 'Fecho', guidance: 'Distingue um registo confirmado de um pedido pendente, informa apenas o resultado real e pergunta se é necessário mais algum esclarecimento.', notice: 'Não dizer que o registo ficou concluído, que existe visita marcada ou que há prazo confirmado se não estiver no sistema.' },
     ],
     principles: [
       'Se o cliente não souber explicar a avaria, faz uma pergunta de cada vez.',
