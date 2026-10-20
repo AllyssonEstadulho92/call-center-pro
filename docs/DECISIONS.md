@@ -69,3 +69,12 @@ Decisão: retirar `autoFocus` indiscriminado da Pesquisa e evitar `focus()` no c
 
 ## D-023 | Tipografia mínima nos campos tácteis
 Decisão: aplicar tamanho de letra de 16px aos campos editáveis, seletores e textarea em qualquer dispositivo de `pointer: coarse`, incluindo tablets de largura superior a 980px. Não bloquear pinch-to-zoom, não usar `maximum-scale=1` e não mascarar overflow horizontal.
+
+## D-024 | Conteúdo de treino não equivale a validação de chamada
+Decisão: substituir a expressão «etapa verificada» e a percentagem «verificado» no teleponto por «consultada» e «consultado». Motivo: assinalar uma etapa de leitura não prova que um registo SAP, encaminhamento ou ação tenham sido executados.
+
+## D-025 | Perguntas técnicas adicionais apenas quando aplicáveis
+Decisão: incluir a identificação do equipamento e da referência RF/CC, assim como contacto e horário condicionais, nos três guiões de avaria Coca-Cola mais diretamente técnicos. Não tornar estes dados obrigatórios sem manual autorizado, não incluir referências ou dados reais no site público e não indicar códigos SAP ou prazos sem validação.
+
+## D-026 | Fecho factual e estado de registo
+Decisão: separar no guião o estado «registo confirmado» de «pendente», sem mecanismo de validação fictício. A nota do fecho fornece frases alternativas dependentes da confirmação na ferramenta oficial. Ajustar fecho BK digital e encomenda por telefone para não presumir impossibilidade de resolução ou confirmação de encomenda.

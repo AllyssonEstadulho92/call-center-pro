@@ -36,3 +36,17 @@ test('simulações têm avisos de privacidade e respostas de referência', async
   await page.getByRole('button', { name: /Ver resposta de referência/ }).click();
   await expect(page.getByText('Exemplo por confirmar', { exact: false })).toBeVisible();
 });
+
+test('teleponto não apresenta consulta como validação de registo', async ({ page }) => {
+  await page.goto('/app.html');
+  await page.getByRole('button', { name: /Iniciar atendimento/ }).first().click();
+  const dialog = page.getByRole('dialog', { name: 'Iniciar atendimento' });
+  await dialog.getByRole('textbox', { name: 'Pesquisar situação de atendimento' }).fill('não faz frio');
+  await dialog.getByRole('button', { name: /Equipamento não refrigera/ }).click();
+  await expect(page.getByText('Etapa consultada')).toBeVisible();
+  await expect(page.getByText('0% consultado')).toBeVisible();
+  await page.getByRole('checkbox', { name: 'Etapa consultada' }).check();
+  await expect(page.getByText(/% consultado/)).toBeVisible();
+  await page.getByRole('button', { name: /Confirmar resultado antes de encerrar/ }).click();
+  await expect(page.locator('.notes-panel')).toContainText('Se continuar pendente');
+});

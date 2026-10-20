@@ -74,3 +74,19 @@ test('o zoom do utilizador não é desativado pelo viewport', async ({ page }) =
   expect(meta).toContain('width=device-width');
   expect(meta).not.toMatch(/user-scalable\s*=\s*no|maximum-scale\s*=\s*1/);
 });
+
+test('guião de oito etapas encaixa num smartphone de 320px sem ocultar botões', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 690 });
+  await page.goto('/app.html');
+  const stages = page.locator('.live-dashboard-steps button');
+  await expect(stages).toHaveCount(8);
+  const first = await stages.first().boundingBox();
+  const last = await stages.last().boundingBox();
+  expect(first).not.toBeNull();
+  expect(last).not.toBeNull();
+  expect(last!.y).toBeGreaterThan(first!.y + 10);
+  expect(last!.x + last!.width).toBeLessThanOrEqual(320);
+  await stages.last().click();
+  await expect(page.locator('.live-dashboard-step-title')).toContainText('Etapa 8 de 8');
+  await expectFitsViewport(page, 320, 'Oito etapas visíveis');
+});

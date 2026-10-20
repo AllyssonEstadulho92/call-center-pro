@@ -83,3 +83,19 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] CI confirmado: TypeScript, Vitest, compilação e Playwright Chromium/WebKit aprovados na PR #18.
 - [x] PR #18 integrada e GitHub Pages publicada com novo `index.html` e assets da versão 1.9.2.
 - [ ] Testar em iPhone Safari real: abertura de Pesquisa, introdução de texto, fecho do teclado e rotação, sem zoom involuntário.
+
+## 20/10/2026 | Auditoria de guiões e utilização responsável, v1.9.3
+- [x] Rever os 17 guiões, os dois manuais, o painel de evidência, o teleponto e a arquitetura pública.
+- [x] Completar a triagem dos três tipos de avaria principais com identificação do equipamento e contacto/horário condicionais.
+- [x] Corrigir fecho Coca-Cola por estado confirmado/pendente e evitar afirmar incapacidade ou registo automático na Burger King.
+- [x] Alterar «etapa verificada» para «etapa consultada», sem confundir progresso com validação operacional.
+- [x] Adicionar testes de conteúdo e regressões de interface para os novos percursos.
+- [ ] Validar TypeScript, Vitest, Playwright, compilação e auditoria npm em CI.
+- [ ] Integrar PR e confirmar GitHub Pages apenas após testes aprovados.
+- [ ] Confirmar autorização para usar a aplicação no posto de trabalho.
+- [ ] Obter os critérios de auditoria de qualidade e procedimentos operacionais autorizados da supervisão.
+- [ ] Testar no iPhone físico e avaliar WCAG/VoiceOver e acesso à gravação do microfone.
+
+- [x] Identificar overflow em ecrãs de 320px: mais etapas do guião forçaram botões para fora do cartão.
+- [x] Corrigir botões das etapas com grelha móvel e testar a chegada à oitava etapa.
+- [ ] Reexecutar Playwright completo e confirmar ausência de erros, sem contornar as asserções.
