@@ -83,15 +83,16 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - PR #18 integrada, verificações automáticas de qualidade e Playwright aprovadas, build Vite e GitHub Pages concluídos com sucesso.
 - Validação no Safari de iPhone físico e VoiceOver ainda pendente.
 
-## 20-10-2026 | v1.9.3 (em revisão, auditoria de utilização)
+## 20-10-2026 | v1.9.3 (publicada, auditoria de utilização)
 - Complementada a triagem dos três guiões principais de avaria Coca-Cola com tipo de equipamento, RF/CC, contacto e horário apenas quando aplicáveis.
 - Fecho de ocorrências passa a distinguir registo efetivamente confirmado de estado pendente, evitando garantias não verificadas.
 - Guião Burger King digital deixa de pressupor incapacidade da linha para resolver o assunto; fecho de encomenda telefónica exige confirmação real no sistema.
 - Percentagem e marcação de etapas do teleponto passam a representar consulta, não validação operacional.
 - Alargados testes unitários e Playwright para as correções de conteúdo.
-- Uso profissional condicionado a autorização e manuais oficiais. CI, publicação e Safari físico ainda por confirmar.
+- Uso profissional condicionado a autorização e manuais oficiais. CI, integração e GitHub Pages confirmados; Safari físico ainda pendente.
 
 ### Correção de layout identificada pelos testes v1.9.3
 - A primeira execução de Playwright revelou overflow a 320px devido à passagem de seis para oito etapas no painel inicial.
 - Introduzida grelha de quatro colunas para as etapas em smartphones até 480px, sem esconder overflow nem bloquear ampliação.
 - Adicionado teste específico de regressão, sujeito a nova execução da CI.
+- PR #20 integrada na branch `main`; TypeScript, Vitest, build e auditoria npm aprovados, E2E: 75 testes aprovados e 3 ignorados após corrigir 6 falhas de layout em 320px na primeira execução. Site publicado com `index.html` compilado e assets atualizados.

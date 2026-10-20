@@ -90,12 +90,12 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Corrigir fecho Coca-Cola por estado confirmado/pendente e evitar afirmar incapacidade ou registo automático na Burger King.
 - [x] Alterar «etapa verificada» para «etapa consultada», sem confundir progresso com validação operacional.
 - [x] Adicionar testes de conteúdo e regressões de interface para os novos percursos.
-- [ ] Validar TypeScript, Vitest, Playwright, compilação e auditoria npm em CI.
-- [ ] Integrar PR e confirmar GitHub Pages apenas após testes aprovados.
+- [x] TypeScript, Vitest, Playwright, compilação e auditoria npm aprovados em CI; após correção da regressão foram 75 testes E2E aprovados e 3 ignorados.
+- [x] PR #20 integrada em `main` e v1.9.3 publicada no GitHub Pages com novos assets.
 - [ ] Confirmar autorização para usar a aplicação no posto de trabalho.
 - [ ] Obter os critérios de auditoria de qualidade e procedimentos operacionais autorizados da supervisão.
 - [ ] Testar no iPhone físico e avaliar WCAG/VoiceOver e acesso à gravação do microfone.
 
 - [x] Identificar overflow em ecrãs de 320px: mais etapas do guião forçaram botões para fora do cartão.
 - [x] Corrigir botões das etapas com grelha móvel e testar a chegada à oitava etapa.
-- [ ] Reexecutar Playwright completo e confirmar ausência de erros, sem contornar as asserções.
+- [x] Playwright novamente executado com sucesso em Chromium e WebKit: 75 aprovados e 3 ignorados; nenhum teste falhado.

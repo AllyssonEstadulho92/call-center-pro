@@ -5,7 +5,7 @@ Data: 20/10/2026. Âmbito: revisão do código, 17 guiões, 2 manuais, teleponto
 - Confirmado: observado no repositório antes da alteração.
 - Proposta aplicada: modificações no código em branch de revisão.
 - Pendente: informação ou testes que não estão disponíveis de forma autorizada.
-- Aprovado em CI só após registo efetivo de sucesso dos workflows.
+- Testes finais: TypeScript, Vitest, compilação Vite e auditoria npm concluídos com sucesso. Playwright final: 75 aprovados e 3 ignorados, sem falhas.
 
 ## Observações confirmadas
 1. A aplicação é estática e pública. Não tem integração SAP, API de encomendas, controlo de acesso nem base de dados de clientes. Favoritos/tema e preferências de voz utilizam localStorage apenas no dispositivo; áudio de treino fica temporariamente no browser.
@@ -43,4 +43,9 @@ A melhoria da qualidade de texto reduz alguns riscos, mas não constitui aprova�
 - Causa técnica: `src/styles.css` e `src/crystal.css` definiam a navegação do painel principal como flex sem quebra, com botões/círculos de largura fixa e folgas; oito etapas excediam a largura do cartão.
 - Correção: `src/crystal.css` usa grelha de quatro colunas a 480px ou menos, permitindo duas filas. Preserva áreas de toque >=44px e não usa `overflow-x:hidden` ou desativação de zoom.
 - Teste: `e2e/mobile-layout.spec.ts` verifica oito botões, mudança de fila, navegação para a última etapa e ausência de scroll horizontal.
-- A primeira execução de E2E reprovou seis casos de 320px, com os demais 67 aprovados e três ignorados; esta falha obriga a nova execução completa antes de qualquer integração.
+- A primeira execução de E2E reprovou seis casos de 320px, com os demais 67 aprovados e três ignorados. A correção da grelha foi testada novamente: 75 testes aprovados, 3 ignorados e nenhuma falha.
+
+## Resultado final de integração e publicação
+- PR #20 integrada em `main` após CI da versão corrigida; 75 testes E2E aprovados e 3 ignorados por aplicação a ambientes específicos.
+- Compilação GitHub Actions e GitHub Pages concluídas com sucesso. `index.html` da branch principal referencia a compilação v1.9.3.
+- Permanecem: validação institucional de procedimentos, autorização de utilização no posto, teste físico em Safari/VoiceOver e revisão de acessibilidade completa. Não atribuir aprovação de auditoria laboral/operacional à ferramenta.
