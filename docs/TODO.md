@@ -80,6 +80,6 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Aplicar gestão de foco própria para rato/teclado e toque, preservando a acessibilidade.
 - [x] Reforçar tipografia mínima de campos em dispositivos tácteis largos.
 - [x] Acrescentar testes de foco, pesquisa e viewport para iPhone, tablet e desktop.
-- [ ] Confirmar CI: TypeScript, Vitest, compilação e Playwright.
-- [ ] Integrar PR após testes aprovados e confirmar a publicação GitHub Pages.
+- [x] CI confirmado: TypeScript, Vitest, compilação e Playwright Chromium/WebKit aprovados na PR #18.
+- [x] PR #18 integrada e GitHub Pages publicada com novo `index.html` e assets da versão 1.9.2.
 - [ ] Testar em iPhone Safari real: abertura de Pesquisa, introdução de texto, fecho do teclado e rotação, sem zoom involuntário.

@@ -1,20 +1,20 @@
 # Call Center Pro | Estado do projeto
 
-## Revisão 20/10/2026 | Correção de foco e zoom 1.9.2
+## Entrega confirmada em 20/10/2026 | Correção de foco e zoom 1.9.2
 - Relato: ao abrir «Pesquisa», o ecrã volta a ampliar num iPhone.
 - Confirmado no código: `autoFocus` na Pesquisa e `focus()` automático no input do modal «Iniciar atendimento». O Safari pode alterar a área visível quando o teclado é ativado, embora a versão 1.9.1 já tenha definido 16px nos inputs móveis.
 - Correção proposta: não focar inputs automaticamente em dispositivos tácteis; no modal, focar o botão Fechar para preservar acessibilidade. Em desktop, manter foco e atalho Ctrl/Cmd+K.
 - CSS: mínimo de 16px em inputs editáveis, selects e textarea também em dispositivos tácteis com largura superior a 980px.
 - Testes: ausência de foco táctil, introdução de texto, overflow e navegação em iPhone, tablet e desktop.
 - Conteúdos de atendimento, favoritos, rotas, persistência e zoom manual não foram alterados.
-- Estado: em revisão na branch de correção. CI, integração e publicação ainda sujeitos a confirmação.
-- Próximo passo: rever CI e integrar PR se aprovado; testar teclado, zoom, rotação e VoiceOver no Safari de um iPhone real.
+- Estado: PR #18 integrada em `main` após aprovação dos testes TypeScript, Vitest, Vite e Playwright Chromium/WebKit. Build estática e publicação automática GitHub Pages confirmadas; `index.html` atualizado para os novos assets.
+- Próximo passo: testar teclado, zoom, rotação e VoiceOver no Safari de um iPhone real. A emulação WebKit não permite certificar a ausência total de zoom involuntário no dispositivo físico.
 
 
-Data da revisão: 19/10/2026
-Versão publicada: **1.9.1**, branch `main`, PR #17 integrado.
-Branch de origem: `fix/viewport-safearea-ios-v1-9-1` (PR #17 aprovado e integrado)
-Entrega concluída: 1.9.1.
+Data da revisão: 20/10/2026
+Versão publicada: **1.9.2**, branch `main`, PR #18 integrado.
+Branch de origem: `fix/ios-search-focus-zoom-v1-9-2` (PR #18 aprovada e integrada)
+Entrega concluída: 1.9.2.
 
 ## Objetivo
 Verificar dimensões e viewport dos ecrãs desktop, tablet e iPhone, preservando os guiões e os serviços existentes, e corrigir a escala sem exigir zoom manual no Safari.
@@ -41,7 +41,7 @@ Verificar dimensões e viewport dos ecrãs desktop, tablet e iPhone, preservando
 - Nenhuma regra operacional dos dois projetos foi alterada.
 - Publicação GitHub Pages continua aberta ao público; não colocar dados internos ou pessoais no repositório.
 
-## Última alteração
+## Entrega anterior (v1.9.1)
 Viewport publicado: `viewport-fit=cover`, safe areas iOS, inputs de 16px, menu móvel até 980px e alturas dinâmicas. TypeScript, Vitest, npm audit, build Vite e **68 testes de navegação Chromium/WebKit** concluídos com sucesso. GitHub Pages publicado com `index.html` compilado e meta viewport correta. A primeira execução dos testes falhou apenas por esperar a expressão `env(...)` em vez do valor computado `0px`; teste corrigido e reexecutado com sucesso.
 
 ## Próximo passo
