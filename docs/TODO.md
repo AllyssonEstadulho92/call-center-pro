@@ -95,3 +95,7 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [ ] Confirmar autorização para usar a aplicação no posto de trabalho.
 - [ ] Obter os critérios de auditoria de qualidade e procedimentos operacionais autorizados da supervisão.
 - [ ] Testar no iPhone físico e avaliar WCAG/VoiceOver e acesso à gravação do microfone.
+
+- [x] Identificar overflow em ecrãs de 320px: mais etapas do guião forçaram botões para fora do cartão.
+- [x] Corrigir botões das etapas com grelha móvel e testar a chegada à oitava etapa.
+- [ ] Reexecutar Playwright completo e confirmar ausência de erros, sem contornar as asserções.

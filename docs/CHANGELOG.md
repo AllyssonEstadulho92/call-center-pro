@@ -90,3 +90,8 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Percentagem e marcação de etapas do teleponto passam a representar consulta, não validação operacional.
 - Alargados testes unitários e Playwright para as correções de conteúdo.
 - Uso profissional condicionado a autorização e manuais oficiais. CI, publicação e Safari físico ainda por confirmar.
+
+### Correção de layout identificada pelos testes v1.9.3
+- A primeira execução de Playwright revelou overflow a 320px devido à passagem de seis para oito etapas no painel inicial.
+- Introduzida grelha de quatro colunas para as etapas em smartphones até 480px, sem esconder overflow nem bloquear ampliação.
+- Adicionado teste específico de regressão, sujeito a nova execução da CI.

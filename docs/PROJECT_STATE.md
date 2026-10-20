@@ -31,3 +31,6 @@ Proposta v1.9.3 preparada, sujeita a PR, CI e publicação.
 
 ## Próximo passo
 Confirmar CI e testes, integrar após sucesso e verificar publicação. Solicitar critérios de auditoria de qualidade e documentação operacional autorizada à supervisão, sem carregar ficheiros internos restritos num repositório público.
+
+## Correção adicional após falha de regressão
+A CI encontrou overflow horizontal real em 320px no painel inicial, provocado por oito botões de etapas sem quebra de linha. Foi aplicada uma grelha de quatro colunas em ecrãs até 480px e acrescentado um teste de navegação até à última etapa. A primeira passagem de Playwright reprovou; deve voltar a ser executada antes da integração.

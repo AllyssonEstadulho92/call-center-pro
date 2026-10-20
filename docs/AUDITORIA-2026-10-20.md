@@ -37,3 +37,10 @@ Data: 20/10/2026. Âmbito: revisão do código, 17 guiões, 2 manuais, teleponto
 
 ## Conclusão condicionada
 A melhoria da qualidade de texto reduz alguns riscos, mas não constitui aprovação institucional e não garante ausência de falhas operacionais ou conformidade com uma auditoria cujos critérios não foram fornecidos.
+
+## Falha detetada pela CI durante a própria auditoria
+- Na primeira passagem, o teste Playwright detetou overflow horizontal em 320px (largura de documento 345px), após os guiões CC terem passado de seis para oito etapas.
+- Causa técnica: `src/styles.css` e `src/crystal.css` definiam a navegação do painel principal como flex sem quebra, com botões/círculos de largura fixa e folgas; oito etapas excediam a largura do cartão.
+- Correção: `src/crystal.css` usa grelha de quatro colunas a 480px ou menos, permitindo duas filas. Preserva áreas de toque >=44px e não usa `overflow-x:hidden` ou desativação de zoom.
+- Teste: `e2e/mobile-layout.spec.ts` verifica oito botões, mudança de fila, navegação para a última etapa e ausência de scroll horizontal.
+- A primeira execução de E2E reprovou seis casos de 320px, com os demais 67 aprovados e três ignorados; esta falha obriga a nova execução completa antes de qualquer integração.
