@@ -91,6 +91,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
       <span className="eyebrow"><BookOpen size={16}/> BIBLIOTECA DE MANUAIS</span>
       <h1>{guide.title}</h1>
       <p>{guide.subtitle}. {guide.audience}</p>
+      <div className="manual-pdf-download"><a href={`${import.meta.env.BASE_URL}manuais/manual-${project}.pdf`} download><BookOpen size={17}/> Transferir este manual em PDF</a><small>Para estudo e consulta. Os procedimentos continuam por confirmar.</small></div>
       <div className="manual-project-switch" role="group" aria-label="Escolher manual">
         <button type="button" className={project === 'coca-cola' ? 'selected' : ''} aria-pressed={project === 'coca-cola'} onClick={() => onSwitch('coca-cola')}>Manual Coca-Cola</button>
         <button type="button" className={project === 'burger-king' ? 'selected' : ''} aria-pressed={project === 'burger-king'} onClick={() => onSwitch('burger-king')}>Manual Burger King</button>
