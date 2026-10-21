@@ -35,3 +35,17 @@ test('manual Burger King: pesquisa e origem dos procedimentos', async ({ page, i
   await expect(page.getByRole('heading', { level: 2, name: 'Pedido incompleto' })).toBeVisible();
   await expect(page.getByText(/Por confirmar na operação/)).toBeVisible();
 });
+
+test('manual mostra frase de fecho de acordo com escolha e limpa-a ao mudar de assunto', async ({ page, isMobile }) => {
+  await goToManual(page, 'Manual Coca-Cola', isMobile);
+  const chapters = page.getByRole('navigation', { name: 'Capítulos do manual' });
+  await chapters.getByRole('button', { name: /Equipamento não refrigera/ }).click();
+  await page.getByRole('button', { name: 'Ler guião completo' }).click();
+  const status = page.getByRole('combobox', { name: 'Estado do registo no sistema' });
+  await expect(status).toHaveValue('neutro');
+  await status.selectOption('confirmado');
+  await expect(page.locator('.manual-step').last().locator('blockquote')).toContainText('A ocorrência ficou registada');
+  await chapters.getByRole('button', { name: /Equipamento não funciona/ }).click();
+  await page.getByRole('button', { name: 'Ler guião completo' }).click();
+  await expect(status).toHaveValue('neutro');
+});

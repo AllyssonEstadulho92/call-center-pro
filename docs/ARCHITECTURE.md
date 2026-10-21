@@ -97,3 +97,10 @@ Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação
 - `src/App.tsx`: etapas percorridas são «consultadas», não «verificadas» operacionalmente; percentagem apenas de leitura.
 - Testes de conteúdo e Playwright para percursos revistos. A aplicação pública não guarda dados de clientes nem grava chamadas reais.
 - QA e verificação de dependências não certificam a aplicação para a operação: continua pendente autorização institucional, documentação e testes Safari/VoiceOver físicos.
+
+## Fecho selecionável no guião (v1.9.4)
+- `src/lib/callOutcomes.ts`: texto de fecho neutro por defeito, alternativas «confirmado» e «pendente» apenas para os três guiões CC principais e `bk-telefone`.
+- `src/components/ClosingStatusPicker.tsx`: componente de seleção e aviso de confirmação externa, sem persistência.
+- Reutilização em `src/App.tsx`, `LiveCallPanel.tsx` e `ManualHub.tsx`, incluindo cópia e leitura por voz da frase selecionada.
+- Estados React locais, limpos em recomeço/troca de procedimento. Sem recolha, consulta ou validação automática de dados de clientes.
+- CSS responsivo com campo de seleção de 16px e teste de regressão E2E e unitário. Confirmação institucional e Safari físico pendentes.

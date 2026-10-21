@@ -1,4 +1,4 @@
-# Call Center Pro | versão 1.9.1
+# Call Center Pro | versão 1.9.4
 
 Aplicação web independente de apoio à **consulta e ao treino do atendimento telefónico** em português de Portugal. Desenvolvida em **React + TypeScript + Vite**.
 
@@ -8,7 +8,7 @@ Aplicação web independente de apoio à **consulta e ao treino do atendimento t
 
 - Duas áreas independentes: Coca-Cola (avarias de equipamentos) e Burger King (apoio ao cliente).
 - **Iniciar atendimento** abre rapidamente um seletor de serviço e situação, com pesquisa por expressões de clientes.
-- **Modo Atendimento em Direto** com etapas navegáveis e indicador de etapas verificadas.
+- **Modo Atendimento em Direto** com etapas navegáveis e indicador de etapas consultadas (não comprova ações no sistema oficial).
 - **Saudação ajustável** entre «bom dia» e «boa tarde», sem alterar a origem dos guiões.
 - **Teleponto ajustável** com tamanho de letra de 20 a 40 px e opção de recomeçar a sequência.
 - **Atalho Ctrl/Cmd + K** para pesquisar procedimentos sem navegar pelos menus.
@@ -45,13 +45,13 @@ npm run build
 npm run preview
 ```
 
-O comando `npm run build` cria `dist/`. O `npm test` executa os testes da pesquisa e da base inicial. Se tudo funcionar, executa `npm install` uma primeira vez e adiciona o `package-lock.json` ao GitHub; depois podes substituir `npm install` por `npm ci` nos workflows para instalações mais reprodutíveis.
+O comando `npm run build` cria `dist/`. O `npm test` executa os testes da pesquisa e da base inicial. O ficheiro `package-lock.json` já existe. Usa preferencialmente `npm ci` para instalar as versões bloqueadas.
 
 ## Repositório GitHub existente
 
 O código deste projeto é mantido em [`AllyssonEstadulho92/call-center-pro`](https://github.com/AllyssonEstadulho92/call-center-pro). O repositório está **público**, pelo que os conteúdos enviados para o GitHub ficam acessíveis a terceiros.
 
-A cada alteração, verifica o workflow **Verificação de qualidade** no separador Actions. Não publiques instruções internas nem dados de clientes. A distribuição web pelo GitHub Pages permanece **manual** e exige verificação prévia de autorização de divulgação pública.
+A cada alteração, verifica o workflow **Verificação de qualidade** no separador Actions. Não publiques instruções internas nem dados de clientes. A publicação pelo GitHub Pages ocorre automaticamente a partir da branch `main`; continua proibido divulgar dados de clientes ou procedimentos internos não autorizados.
 
 ### Publicação no GitHub Pages
 
@@ -220,3 +220,10 @@ A página usa `width=device-width, initial-scale=1.0, viewport-fit=cover` e espa
 **O zoom manual continua disponível.** A configuração não desativa o gesto de aproximação.
 
 Testes de interface: `npm run test:e2e`, com Chromium desktop, Chromium móvel e emulação WebKit para o viewport iPhone. A verificação de safe areas e do teclado real deve ser feita adicionalmente no Safari do dispositivo.
+
+## Versão 1.9.4 | Fecho factual orientado por estado
+Nos três guiões principais de avarias Coca-Cola e no de encomenda por telefone Burger King, o teleponto, o painel inicial e os manuais apresentam uma seleção de estado. Por defeito, o texto é neutro. O operador só deverá escolher a alternativa «confirmado» depois de a verificar no sistema oficial. A seleção é local, transitória e limpa ao recomeçar ou trocar de situação.
+
+Esta funcionalidade não consulta, aprova ou guarda registos e não substitui as instruções autorizadas pela entidade empregadora. A aplicação pública não deve receber dados de clientes.
+
+Testes: `npm ci && npm run typecheck && npm test && npm run build && npm run test:e2e`. Safari físico, VoiceOver e validação institucional continuam pendentes.

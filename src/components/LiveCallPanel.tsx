@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Check, ChevronLeft, ChevronRight, CircleAlert, ClipboardCheck, Copy, Headphones, RotateCcw, ShieldAlert } from 'lucide-react';
 import { procedures } from '../data/knowledge';
 import { formatGreeting, getDefaultGreeting } from '../lib/greeting';
+import { getClosingText, type ClosingStatus } from '../lib/callOutcomes';
+import { ClosingStatusPicker } from './ClosingStatusPicker';
 import { SpeechPlayer } from './SpeechPlayer';
 import type { Procedure, Project } from '../types';
 
@@ -11,10 +13,13 @@ export function LiveCallPanel({ onOpen }: { onOpen: (procedure: Procedure) => vo
   const [stepIndex, setStepIndex] = useState(0);
   const [completed, setCompleted] = useState<string[]>([]);
   const [copyStatus, setCopyStatus] = useState('');
+  const [closingChoice, setClosingChoice] = useState<{ procedureId: string; status: ClosingStatus }>({ procedureId, status: 'neutro' });
   const options = procedures.filter(item => item.project === service);
   const procedure = options.find(item => item.id === procedureId) ?? options[0];
   const current = procedure.steps[stepIndex] ?? procedure.steps[0];
-  const say = current.id === 'abertura' ? formatGreeting(current.say, getDefaultGreeting()) : current.say;
+  const selectedStatus: ClosingStatus = closingChoice.procedureId === procedure.id ? closingChoice.status : 'neutro';
+  const script = getClosingText(procedure, current, selectedStatus);
+  const say = current.id === 'abertura' ? formatGreeting(script, getDefaultGreeting()) : script;
 
   function changeService(next: Project) {
     setService(next);
@@ -22,14 +27,16 @@ export function LiveCallPanel({ onOpen }: { onOpen: (procedure: Procedure) => vo
     setStepIndex(0);
     setCompleted([]);
     setCopyStatus('');
+    setClosingChoice({ procedureId: procedures.find(item => item.project === next)?.id ?? '', status: 'neutro' });
   }
   function changeProcedure(id: string) {
     setProcedureId(id);
     setStepIndex(0);
     setCompleted([]);
     setCopyStatus('');
+    setClosingChoice({ procedureId: id, status: 'neutro' });
   }
-  function restart() { setStepIndex(0); setCompleted([]); setCopyStatus(''); }
+  function restart() { setStepIndex(0); setCompleted([]); setCopyStatus(''); setClosingChoice({ procedureId: procedure.id, status: 'neutro' }); }
   function markStep() { setCompleted(old => old.includes(current.id) ? old.filter(id => id !== current.id) : [...old, current.id]); }
 
   async function copyPhrase() {
@@ -54,6 +61,7 @@ export function LiveCallPanel({ onOpen }: { onOpen: (procedure: Procedure) => vo
       {procedure.steps.map((step, i) => <button type="button" key={step.id} className={stepIndex === i ? 'current' : ''} title={step.title} aria-label={`Etapa ${i + 1}: ${step.title}`} aria-current={stepIndex === i ? 'step' : undefined} onClick={() => { setStepIndex(i); setCopyStatus(''); }}><span>{completed.includes(step.id) ? <Check size={14}/> : i + 1}</span></button>)}
     </div>
     <p className="live-dashboard-step-title">Etapa {stepIndex + 1} de {procedure.steps.length}: <strong>{current.title}</strong></p>
+    <ClosingStatusPicker procedure={procedure} step={current} status={selectedStatus} onChange={status => { setClosingChoice({ procedureId: procedure.id, status }); setCopyStatus(''); }}/>
     <div className="live-dashboard-say">
       <div className="live-say-title"><strong>O que dizer ao cliente</strong><button type="button" aria-label="Copiar frase do guião" onClick={copyPhrase}><Copy size={15}/> Copiar</button></div>
       <blockquote>“{say}”</blockquote>

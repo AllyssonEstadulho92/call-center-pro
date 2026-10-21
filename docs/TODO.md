@@ -99,3 +99,13 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Identificar overflow em ecrãs de 320px: mais etapas do guião forçaram botões para fora do cartão.
 - [x] Corrigir botões das etapas com grelha móvel e testar a chegada à oitava etapa.
 - [x] Playwright novamente executado com sucesso em Chromium e WebKit: 75 aprovados e 3 ignorados; nenhum teste falhado.
+
+## 21/10/2026 | v1.9.4, fecho factual
+- [x] Inspecionar código, documentação e funcionalidades existentes.
+- [x] Implementar texto de fecho neutro/confirmado/pendente apenas onde é aplicável.
+- [x] Integrar em três superfícies com componente único e estado em memória.
+- [x] Corrigir README e atualizar arquitetura, decisões e changelog.
+- [x] Adicionar testes unitários e E2E para estados e reinício.
+- [ ] Aprovar TypeScript, Vitest, npm audit, Vite e Playwright antes de integrar a PR.
+- [ ] Publicar e confirmar GitHub Pages.
+- [ ] Validar Safari/VoiceOver físicos, autorização de uso e procedimentos oficiais.

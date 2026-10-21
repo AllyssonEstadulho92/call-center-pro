@@ -78,3 +78,6 @@ Decisão: incluir a identificação do equipamento e da referência RF/CC, assim
 
 ## D-026 | Fecho factual e estado de registo
 Decisão: separar no guião o estado «registo confirmado» de «pendente», sem mecanismo de validação fictício. A nota do fecho fornece frases alternativas dependentes da confirmação na ferramenta oficial. Ajustar fecho BK digital e encomenda por telefone para não presumir impossibilidade de resolução ou confirmação de encomenda.
+
+## D-027 | Texto de fecho neutro até confirmação manual
+Decisão: no apoio de leitura, as alternativas para «confirmado» e «pendente» exigem seleção explícita do operador após consulta do sistema oficial. A seleção é transitória e reiniciada ao mudar de procedimento. Usar um componente comum nos três ecrãs para evitar frases divergentes. A aplicação não valida estados, não consulta o SAP nem os sistemas BK, e não pode substituir regras internas aprovadas.
