@@ -128,7 +128,7 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Implementar exportação dos mesmos guiões/guia/fontes e geração de PDFs A4 separados por serviço.
 - [x] Disponibilizar dois links PDF no Início e nos respetivos manuais.
 - [x] Alargar os testes E2E e workflow para validar geração e links.
-- [ ] Verificar CI completa, PDFs gerados e ausência de regressões em 320 px.
-- [ ] Integrar PR, publicar PDFs e verificar disponibilidade nos links HTTPS.
-- [ ] Validar visualmente o PDF e no Safari/VoiceOver físicos.
+- [x] CI TypeScript/Vitest/Vite/npm audit e gerador PDF aprovados. Playwright: 93 testes aprovados e 3 ignorados, incluindo viewport 320 px.
+- [x] PR #26 integrada; dois PDFs produzidos e confirmados no repositório (93 247 e 83 304 bytes). GitHub Pages publicou novos ficheiros e concluiu deploy com sucesso.
+- [ ] Inspecionar visualmente os PDFs finais e validar no Safari/VoiceOver iPhone físicos.
 - [ ] Obter validação institucional do conteúdo e autorização de uso do equipamento de trabalho.

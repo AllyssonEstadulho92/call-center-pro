@@ -98,3 +98,5 @@ Decisão: apresentar apenas as cinco áreas escolhidas pelo utilizador na navega
 
 ## D-031 | PDFs gerados de uma base única, sem regras inventadas
 Decisão: usar os 17 guiões e guias já existentes como fonte exclusiva dos dois manuais PDF. Gerar automaticamente no CI e publicar em `manuais/`, com índice, procedimentos, frases ao cliente, «Confirmar», «Evitar», avisos de formação e fontes com limites. Não inserir conteúdo confidencial nem tratar guiões como institucionalmente validados. Motivo: evitar divergência entre aplicação online e material de estudo descarregado.
+
+**Implementação D-030/D-031:** entregue na v1.9.6, PR #26. Os cinco acessos e dois PDFs foram publicados; o conteúdo continua de treino e a empresa não aprovou esta ferramenta ou os procedimentos.

@@ -124,3 +124,5 @@ Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emula
 - `.github/workflows/quality.yml`: além de TypeScript/testes/npm audit/build, prepara ambiente Python isolado e executa o gerador; verifica ambos os artefactos.
 - `.github/workflows/build-static-site.yml`: gera e publica `manuais/*.pdf` juntamente com assets/index.html; o conteúdo dos PDFs só muda quando o código fonte correspondente mudar ou o gerador mudar.
 - Condição residual: PDFs gerados precisam de verificação de composição visual e teste real de utilização no Safari; publicação pública não equivale a permissão laboral.
+
+**Validação publicada v1.9.6:** PR #26 integrada. TypeScript, Vitest, npm audit e build Vite aprovados. Gerador ReportLab produziu os dois PDFs assinados `%PDF-` e não vazios; GitHub Pages publicou os binários. Playwright 93 testes aprovados e 3 ignorados, incluindo navegabilidade do painel secundário e 320 px. A auditoria visual final dos PDFs e Safari físico continuam pendentes.

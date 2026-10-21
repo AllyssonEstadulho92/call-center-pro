@@ -235,7 +235,7 @@ No teleponto, painel inicial, capítulos de manual e página de respostas rápid
 
 Os encaminhamentos, registos e condições concretas continuam a depender do sistema e das orientações aprovadas. A utilização da ferramenta num computador da entidade empregadora requer autorização.
 
-## v1.9.6 | Navegação simples e dois manuais PDF (em revisão)
+## v1.9.6 | Navegação simples e dois manuais PDF (publicada)
 O menu principal e os atalhos inferiores no iPhone mostram apenas cinco áreas: Início, Coca-Cola, Burger King, Manual Coca-Cola e Manual Burger King. Os outros nove recursos ficam em «Outras ferramentas de apoio», no Início, sem serem removidos. Pesquisa permanece no cabeçalho e via Ctrl/Cmd+K.
 
 Os dois PDFs são gerados diretamente dos mesmos 17 guiões e demais conteúdos editoriais utilizados pela aplicação, com índice, etapas, perguntas e respostas, verificações, avisos e fontes públicas. Estão disponíveis nos próprios manuais e nos links:
@@ -245,3 +245,5 @@ Os dois PDFs são gerados diretamente dos mesmos 17 guiões e demais conteúdos 
 O workflow GitHub Actions exporta os dados via `node scripts/export-manual-data.mjs .tmp/manual-data.json`, instala ReportLab num ambiente Python temporário e executa `scripts/generate_manual_pdfs.py`. Os PDFs gerados são publicados no GitHub Pages. Não contêm procedimentos internos aprovados nem dados reais de clientes.
 
 A utilização em contexto profissional depende da autorização da empresa, e os conteúdos continuam classificados como formação/por confirmar. A compatibilidade no Safari físico e VoiceOver necessita de verificação manual.
+
+A v1.9.6 foi integrada e publicada. Os ficheiros disponíveis no GitHub Pages são [Manual Coca-Cola](https://allyssonestadulho92.github.io/call-center-pro/manuais/manual-coca-cola.pdf) e [Manual Burger King](https://allyssonestadulho92.github.io/call-center-pro/manuais/manual-burger-king.pdf). A compilação e geração passaram nos testes automáticos, mas o Safari físico e a aprovação institucional mantêm-se pendentes.
