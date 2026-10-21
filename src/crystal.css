@@ -819,3 +819,19 @@ body{background:var(--bg)}
 .manual-pdf-download small{font-size:11px;color:var(--muted);line-height:1.45}
 @media(max-width:980px){.home-download-manuals{padding:15px}.home-extra-links{grid-template-columns:repeat(2,minmax(0,1fr))}.mobile-bottom-nav button{font-size:9px;white-space:normal;line-height:1.1}}
 @media(max-width:480px){.home-download-links{width:100%;display:grid;grid-template-columns:1fr}.home-extra-tools>summary span{display:none}.home-extra-links{grid-template-columns:1fr}.home-download-manuals{margin-top:14px}}
+/* v1.9.7: factos verificados e explicações de treino. */
+.manual-facts{margin:18px 0 25px;min-width:0}
+.manual-facts>p{color:var(--muted);font-size:12px;line-height:1.6}
+.manual-fact{min-width:0;margin:9px 0;padding:15px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+.manual-fact>strong{display:block;color:var(--text);font-size:13px;margin-bottom:8px}
+.manual-fact p{font-size:12px;line-height:1.7;color:var(--text);margin:6px 0}
+.manual-fact .manual-fact-limit{color:var(--muted)}
+.manual-fact a{display:inline-flex;gap:6px;align-items:center;margin-top:7px;font-size:11px;color:#2872cf;overflow-wrap:anywhere}
+.manual-deep-dive{margin:15px 0;padding:17px 18px;border:1px solid var(--line);border-radius:12px;background:var(--soft);min-width:0}
+.manual-deep-dive h3{font-size:16px;margin:0 0 12px;color:var(--text)}
+.manual-deep-dive h4{font-size:12px;margin:13px 0 8px;color:var(--text)}
+.manual-deep-dive p,.manual-deep-dive li{font-size:12px;line-height:1.7;color:var(--text)}
+.manual-deep-dive ol{padding-left:21px}
+.manual-deep-dive li{margin:6px 0}
+.manual-deep-dive .manual-deep-avoid{border-left:3px solid #b95439;padding:7px 10px;background:var(--surface)}
+.manual-deep-dive small{display:block;margin-top:10px;font-size:11px;line-height:1.5;color:var(--muted)}

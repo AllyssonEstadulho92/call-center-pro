@@ -1,7 +1,7 @@
 import type { Project } from '../types';
 
 /**
- * Ligações públicas verificadas manualmente em 19/10/2026.
+ * Ligações públicas revistas em 22/10/2026, sem validar a operação.
  * Uma página oficial comprova os factos nela publicados, não os procedimentos da linha.
  * Não atualizar a data sem voltar a consultar o conteúdo original.
  */
@@ -18,12 +18,21 @@ export interface PublicSource {
 
 export const publicSources: PublicSource[] = [
   {
+    id: 'rgpd', project: 'geral',
+    title: 'Regulamento Geral sobre a Proteção de Dados — artigo 5.º',
+    publisher: 'União Europeia — EUR-Lex',
+    url: 'https://eur-lex.europa.eu/eli/reg/2016/679/pt',
+    confirmed: '22/10/2026',
+    scope: 'O artigo 5.º, n.º 1, alínea c), determina que o tratamento de dados pessoais deve ser adequado, pertinente e limitado ao necessário para a finalidade.',
+    limitation: 'A lei não determina os campos de um registo SAP ou pedido Burger King; são necessários procedimento e fundamento de tratamento da organização.',
+  },
+  {
     id: 'bk-suporte',
     project: 'burger-king',
     title: 'Portal de apoio oficial Burger King Portugal',
     publisher: 'Burger King Portugal',
     url: 'https://www.burgerking.pt/support',
-    confirmed: '19/10/2026',
+    confirmed: '22/10/2026',
     scope: 'O portal apresenta categorias de apoio a entrega, recolha, experiência no restaurante, pedidos de informação e sugestões.',
     limitation: 'Não comprova acesso do operador a encomendas, competências desta linha, resultados de reclamações, reembolsos ou prazos.',
   },

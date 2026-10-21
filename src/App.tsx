@@ -27,7 +27,7 @@ import { CallSafetyReplies } from './components/CallSafetyReplies';
 import type { Greeting } from './lib/greeting';
 import type { Page, Procedure, Project, Status } from './types';
 
-const VERSION = '1.9.6';
+const VERSION = '1.9.7';
 const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
 const THEME_KEY = 'call-center-pro-tema-v1';
 

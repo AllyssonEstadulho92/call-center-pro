@@ -47,7 +47,7 @@ export const manualGuides: Record<Project, ManualProjectGuide> = {
       'Mantém separado o contacto público ao consumidor do serviço técnico a equipamentos comerciais.',
       'Em situações fora do guião, consulta a supervisão e evita inventar procedimentos.',
     ],
-    factIds: ['cc-contactos', 'cc-faq'],
+    factIds: ['cc-contactos', 'cc-faq', 'rgpd', 'reclamacoes-asae'],
     frequentlyAsked: [
       { question: 'O equipamento não faz frio. Qual a primeira pergunta?', response: '«Deixou de refrigerar por completo ou as bebidas estão menos frias do que habitualmente? Desde quando verifica a situação?» Esta é uma sugestão baseada no guião de treino, não um diagnóstico.', status: 'exemplo' },
       { question: 'Posso dizer que o técnico vem amanhã?', response: 'Não sem confirmação do procedimento ou sistema autorizado. Primeiro confirma a ocorrência e o encaminhamento efetivamente efetuado.', status: 'exemplo' },
@@ -75,7 +75,7 @@ export const manualGuides: Record<Project, ManualProjectGuide> = {
       'A existência do portal público de suporte não comprova permissões da linha ou prazos de resposta.',
       'A encomenda só está registada, alterada ou cancelada quando isso for confirmado no sistema autorizado.',
     ],
-    factIds: ['bk-suporte', 'reclamacoes'],
+    factIds: ['bk-suporte', 'reclamacoes', 'reclamacoes-asae', 'rgpd'],
     frequentlyAsked: [
       { question: 'O cliente recebeu menos produtos. O que pergunto?', response: '«Pode indicar-me quais os artigos em falta e através de que canal fez o pedido?» A análise e o encaminhamento concretos dependem das regras da operação.', status: 'exemplo' },
       { question: 'Posso garantir devolução do valor?', response: 'Não. Deve ser confirmada a política aplicável e a competência da linha, antes de indicar qualquer decisão ou prazo.', status: 'exemplo' },
