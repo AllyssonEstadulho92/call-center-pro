@@ -25,11 +25,8 @@ test('iniciar atendimento abre seleção pesquisável e permite avançar', async
   await expect(page.getByText('ETAPA 2 DE')).toBeVisible();
 });
 
-test('simulações têm avisos de privacidade e respostas de referência', async ({ page, isMobile }) => {
+test('simulações têm avisos de privacidade e respostas de referência', async ({ page }) => {
   await page.goto('/app.html');
-  if (isMobile) {
-    await page.getByRole('button', { name: 'Abrir menu' }).click();
-  }
   await page.locator('.home-extra-tools summary').click();
   await page.getByRole('navigation', { name: 'Ferramentas complementares' }).getByRole('button', { name: 'Simulações de chamada' }).click();
   await expect(page.getByRole('heading', { name: 'Treina uma chamada, com calma' })).toBeVisible();
