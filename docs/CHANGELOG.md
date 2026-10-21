@@ -111,10 +111,10 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Conteúdo apresentado em «O que dizer» e «Antes de responder», com opção de copiar; integrado em teleponto, painel inicial, manuais e respostas rápidas.
 - Sem novas regras internas, acesso a sistemas operacionais ou recolha de dados de clientes. Testes unitários, TypeScript, Vite e auditoria npm aprovados. Playwright: 87 testes aprovados, 3 ignorados, sem falhas. PR #24 integrada, build e GitHub Pages publicados. Safari físico e validação operacional continuam pendentes.
 
-## 21-10-2026 | v1.9.6 (em revisão)
+## 21-10-2026 | v1.9.6 (publicada)
 - Menu principal e atalhos móveis limitados a Início, Coca-Cola, Burger King, Manual Coca-Cola e Manual Burger King.
 - Pesquisa, favoritos, FAQ, triagem, simulações, formação, respostas rápidas, fontes e versões continuam disponíveis sob «Outras ferramentas de apoio», fechado por defeito.
 - Dois manuais PDF separados, gerados a partir da mesma fonte dos 17 guiões e guias online, incluindo índice, etapas, perguntas, frases, verificações, cuidados, condições e fontes públicas com limites.
 - Transferência dos manuais pela página inicial e pela respetiva página de manual.
 - Publicação de PDFs gerados integrada na pipeline GitHub Pages e validada na CI.
-- Testes de menu, links e reflow ajustados. Integração e publicação dependem dos resultados dos testes.
+- Testes de menu, links e reflow aprovados em CI: TypeScript, Vitest, Vite e auditoria npm aprovados; Playwright 93 aprovados e 3 ignorados. PR #26 integrada e GitHub Pages publicada. PDFs gerados a partir dos 17 guiões: Coca-Cola 93 247 bytes e Burger King 83 304 bytes. Safari iPhone físico e revisão institucional continuam pendentes.

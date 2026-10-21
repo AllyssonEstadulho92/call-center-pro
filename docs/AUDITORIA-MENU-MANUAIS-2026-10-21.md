@@ -13,7 +13,7 @@ Foi comparada a versão v1.9.5 com o código real (React + TypeScript + Vite), a
 5. **Risco de interpretação:** os guiões não possuem validação institucional. Um PDF disponível para download não é um manual interno oficial.
 6. **Compatibilidade:** ecrãs a partir de 320 px, foco do Safari, navegação com teclado e zoom voluntário não devem regredir.
 
-## Solução implementada em revisão
+## Solução implementada e publicada (v1.9.6)
 - Cinco itens primários no menu lateral e cinco atalhos móveis correspondentes (títulos abreviados «Manual CC» e «Manual BK» no rodapé).
 - Pesquisa preservada no cabeçalho e nos acessos secundários.
 - Recursos secundários reunidos em painel `details` na página inicial, inicialmente fechado, com nove acessos e cartões existentes preservados.
@@ -27,7 +27,7 @@ Foi comparada a versão v1.9.5 com o código real (React + TypeScript + Vite), a
 - O PDF descarregado é estático; os guiões online podem mudar. É importante confirmar a versão.
 - A geração reproduz textos públicos da base de estudo. Não adicionar manuais confidenciais, números privados, dados de clientes ou procedimentos não autorizados.
 - A publicação não comprova aprovação institucional e não autoriza a utilização num computador de trabalho.
-- Verificação no Safari/VoiceOver de iPhone físico e leitura visual dos PDFs finais continuam pendentes da execução e auditoria da release.
+- Verificação no Safari/VoiceOver de iPhone físico e leitura visual manual dos PDFs finais continuam pendentes. A CI confirmou geração, tamanho e assinatura PDF, mas isto não constitui uma revisão visual em dispositivo real.
 
 ## Critérios de aceitação
 1. Menu principal exibe apenas os cinco acessos pretendidos.
@@ -35,3 +35,9 @@ Foi comparada a versão v1.9.5 com o código real (React + TypeScript + Vite), a
 3. Existem dois PDFs separados e descarregáveis com conteúdo derivado dos guiões e sem dados reais.
 4. Vite, TypeScript, Vitest, npm audit, Playwright desktop/móvel/WebKit, geração de PDFs e publicação passam.
 5. Navegação e layout não provocam overflow horizontal a 320 px.
+
+## Resultado da entrega
+- PR #26 integrada após corrigir regressões dos testes de navegação antigos e de foco do menu sobre as ferramentas secundárias em iPhone.
+- Verificações TypeScript/Vitest/Vite/npm audit e geração PDF aprovadas em CI. Playwright: 93 testes aprovados, 3 ignorados e nenhum erro na última execução.
+- Repositório `main` contém os dois ficheiros binários de PDF e o novo `index.html`; publicação GitHub Pages concluída com sucesso.
+- Avaliação ainda pendente: leitura visual integral dos PDFs e teste Safari/VoiceOver num iPhone físico.

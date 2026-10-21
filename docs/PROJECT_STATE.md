@@ -1,6 +1,6 @@
 # Call Center Pro | Estado do projeto
 
-Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.5**, após integração da PR #24 e publicação GitHub Pages confirmada. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
+Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.6**, após integração da PR #26 e publicação dos dois manuais PDF no GitHub Pages. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
 
 ## Objetivo atual
 Auditar comunicação de guiões e usabilidade do Call Center Pro para reduzir promessas não confirmadas e apoiar uma consulta segura durante chamadas de formação.
@@ -60,8 +60,8 @@ Validar comportamento no Safari iPhone físico e com VoiceOver, sem garantir equ
 - A alteração preserva os recursos da aplicação num painel secundário expansível na página inicial, e mantém Pesquisa acessível pelo cabeçalho e via Ctrl/Cmd+K.
 - Gerador de PDFs sincronizado com `knowledge.ts`, `manuals.ts`, `callSafetyPhrases.ts`, `callOutcomes.ts` e `publicSources.ts`, sem copiar manuais internos privados.
 - PDFs públicos esperados: `manuais/manual-coca-cola.pdf` e `manuais/manual-burger-king.pdf` em GitHub Pages, com índice, sequência e verificação por etapa.
-- Estado: alterações em PR; CI, renderização final, integração e publicação ainda a confirmar.
+- Estado: PR #26 integrada. TypeScript, Vitest, build Vite, auditoria npm e gerador PDF aprovados em CI. Playwright Chromium/WebKit: **93 testes aprovados, 3 ignorados, sem falhas**. GitHub Pages publicou `index.html`, assets e `manuais/manual-coca-cola.pdf` (93 247 bytes) e `manuais/manual-burger-king.pdf` (83 304 bytes).
 - Auditoria: `docs/AUDITORIA-MENU-MANUAIS-2026-10-21.md`.
 
 ## Próximo passo v1.9.6
-Validar TypeScript/Vitest/Vite/npm audit, testes móveis e geração de PDFs no CI; aprovar PR, publicar e verificar os dois links. Continuam pendentes autorização institucional e Safari físico.
+Validar visualmente a leitura e transferência de PDFs em Safari iPhone físico, incluindo VoiceOver e abertura na aplicação Ficheiros. Obter autorização institucional para utilizar o site no posto de trabalho e validar os guiões com documentação interna aprovada, sem publicá-la.
