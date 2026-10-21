@@ -3,8 +3,8 @@ import {
   BookOpen, Check, CheckCheck, ChevronLeft, ChevronRight, CircleAlert,
   Coffee, Copy, FileCheck2, Headphones, HelpCircle, History, Home, Info, LockKeyhole,
   Menu, MessageCircle, MonitorSmartphone, Moon, Search, ShieldCheck, SlidersHorizontal,
-  PhoneCall, RotateCcw, ZoomIn, ZoomOut, ExternalLink, Compass,
-  Sparkles, Star, Sun, X, GraduationCap,
+  PhoneCall, RotateCcw, ZoomIn, ZoomOut, ExternalLink,
+  Sparkles, Star, Sun, X,
 } from 'lucide-react';
 import { procedures, projectLabels } from './data/knowledge';
 import { searchProcedures } from './lib/search';
