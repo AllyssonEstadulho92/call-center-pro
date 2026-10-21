@@ -81,3 +81,6 @@ Decisão: separar no guião o estado «registo confirmado» de «pendente», sem
 
 ## D-027 | Texto de fecho neutro até confirmação manual
 Decisão: no apoio de leitura, as alternativas para «confirmado» e «pendente» exigem seleção explícita do operador após consulta do sistema oficial. A seleção é transitória e reiniciada ao mudar de procedimento. Usar um componente comum nos três ecrãs para evitar frases divergentes. A aplicação não valida estados, não consulta o SAP nem os sistemas BK, e não pode substituir regras internas aprovadas.
+
+## Registo de implementação D-027
+A decisão foi implementada e publicada na v1.9.4 através da PR #22, com testes automatizados de frase neutra, estado confirmado/pendente e reposição ao recomeçar ou mudar de procedimento. Testes não equivalem à validação de procedimentos internos.
