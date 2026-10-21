@@ -116,6 +116,7 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Criar oito respostas de apoio, quatro Coca-Cola e quatro Burger King, para dúvidas frequentes.
 - [x] Integrar painel em teleponto, dashboard, manuais e respostas rápidas.
 - [x] Testes unitários e Playwright adicionados e documentação sincronizada.
-- [ ] Validar CI: TypeScript, Vitest, Vite, auditoria npm e Playwright Chromium/WebKit; integrar PR apenas após sucesso.
-- [ ] Confirmar publicação e validar ecrã/VoiceOver em Safari iPhone real.
+- [x] CI TypeScript, Vitest, Vite e auditoria npm aprovada; Playwright Chromium/WebKit: 87 testes aprovados e 3 ignorados, sem falhas. PR #24 integrada.
+- [x] Publicação v1.9.5 confirmada no GitHub Pages com novos ficheiros e index.html atualizado.
+- [ ] Validar ecrã/VoiceOver no Safari iPhone real.
 - [ ] Obter autorização para utilizar aplicação externa no posto de trabalho e validação operacional dos guiões.
