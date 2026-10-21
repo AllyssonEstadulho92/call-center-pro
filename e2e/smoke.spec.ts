@@ -69,3 +69,14 @@ test('teleponto não declara registo confirmado por defeito e limpa o estado ao 
   await page.getByRole('button', { name: /Confirmar resultado antes de encerrar/ }).click();
   await expect(status).toHaveValue('neutro');
 });
+
+test('teleponto não trata contactos de consumidor como registos de avaria', async ({ page }) => {
+  await page.goto('/app.html');
+  await page.getByRole('button', { name: /Iniciar atendimento/ }).first().click();
+  const dialog = page.getByRole('dialog', { name: 'Iniciar atendimento' });
+  await dialog.getByRole('textbox', { name: 'Pesquisar situação de atendimento' }).fill('consumidor');
+  await dialog.getByRole('button', { name: /Questões do consumidor/ }).click();
+  await page.getByRole('button', { name: /Encerramento sem assumir registo/ }).click();
+  await expect(page.locator('.script-text')).toContainText('procedimento aplicável a este assunto');
+  await expect(page.getByRole('combobox', { name: 'Estado do registo no sistema' })).toHaveCount(0);
+});

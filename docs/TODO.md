@@ -109,3 +109,13 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] TypeScript, Vitest, npm audit e Vite aprovados; Playwright: 81 testes aprovados e 3 ignorados na PR #22.
 - [x] PR #22 integrada; GitHub Pages publicado com ficheiro `index.html` e assets da v1.9.4.
 - [ ] Validar Safari/VoiceOver físicos, autorização de uso e procedimentos oficiais.
+
+## 21/10/2026 | v1.9.5: guião profissional de utilização imediata
+- [x] Rever os 17 procedimentos e identificar fechamentos de avaria indevidos em assuntos não técnicos.
+- [x] Separar `ccEndGeneral` e ajustar frases de transição para confirmar os passos antes de os prometer.
+- [x] Criar oito respostas de apoio, quatro Coca-Cola e quatro Burger King, para dúvidas frequentes.
+- [x] Integrar painel em teleponto, dashboard, manuais e respostas rápidas.
+- [x] Testes unitários e Playwright adicionados e documentação sincronizada.
+- [ ] Validar CI: TypeScript, Vitest, Vite, auditoria npm e Playwright Chromium/WebKit; integrar PR apenas após sucesso.
+- [ ] Confirmar publicação e validar ecrã/VoiceOver em Safari iPhone real.
+- [ ] Obter autorização para utilizar aplicação externa no posto de trabalho e validação operacional dos guiões.

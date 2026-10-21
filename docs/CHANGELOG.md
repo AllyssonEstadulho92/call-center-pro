@@ -103,3 +103,10 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Mesmo comportamento no teleponto, dashboard e manuais, com áudio e cópia sincronizados.
 - Seleções temporárias, sem dados de clientes, APIs operacionais ou aprovação institucional implícita.
 - README atualizado e testes unitários/Playwright adicionados. PR #22 integrada após CI TypeScript/Vitest/build/npm audit aprovada e 81 testes de browser aprovados (3 ignorados). Compilação e publicação GitHub Pages concluídas. Safari físico e validação institucional continuam pendentes.
+
+## 21-10-2026 | v1.9.5 (em revisão)
+- Cinco contactos Coca-Cola não necessariamente técnicos passam a terminar sem pressupor registo de avaria ou encaminhamento confirmado.
+- Reformuladas transições para confirmar informação antes de prometer canais, respostas ou encaminhamentos.
+- Novo painel expansível de oito respostas rápidas (quatro por serviço) perante prazos, registos, assistência, bloqueios, entregas, reembolsos, pedidos digitais ou reclamações.
+- Conteúdo apresentado em «O que dizer» e «Antes de responder», com opção de copiar; integrado em teleponto, painel inicial, manuais e respostas rápidas.
+- Sem novas regras internas, acesso a sistemas operacionais ou recolha de dados de clientes. Testes unitários e E2E ampliados; CI e publicação pendentes.

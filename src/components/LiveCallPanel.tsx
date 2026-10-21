@@ -4,6 +4,7 @@ import { procedures } from '../data/knowledge';
 import { formatGreeting, getDefaultGreeting } from '../lib/greeting';
 import { getClosingText, type ClosingStatus } from '../lib/callOutcomes';
 import { ClosingStatusPicker } from './ClosingStatusPicker';
+import { CallSafetyReplies } from './CallSafetyReplies';
 import { SpeechPlayer } from './SpeechPlayer';
 import type { Procedure, Project } from '../types';
 
@@ -74,6 +75,7 @@ export function LiveCallPanel({ onOpen }: { onOpen: (procedure: Procedure) => vo
       <p>{current.verify}</p>
       <details><summary><ShieldAlert size={15}/> O que evitar</summary><p>{current.avoid}</p></details>
     </div>
+    <CallSafetyReplies key={service} project={service}/>
     <label className="live-dashboard-check"><input type="checkbox" checked={completed.includes(current.id)} onChange={markStep}/><span>Já consultei esta etapa</span></label>
     <div className="live-dashboard-controls">
       <button type="button" className="outline-button" onClick={() => { setStepIndex(i => Math.max(0, i - 1)); setCopyStatus(''); }} disabled={stepIndex === 0}><ChevronLeft size={16}/> Voltar</button>

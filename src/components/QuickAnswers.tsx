@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { BookOpen, Check, ChevronRight, CircleAlert, Copy, MessageCircle, Search, ShieldAlert, X } from 'lucide-react';
 import { procedures } from '../data/knowledge';
+import { CallSafetyReplies } from './CallSafetyReplies';
 import { findQuickStep } from '../lib/quickAnswers';
 import { searchProcedures } from '../lib/search';
 import type { Procedure, Project } from '../types';
@@ -44,6 +45,7 @@ export function QuickAnswers({ onOpen }: { onOpen: (procedure: Procedure) => voi
         )}
       </div>
     </div>
+    {service !== 'todos' && <CallSafetyReplies key={service} project={service}/>}
     <p className="quick-answer-count" role="status">{results.length} {results.length === 1 ? 'situação encontrada' : 'situações encontradas'}</p>
     {results.length === 0 && <div className="quick-answer-empty"><Search size={27}/><strong>Nenhuma resposta encontrada.</strong><p>Experimenta uma palavra mais simples ou muda o serviço selecionado.</p></div>}
     <div className="quick-answer-list">{results.map(procedure => {

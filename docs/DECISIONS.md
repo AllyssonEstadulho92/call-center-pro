@@ -84,3 +84,9 @@ Decisão: no apoio de leitura, as alternativas para «confirmado» e «pendente�
 
 ## Registo de implementação D-027
 A decisão foi implementada e publicada na v1.9.4 através da PR #22, com testes automatizados de frase neutra, estado confirmado/pendente e reposição ao recomeçar ou mudar de procedimento. Testes não equivalem à validação de procedimentos internos.
+
+## D-028 | Encerramento específico para assuntos sem registo de avaria
+Decisão: separar o encerramento genérico Coca-Cola (`ccEndGeneral`) do fecho com verificação de registo (`ccEnd`). Motivo: assuntos de consumidor, comercial, limpeza, abastecimento e triagem não geram necessariamente um registo técnico. Não deve ser dada ao cliente a entender uma operação não efetuada.
+
+## D-029 | Frases rápidas com verificação interna separada
+Decisão: acrescentar um painel reutilizável, inicialmente fechado, com quatro respostas por serviço. Mostrar claramente a frase ao cliente e, em separado, o que o operador precisa de confirmar. Motivo: reduzir hesitação e promessas indevidas sem alterar procedimentos nem recolher dados pessoais. As frases não são aprovadas pela empresa e não substituem decisões da operação.

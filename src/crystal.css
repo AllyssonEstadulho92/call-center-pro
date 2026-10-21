@@ -778,3 +778,26 @@ body{background:var(--bg)}
   font-size:16px;line-height:1.35;padding:10px;
 }
 .closing-status-picker p{margin:9px 0 0;font-size:11px;line-height:1.55;color:var(--muted)}
+
+/* Respostas de contingência numa secção opcional, sem ocultar o guião em curso. */
+.call-safety-replies{margin:14px 0;min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text)}
+.call-safety-replies>summary{display:flex;align-items:center;gap:9px;cursor:pointer;padding:13px 15px;list-style:none;font-size:12px;font-weight:800}
+.call-safety-replies>summary::-webkit-details-marker{display:none}
+.call-safety-replies>summary svg{flex:0 0 auto;color:#246ee7}
+.call-safety-replies>summary span{margin-left:auto;font-size:10px;font-weight:650;color:var(--muted)}
+.call-safety-replies>summary:focus-visible,.call-safety-topics button:focus-visible{outline:3px solid #83b7ff;outline-offset:2px}
+.call-safety-inner{padding:0 14px 14px}
+.call-safety-guidance,.call-safety-disclaimer{font-size:11px;color:var(--muted);line-height:1.6;margin:7px 0 12px}
+.call-safety-topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:9px 0 12px}
+.call-safety-topics button{min-width:0;min-height:42px;padding:9px;border:1px solid var(--line);border-radius:9px;background:var(--soft);color:var(--text);font-size:11px;text-align:left;font-weight:750}
+.call-safety-topics button.selected{border-color:#2471d8;background:#edf5ff;color:#174e9b}
+.call-safety-response{border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0;background:var(--soft)}
+.call-safety-response>strong{display:block;font-size:10px;letter-spacing:.5px;color:var(--muted)}
+.call-safety-response blockquote{margin:8px 0 12px;font-weight:750;font-size:15px;line-height:1.55;overflow-wrap:break-word}
+.call-safety-verify{display:flex;align-items:flex-start;gap:7px;color:var(--text)}
+.call-safety-verify svg{flex:0 0 auto;margin-top:2px}
+.call-safety-verify p{font-size:11px;line-height:1.55;margin:0 0 10px}
+.call-safety-response .outline-button{min-height:40px}
+.call-safety-copy-status{font-size:11px;margin:7px 0 0}
+.dark .call-safety-topics button.selected{background:#234a7b;color:#ebf3ff;border-color:#6796d5}
+@media(max-width:360px){.call-safety-topics{grid-template-columns:1fr}.call-safety-replies>summary span{display:none}}

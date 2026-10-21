@@ -58,3 +58,18 @@ test('painel de atendimento só apresenta conclusão quando selecionada pelo ope
   await status.selectOption('pendente');
   await expect(live.locator('.live-dashboard-say blockquote')).toContainText('Ainda não tenho confirmação');
 });
+
+test('respostas de contingência mudam de serviço e não prometem resultados', async ({ page }) => {
+  await page.goto('/app.html');
+  const panel = page.getByRole('region', { name: 'Pré-visualização do atendimento em direto' });
+  const help = panel.locator('.call-safety-replies');
+  await help.locator('summary').click();
+  await expect(help.getByRole('button', { name: 'Quando vem o técnico?' })).toBeVisible();
+  await help.getByRole('button', { name: 'Quando vem o técnico?' }).click();
+  await expect(help.locator('blockquote')).toContainText('não tenho um prazo de assistência confirmado');
+  await panel.getByRole('button', { name: 'Burger King' }).click();
+  const bkHelp = panel.locator('.call-safety-replies');
+  await bkHelp.locator('summary').click();
+  await bkHelp.getByRole('button', { name: 'Quero um reembolso.' }).click();
+  await expect(bkHelp.locator('blockquote')).toContainText('Não consigo confirmar um reembolso sem essa validação.');
+});

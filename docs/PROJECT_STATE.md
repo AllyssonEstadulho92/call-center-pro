@@ -1,6 +1,6 @@
 # Call Center Pro | Estado do projeto
 
-Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.4**. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
+Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.4**. Versão **v1.9.5** em PR, ainda não publicada. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
 
 ## Objetivo atual
 Auditar comunicação de guiões e usabilidade do Call Center Pro para reduzir promessas não confirmadas e apoiar uma consulta segura durante chamadas de formação.
@@ -42,3 +42,14 @@ Validar em Safari iPhone físico, VoiceOver e microfone. Obter autorização da 
 
 ## Próximo passo
 Confirmar a experiência no iPhone Safari físico, incluindo zoom, leitura por voz e VoiceOver. Obter da entidade empregadora autorização de utilização e validação oficial dos procedimentos de atendimento. Não introduzir informação real de clientes nesta aplicação pública.
+
+## 21/10/2026 | Revisão de guiões v1.9.5
+- Objetivo: clareza ao falar com o cliente, triagem sem promessas e frase imediata perante perguntas inesperadas.
+- Facto detetado no código: cinco guiões Coca-Cola sem avaria técnica necessariamente registada reutilizavam o mesmo fecho de registo técnico. Separado `ccEndGeneral` para estes cinco assuntos.
+- Algumas frases de transição foram corrigidas para refletir verificação futura, em vez de sugerirem encaminhamento já realizado.
+- `src/data/callSafetyPhrases.ts` e `CallSafetyReplies.tsx`: quatro perguntas por serviço com resposta ao cliente e verificação interna separada; consulta no teleponto, painel inicial, manuais e respostas rápidas.
+- Sem recolher dados de clientes nem ligar a ferramentas de operação. Preservam-se 17 procedimentos não validados, seletor de estado anterior, navegação e pesquisa.
+- Testes unitários/E2E adicionados. Estado: PR em revisão, CI, integração e publicação por confirmar.
+
+## Próximo passo
+Executar TypeScript, Vitest, Vite, npm audit e Playwright; se aprovados, integrar PR e confirmar GitHub Pages. Validar em Safari iPhone real e com a supervisão antes de usar profissionalmente em posto de trabalho.

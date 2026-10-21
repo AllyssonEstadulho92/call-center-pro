@@ -106,3 +106,10 @@ Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação
 - CSS responsivo com campo de seleção de 16px e teste de regressão E2E e unitário. Confirmação institucional e Safari físico pendentes.
 
 Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emulado, 81 aprovados e 3 ignorados, CI TypeScript/Vitest/npm audit/Vite aprovada, PR #22 integrada e GitHub Pages publicada. Compatibilidade no Safari físico e autorização de utilização não verificadas.
+
+## v1.9.5 | Respostas de contingência e encerramentos adequados
+- `src/data/callSafetyPhrases.ts`: catálogo estático com quatro exemplos de resposta para perguntas frequentes em cada serviço. Separação entre `say` (fala ao cliente) e `verify` (instruções ao operador), sem decisões operacionais presumidas.
+- `src/components/CallSafetyReplies.tsx`: painel de consulta expansível, reutilizado no teleponto em `src/App.tsx`, em `LiveCallPanel.tsx`, `ManualHub.tsx` e `QuickAnswers.tsx`. Não recolhe NIF, moradas, nomes nem informação de chamadas. Apenas seleção em memória e cópia opcional de frases genéricas.
+- `src/data/knowledge.ts`: `ccEndGeneral` usado em cinco situações Coca-Cola sem registo técnico garantido, substituindo o fecho de ocorrência `ccEnd` que permanece nos três guiões técnicos principais.
+- Testes em `src/data/knowledge.test.ts`, `src/data/callSafetyPhrases.test.ts` e E2E: sem promoção de conteúdos a validados, sem pressuposição de registos e alternância entre serviços.
+- Segurança: nem sistemas SAP nem Burger King são consultados; a ferramenta permanece pública e exclusivamente orientada a estudo. Fontes e autorização operacional pendentes.
