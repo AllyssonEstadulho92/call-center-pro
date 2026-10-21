@@ -106,6 +106,6 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Integrar em três superfícies com componente único e estado em memória.
 - [x] Corrigir README e atualizar arquitetura, decisões e changelog.
 - [x] Adicionar testes unitários e E2E para estados e reinício.
-- [ ] Aprovar TypeScript, Vitest, npm audit, Vite e Playwright antes de integrar a PR.
-- [ ] Publicar e confirmar GitHub Pages.
+- [x] TypeScript, Vitest, npm audit e Vite aprovados; Playwright: 81 testes aprovados e 3 ignorados na PR #22.
+- [x] PR #22 integrada; GitHub Pages publicado com ficheiro `index.html` e assets da v1.9.4.
 - [ ] Validar Safari/VoiceOver físicos, autorização de uso e procedimentos oficiais.

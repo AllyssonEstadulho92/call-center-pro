@@ -1,6 +1,6 @@
 # Call Center Pro | Estado do projeto
 
-Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.3**. Revisão **v1.9.4** em PR (ainda não publicada).
+Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.4**. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
 
 ## Objetivo atual
 Auditar comunicação de guiões e usabilidade do Call Center Pro para reduzir promessas não confirmadas e apoiar uma consulta segura durante chamadas de formação.
@@ -38,7 +38,7 @@ Validar em Safari iPhone físico, VoiceOver e microfone. Obter autorização da 
 - `src/lib/callOutcomes.ts` fornece alternativas apenas para três guiões técnicos CC e `bk-telefone`; por omissão, o texto é neutro.
 - `src/components/ClosingStatusPicker.tsx` é reutilizado no teleponto, painel e manuais. Seleção em memória, limpa após recomeçar ou trocar de assunto. Sem APIs ou dados reais.
 - Corrigido README desatualizado e acrescentados testes de frases e interface.
-- Estado: implementação em branch, pendentes CI, PR, publicação e Safari físico.
+- Estado: PR #22 integrada. Verificação TypeScript, Vitest, compilação e auditoria npm aprovadas; Playwright: 81 testes aprovados e 3 ignorados, sem falhas. O workflow compilou assets da v1.9.4 e a nova entrada `index.html` foi publicada pelo GitHub Pages.
 
 ## Próximo passo
-Concluir CI TypeScript/Vitest/Vite/npm audit/Playwright, integrar e publicar após sucesso. Confirmar em iPhone real e obter aprovação operacional e autorização de utilização.
+Confirmar a experiência no iPhone Safari físico, incluindo zoom, leitura por voz e VoiceOver. Obter da entidade empregadora autorização de utilização e validação oficial dos procedimentos de atendimento. Não introduzir informação real de clientes nesta aplicação pública.

@@ -104,3 +104,5 @@ Testes: `e2e/mobile-layout.spec.ts`. Validação física do Safari, orientação
 - Reutilização em `src/App.tsx`, `LiveCallPanel.tsx` e `ManualHub.tsx`, incluindo cópia e leitura por voz da frase selecionada.
 - Estados React locais, limpos em recomeço/troca de procedimento. Sem recolha, consulta ou validação automática de dados de clientes.
 - CSS responsivo com campo de seleção de 16px e teste de regressão E2E e unitário. Confirmação institucional e Safari físico pendentes.
+
+Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emulado, 81 aprovados e 3 ignorados, CI TypeScript/Vitest/npm audit/Vite aprovada, PR #22 integrada e GitHub Pages publicada. Compatibilidade no Safari físico e autorização de utilização não verificadas.
