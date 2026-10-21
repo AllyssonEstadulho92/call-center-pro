@@ -30,7 +30,8 @@ test('simulações têm avisos de privacidade e respostas de referência', async
   if (isMobile) {
     await page.getByRole('button', { name: 'Abrir menu' }).click();
   }
-  await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('button', { name: 'Simulações de chamada' }).click();
+  await page.locator('.home-extra-tools summary').click();
+  await page.getByRole('navigation', { name: 'Ferramentas complementares' }).getByRole('button', { name: 'Simulações de chamada' }).click();
   await expect(page.getByRole('heading', { name: 'Treina uma chamada, com calma' })).toBeVisible();
   await expect(page.getByText(/nunca uma chamada, a voz do cliente/i)).toBeVisible();
   await page.getByRole('button', { name: /Ver resposta de referência/ }).click();

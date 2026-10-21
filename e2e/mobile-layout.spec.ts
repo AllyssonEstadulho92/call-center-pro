@@ -45,8 +45,9 @@ for (const width of [320, 360, 375, 390, 430, 768]) {
     await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('button', { name: /Manual Coca-Cola/ }).click();
     await expect(page.getByRole('heading', { level: 1, name: 'Manual Coca-Cola' })).toBeVisible();
     await expectFitsViewport(page, width, 'Manual Coca-Cola');
-    await page.getByRole('button', { name: 'Abrir menu' }).click();
-    await page.getByRole('navigation', { name: 'Navegação principal' }).getByRole('button', { name: /Simulações de chamada/ }).click();
+    await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Início' }).click();
+    await page.locator('.home-extra-tools summary').click();
+    await page.getByRole('navigation', { name: 'Ferramentas complementares' }).getByRole('button', { name: 'Simulações de chamada' }).click();
     await expect(page.getByRole('heading', { name: 'Treina uma chamada, com calma' })).toBeVisible();
     await expectFitsViewport(page, width, 'Simulações');
   });
@@ -63,7 +64,11 @@ test('menus e ações acessíveis em ecrã estreito de 320px', async ({ page }) 
   await page.getByRole('button', { name: 'Iniciar atendimento' }).first().click();
   await expect(page.getByRole('dialog', { name: 'Iniciar atendimento' })).toBeVisible();
   await page.getByRole('dialog', { name: 'Iniciar atendimento' }).getByRole('button', { name: 'Fechar', exact: true }).click();
-  await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Pesquisa' }).click();
+  await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Manual Burger King' }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Manual Burger King' })).toBeVisible();
+  await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Início' }).click();
+  await page.locator('.home-extra-tools summary').click();
+  await page.getByRole('navigation', { name: 'Ferramentas complementares' }).getByRole('button', { name: 'Pesquisa de assuntos' }).click();
   await expect(page.getByRole('heading', { name: /De que precisas para esta chamada/ })).toBeVisible();
   await expectFitsViewport(page, 320, 'Pesquisa');
 });

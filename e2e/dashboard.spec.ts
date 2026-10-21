@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 test('dashboard: cartões e fontes com números reais, sem estatísticas fictícias', async ({ page }) => {
   await page.goto('/app.html');
   await expect(page.getByRole('heading', { name: 'Bem-vindo ao teu espaço de atendimento.' })).toBeVisible();
+  await page.locator('.home-extra-tools summary').click();
   await expect(page.getByRole('heading', { name: 'Manuais, estudo e fontes' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Manual Coca-Cola' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Manual Burger King' })).toBeVisible();
@@ -35,6 +36,7 @@ test('voz tem opções de velocidade e seleção do dispositivo sem gravação a
 
 test('cartão manual abre a biblioteca correspondente', async ({ page }) => {
   await page.goto('/app.html');
+  await page.locator('.home-extra-tools summary').click();
   const panel = page.locator('.home-resources-grid');
   await panel.getByRole('button', { name: /Ver manual/ }).first().click();
   await expect(page.getByRole('heading', { level: 1, name: 'Manual Coca-Cola' })).toBeVisible();

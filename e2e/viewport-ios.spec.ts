@@ -48,7 +48,8 @@ for (const width of portraitWidths) {
     await expect(page.getByRole('button', { name: 'Abrir menu' })).toBeVisible();
     await expect(page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' })).toBeVisible();
     await checkNoHorizontalOverflow(page, 'Início');
-    await page.getByRole('navigation', { name: 'Acesso rápido no telemóvel' }).getByRole('button', { name: 'Pesquisa' }).click();
+    await page.locator('.home-extra-tools summary').click();
+    await page.getByRole('navigation', { name: 'Ferramentas complementares' }).getByRole('button', { name: 'Pesquisa de assuntos' }).click();
     const search = page.getByRole('textbox', { name: 'Pesquisar por problema ou assunto' });
     await expect(search).toBeVisible();
     if (await page.evaluate(() => matchMedia('(pointer: coarse)').matches)) {
