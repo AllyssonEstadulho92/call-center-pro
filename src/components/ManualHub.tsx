@@ -171,7 +171,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
              <p><strong>O que verificar no sistema autorizado:</strong> {chapterDetail.evidenceToCheck}</p>
              <p className="manual-deep-avoid"><strong>Não afirmar nem prometer:</strong> {chapterDetail.neverAssume}</p>
              <small>Explicação editorial de apoio; não comprova procedimento aprovado nem substitui o sistema oficial.</small>
-           </section>
+           </section>}
           <div className="manual-verification"><CircleAlert size={17}/><strong>{selected.status === 'exemplo' ? 'Exemplo de formação' : 'Por confirmar na operação'}</strong><span>Nunca tratado como validado apenas por constar neste manual.</span></div>
           <div className="manual-chapter-progress"><span>{showAll ? 'Consulta integral do guião' : `Etapa ${stage + 1} de ${selected.steps.length}`}</span><span>{doneSteps.length}/{selected.steps.length} consultadas</span></div>
           <div className="manual-step-picker" role="group" aria-label="Escolher etapa do guião">
