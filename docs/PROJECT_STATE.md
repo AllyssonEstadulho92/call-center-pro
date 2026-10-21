@@ -1,6 +1,6 @@
 # Call Center Pro | Estado do projeto
 
-Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.3**, PR #20 integrada em `main`.
+Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.3**. Revisão **v1.9.4** em PR (ainda não publicada).
 
 ## Objetivo atual
 Auditar comunicação de guiões e usabilidade do Call Center Pro para reduzir promessas não confirmadas e apoiar uma consulta segura durante chamadas de formação.
@@ -32,7 +32,13 @@ PR #20 integrada após correção da regressão de viewport a 320px. TypeScript,
 ## Próximo passo
 Validar em Safari iPhone físico, VoiceOver e microfone. Obter autorização da entidade empregadora e confirmação oficial dos procedimentos de registo, encaminhamento e linguagem, utilizando canais internos autorizados. A aplicação não deve receber dados reais de clientes.
 
+## Revisão v1.9.4 | Fecho factual
+- Objetivo: apresentar frases de fecho coerentes com o estado efetivamente consultado pelo operador, sem presumir operações concluídas.
+- Foram preservados 17 guiões, dois manuais, pesquisa, modos de leitura, preferências e o layout responsivo da v1.9.3.
+- `src/lib/callOutcomes.ts` fornece alternativas apenas para três guiões técnicos CC e `bk-telefone`; por omissão, o texto é neutro.
+- `src/components/ClosingStatusPicker.tsx` é reutilizado no teleponto, painel e manuais. Seleção em memória, limpa após recomeçar ou trocar de assunto. Sem APIs ou dados reais.
+- Corrigido README desatualizado e acrescentados testes de frases e interface.
+- Estado: implementação em branch, pendentes CI, PR, publicação e Safari físico.
 
-
-## Correção adicional após falha de regressão
-A CI encontrou overflow horizontal real em 320px no painel inicial, provocado por oito botões de etapas sem quebra de linha. Foi aplicada uma grelha de quatro colunas em ecrãs até 480px e acrescentado um teste de navegação até à última etapa. A primeira passagem de Playwright reprovou; deve voltar a ser executada antes da integração.
+## Próximo passo
+Concluir CI TypeScript/Vitest/Vite/npm audit/Playwright, integrar e publicar após sucesso. Confirmar em iPhone real e obter aprovação operacional e autorização de utilização.

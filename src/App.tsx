@@ -21,10 +21,12 @@ import { EvidenceAuditPanel } from './components/EvidenceAuditPanel';
 import { DashboardResources } from './components/DashboardResources';
 import { ServiceArtwork } from './components/ServiceArtwork';
 import { formatGreeting, getDefaultGreeting } from './lib/greeting';
+import { getClosingText, type ClosingStatus } from './lib/callOutcomes';
+import { ClosingStatusPicker } from './components/ClosingStatusPicker';
 import type { Greeting } from './lib/greeting';
 import type { Page, Procedure, Project, Status } from './types';
 
-const VERSION = '1.9.3';
+const VERSION = '1.9.4';
 const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
 const THEME_KEY = 'call-center-pro-tema-v1';
 
@@ -114,11 +116,14 @@ function Workflow({ data, onBack, isFavorite, onFavorite }: {
   const [copyError, setCopyError] = useState(false);
   const [greeting, setGreeting] = useState<Greeting>(getDefaultGreeting);
   const [fontSize, setFontSize] = useState(28);
+  const [closingChoice, setClosingChoice] = useState<{ procedureId: string; status: ClosingStatus }>({ procedureId: data.id, status: 'neutro' });
   const current = data.steps[index];
-  const readableScript = current.id === 'abertura' ? formatGreeting(current.say, greeting) : current.say;
+  const selectedStatus: ClosingStatus = closingChoice.procedureId === data.id ? closingChoice.status : 'neutro';
+  const script = getClosingText(data, current, selectedStatus);
+  const readableScript = current.id === 'abertura' ? formatGreeting(script, greeting) : script;
   const progress = Math.round((completed.size / data.steps.length) * 100);
 
-  useEffect(() => { setIndex(0); setCompleted(new Set()); setReading(false); setCopied(false); }, [data.id]);
+  useEffect(() => { setIndex(0); setCompleted(new Set()); setReading(false); setCopied(false); setClosingChoice({ procedureId: data.id, status: 'neutro' }); }, [data.id]);
   function markStep() {
     setCompleted((old) => {
       const updated = new Set(old);
@@ -141,7 +146,7 @@ function Workflow({ data, onBack, isFavorite, onFavorite }: {
     <div className="page-crumb"><button type="button" onClick={onBack}><ChevronLeft size={17}/> Voltar aos procedimentos</button></div>
     <div className="workflow-head">
       <div><div className="eyebrow">MODO ATENDIMENTO EM DIRETO</div><h2>{data.title}</h2><p>{data.summary}</p></div>
-      <div className="workflow-head-actions"><button className={`outline-button ${isFavorite ? 'is-favorite' : ''}`} type="button" onClick={onFavorite}><Star size={17} fill={isFavorite ? 'currentColor' : 'none'}/>{isFavorite ? 'Guardado' : 'Favorito'}</button><button type="button" className="outline-button" onClick={() => setReading(!reading)} aria-pressed={reading}><BookOpen size={17}/>{reading ? 'Vista normal' : 'Teleponto'}</button><button type="button" className="outline-button" onClick={() => { setIndex(0); setCompleted(new Set()); setCopied(false); }}><RotateCcw size={16}/> Recomeçar</button></div>
+      <div className="workflow-head-actions"><button className={`outline-button ${isFavorite ? 'is-favorite' : ''}`} type="button" onClick={onFavorite}><Star size={17} fill={isFavorite ? 'currentColor' : 'none'}/>{isFavorite ? 'Guardado' : 'Favorito'}</button><button type="button" className="outline-button" onClick={() => setReading(!reading)} aria-pressed={reading}><BookOpen size={17}/>{reading ? 'Vista normal' : 'Teleponto'}</button><button type="button" className="outline-button" onClick={() => { setIndex(0); setCompleted(new Set()); setCopied(false); setClosingChoice({ procedureId: data.id, status: 'neutro' }); }}><RotateCcw size={16}/> Recomeçar</button></div>
     </div>
     <div className="validation-banner"><CircleAlert size={19}/><div><strong>Conteúdo não validado institucionalmente</strong><p>Este guião serve de apoio e treino. Confirma sempre os procedimentos reais nos canais autorizados.</p></div></div>
     <div className="workflow-columns">
@@ -150,7 +155,8 @@ function Workflow({ data, onBack, isFavorite, onFavorite }: {
           <div className="stage-progress-heading"><span>ETAPA {index + 1} DE {data.steps.length}</span><span>{progress}% consultado</span></div>
           <div className="progress-track"><div style={{ width: `${progress}%` }}/></div>
           <div className="stage-index"><span>{String(index + 1).padStart(2, '0')}</span><h3>{current.title}</h3></div>
-          <div className="script-tools"><div className="script-label"><MessageCircle size={18}/> O QUE DIZER AO CLIENTE</div><div className="script-controls">{current.id === 'abertura' && <div className="greeting-switch" role="group" aria-label="Selecionar saudação"><button type="button" className={greeting === 'bom dia' ? 'active' : ''} aria-pressed={greeting === 'bom dia'} onClick={() => setGreeting('bom dia')}>Bom dia</button><button type="button" className={greeting === 'boa tarde' ? 'active' : ''} aria-pressed={greeting === 'boa tarde'} onClick={() => setGreeting('boa tarde')}>Boa tarde</button></div>}{reading && <div className="font-switch" role="group" aria-label="Tamanho de letra"><button type="button" aria-label="Diminuir tamanho da letra" disabled={fontSize <= 20} onClick={() => setFontSize(n => Math.max(20,n-2))}><ZoomOut size={17}/></button><span>{fontSize}px</span><button type="button" aria-label="Aumentar tamanho da letra" disabled={fontSize >= 40} onClick={() => setFontSize(n => Math.min(40,n+2))}><ZoomIn size={17}/></button></div>}</div></div>
+          <ClosingStatusPicker procedure={data} step={current} status={selectedStatus} onChange={status => { setClosingChoice({ procedureId: data.id, status }); setCopied(false); }}/>
+            <div className="script-tools"><div className="script-label"><MessageCircle size={18}/> O QUE DIZER AO CLIENTE</div><div className="script-controls">{current.id === 'abertura' && <div className="greeting-switch" role="group" aria-label="Selecionar saudação"><button type="button" className={greeting === 'bom dia' ? 'active' : ''} aria-pressed={greeting === 'bom dia'} onClick={() => setGreeting('bom dia')}>Bom dia</button><button type="button" className={greeting === 'boa tarde' ? 'active' : ''} aria-pressed={greeting === 'boa tarde'} onClick={() => setGreeting('boa tarde')}>Boa tarde</button></div>}{reading && <div className="font-switch" role="group" aria-label="Tamanho de letra"><button type="button" aria-label="Diminuir tamanho da letra" disabled={fontSize <= 20} onClick={() => setFontSize(n => Math.max(20,n-2))}><ZoomOut size={17}/></button><span>{fontSize}px</span><button type="button" aria-label="Aumentar tamanho da letra" disabled={fontSize >= 40} onClick={() => setFontSize(n => Math.min(40,n+2))}><ZoomIn size={17}/></button></div>}</div></div>
           <blockquote className="script-text" style={reading ? {fontSize: `${fontSize}px`} : undefined}>“{readableScript}”</blockquote><SpeechPlayer text={readableScript}/>
           <div className="stage-footer"><button className="outline-button" type="button" onClick={copyScript}><Copy size={16}/>{copied ? 'Frase copiada' : 'Copiar frase'}</button><label className="check-line"><input type="checkbox" checked={completed.has(current.id)} onChange={markStep}/><span>Etapa consultada</span></label></div>{copyError && <p className="copy-error" role="alert">Não foi possível copiar. Seleciona a frase manualmente.</p>}
         </section>

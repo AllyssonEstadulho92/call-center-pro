@@ -39,3 +39,22 @@ test('cartão manual abre a biblioteca correspondente', async ({ page }) => {
   await panel.getByRole('button', { name: /Ver manual/ }).first().click();
   await expect(page.getByRole('heading', { level: 1, name: 'Manual Coca-Cola' })).toBeVisible();
 });
+
+test('painel de atendimento só apresenta conclusão quando selecionada pelo operador', async ({ page }) => {
+  await page.goto('/app.html');
+  const live = page.getByRole('region', { name: 'Pré-visualização do atendimento em direto' });
+  await live.getByRole('button', { name: 'Etapa 8: Confirmar resultado antes de encerrar' }).click();
+  const status = live.getByRole('combobox', { name: 'Estado do registo no sistema' });
+  await expect(status).toHaveValue('neutro');
+  await status.selectOption('confirmado');
+  await expect(live.locator('.live-dashboard-say blockquote')).toContainText('A ocorrência ficou registada');
+  await live.getByRole('button', { name: 'Recomeçar guião' }).click();
+  await live.getByRole('button', { name: 'Etapa 8: Confirmar resultado antes de encerrar' }).click();
+  await expect(status).toHaveValue('neutro');
+  await live.getByRole('button', { name: 'Burger King' }).click();
+  await live.getByLabel('Assunto da chamada').selectOption('bk-telefone');
+  await live.locator('.live-dashboard-steps button').last().click();
+  await expect(status).toHaveValue('neutro');
+  await status.selectOption('pendente');
+  await expect(live.locator('.live-dashboard-say blockquote')).toContainText('Ainda não tenho confirmação');
+});

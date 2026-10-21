@@ -96,3 +96,10 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Introduzida grelha de quatro colunas para as etapas em smartphones até 480px, sem esconder overflow nem bloquear ampliação.
 - Adicionado teste específico de regressão, sujeito a nova execução da CI.
 - PR #20 integrada na branch `main`; TypeScript, Vitest, build e auditoria npm aprovados, E2E: 75 testes aprovados e 3 ignorados após corrigir 6 falhas de layout em 320px na primeira execução. Site publicado com `index.html` compilado e assets atualizados.
+
+## 21/10/2026 | v1.9.4 (em revisão)
+- Novo seletor manual de estado no fecho de três guiões técnicos Coca-Cola e na encomenda telefónica Burger King.
+- Texto neutro por defeito; frases de confirmação e pendência só mediante escolha explícita.
+- Mesmo comportamento no teleponto, dashboard e manuais, com áudio e cópia sincronizados.
+- Seleções temporárias, sem dados de clientes, APIs operacionais ou aprovação institucional implícita.
+- README atualizado e testes unitários/Playwright adicionados. CI, integração e publicação pendentes.

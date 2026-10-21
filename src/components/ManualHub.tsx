@@ -9,6 +9,8 @@ import { getManualCategories, getManualGuide, getManualTopics } from '../data/ma
 import { getProcedureSources, getPublicSources } from '../data/publicSources';
 import { SpeechPlayer } from './SpeechPlayer';
 import { formatGreeting, getDefaultGreeting } from '../lib/greeting';
+import { getClosingText, type ClosingStatus } from '../lib/callOutcomes';
+import { ClosingStatusPicker } from './ClosingStatusPicker';
 import type { Procedure, Project } from '../types';
 
 export interface ManualHubProps {
@@ -25,6 +27,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
   const [stage, setStage] = useState(0);
   const [showAll, setShowAll] = useState(false);
   const [doneSteps, setDoneSteps] = useState<string[]>([]);
+  const [closingChoice, setClosingChoice] = useState<{ procedureId: string; status: ClosingStatus }>({ procedureId: '', status: 'neutro' });
   const articleRef = useRef<HTMLElement | null>(null);
   const chapters = useMemo(() => getManualTopics(project, query, category), [project, query, category]);
   const categories = getManualCategories(project);
@@ -38,6 +41,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
     setStage(0);
     setShowAll(false);
     setDoneSteps([]);
+    setClosingChoice({ procedureId: id, status: 'neutro' });
     if (typeof window !== 'undefined' && window.matchMedia('(max-width: 980px)').matches) {
       window.setTimeout(() => articleRef.current?.scrollIntoView({ block: 'start' }), 0);
     }
@@ -45,6 +49,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
 
   function returnToIndex() {
     setSelectedId(null);
+    setClosingChoice({ procedureId: '', status: 'neutro' });
     setStage(0);
     setShowAll(false);
     setDoneSteps([]);
@@ -60,10 +65,13 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
   }
 
   function renderStage(step: Procedure['steps'][number], index: number, topic: Procedure) {
-    const spoken = step.id === 'abertura' ? formatGreeting(step.say, getDefaultGreeting()) : step.say;
+    const selectedStatus: ClosingStatus = closingChoice.procedureId === topic.id ? closingChoice.status : 'neutro';
+    const phrase = getClosingText(topic, step, selectedStatus);
+    const spoken = step.id === 'abertura' ? formatGreeting(phrase, getDefaultGreeting()) : phrase;
     const following = topic.steps[index + 1];
     return <section className="manual-step" key={step.id} aria-label={`Etapa ${index + 1}: ${step.title}`}>
       <div className="manual-step-heading"><span className="manual-step-number">{index + 1}</span><div><span className="manual-overline">ETAPA {index + 1} DE {topic.steps.length}</span><h3>{step.title}</h3></div></div>
+      <ClosingStatusPicker procedure={topic} step={step} status={selectedStatus} onChange={status => setClosingChoice({ procedureId: topic.id, status })}/>
       <div className="manual-speech-box">
         <span><Volume2 size={16}/> O QUE DIZER AO CLIENTE</span>
         <blockquote>“{spoken}”</blockquote>

@@ -50,3 +50,22 @@ test('teleponto não apresenta consulta como validação de registo', async ({ p
   await page.getByRole('button', { name: /Confirmar resultado antes de encerrar/ }).click();
   await expect(page.locator('.notes-panel')).toContainText('Se continuar pendente');
 });
+
+test('teleponto não declara registo confirmado por defeito e limpa o estado ao recomeçar', async ({ page }) => {
+  await page.goto('/app.html');
+  await page.getByRole('button', { name: /Iniciar atendimento/ }).first().click();
+  const dialog = page.getByRole('dialog', { name: 'Iniciar atendimento' });
+  await dialog.getByRole('textbox', { name: 'Pesquisar situação de atendimento' }).fill('não faz frio');
+  await dialog.getByRole('button', { name: /Equipamento não refrigera/ }).click();
+  await page.getByRole('button', { name: /Confirmar resultado antes de encerrar/ }).click();
+  const status = page.getByRole('combobox', { name: 'Estado do registo no sistema' });
+  await expect(status).toHaveValue('neutro');
+  await expect(page.locator('.script-text')).toContainText('Vou verificar no sistema o estado do registo');
+  await status.selectOption('confirmado');
+  await expect(page.locator('.script-text')).toContainText('A ocorrência ficou registada no sistema.');
+  await status.selectOption('pendente');
+  await expect(page.locator('.script-text')).toContainText('ainda não tenho confirmação');
+  await page.getByRole('button', { name: 'Recomeçar' }).click();
+  await page.getByRole('button', { name: /Confirmar resultado antes de encerrar/ }).click();
+  await expect(status).toHaveValue('neutro');
+});
