@@ -60,3 +60,29 @@ test('resposta rápida de contingência no manual mantém o capítulo aberto', a
   await expect(help.locator('blockquote')).toContainText('Não consigo confirmar um reembolso');
   await expect(page.getByRole('heading', { level: 2, name: 'Pedido incompleto' })).toBeVisible();
 });
+
+test('manual mostra informações com fonte oficial e seus limites, sem dar validação aos guiões', async ({ page, isMobile }) => {
+  await goToManual(page, 'Manual Coca-Cola', isMobile);
+  const facts = page.getByRole('region', { name: 'Informação confirmada por fontes oficiais' });
+  await expect(facts).toBeVisible();
+  await expect(facts).toContainText('O que não comprova');
+  await expect(facts.getByRole('link', { name: /Coca-Cola Portugal/ }).first()).toHaveAttribute('href', /coca-cola.com/);
+  const chapters = page.getByRole('navigation', { name: 'Capítulos do manual' });
+  await chapters.getByRole('button', { name: /Equipamento não refrigera/ }).click();
+  const guide = page.getByRole('region', { name: 'Explicação detalhada deste assunto' });
+  await expect(guide).toContainText('O que significa');
+  await expect(guide).toContainText('O que verificar no sistema autorizado');
+  await expect(guide.locator('li')).toHaveCount(3);
+  await expect(guide).toContainText('Explicação editorial de apoio');
+});
+
+test('manual Burger King apresenta fontes do apoio e orientação diferenciada de reembolso', async ({ page, isMobile }) => {
+  await goToManual(page, 'Manual Burger King', isMobile);
+  const facts = page.getByRole('region', { name: 'Informação confirmada por fontes oficiais' });
+  await expect(facts).toContainText('Categorias oficiais de suporte');
+  await expect(facts).toContainText('Proteção de dados pessoais');
+  await expect(facts).not.toContainText('Contacto público do consumidor');
+  const chapters = page.getByRole('navigation', { name: 'Capítulos do manual' });
+  await chapters.getByRole('button', { name: /Pedido incompleto/ }).click();
+  await expect(page.getByRole('region', { name: 'Explicação detalhada deste assunto' })).toContainText('Não garantir reposição');
+});
