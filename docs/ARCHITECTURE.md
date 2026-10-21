@@ -133,3 +133,5 @@ Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emula
 - `src/components/ManualHub.tsx` mostra fontes e limites com `target=_blank rel=noopener noreferrer`; no capítulo, mostra significado, perguntas, verificação e afirmações a evitar antes dos passos originais.
 - Exportador `scripts/export-manual-data.mjs` e gerador `scripts/generate_manual_pdfs.py` consomem a mesma base; ambos exigem cobertura dos 17 temas. PDF reproduz fontes e limitações sem atribuir validação institucional.
 - Segurança: zero campos para dados reais nesta nova secção, zero backend ou endpoints adicionais. O site continua público; documentos operacionais restritos não podem ser incorporados.
+
+**Validação v1.9.7 publicada:** PR #28 integrada após TypeScript, Vitest 46 aprovados, npm audit sem vulnerabilidades reportadas, build Vite e Playwright 97 aprovados/3 ignorados. O gerador produziu e publicou PDFs de 110 224 e 100 819 bytes. Safari físico e revisão visual integral dos PDFs são validações pendentes.

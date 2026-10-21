@@ -1,6 +1,6 @@
 # Call Center Pro | Estado do projeto
 
-Data da revisão: 20/10/2026. Branch principal publicada: **v1.9.6**, após integração da PR #26 e publicação dos dois manuais PDF no GitHub Pages. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
+Data da revisão: 22/10/2026. Branch principal publicada: **v1.9.7**, após integração da PR #26 e publicação dos dois manuais PDF no GitHub Pages. PR #22 integrada em `main`, GitHub Pages atualizado e CI aprovada.
 
 ## Objetivo atual
 Auditar comunicação de guiões e usabilidade do Call Center Pro para reduzir promessas não confirmadas e apoiar uma consulta segura durante chamadas de formação.
@@ -72,7 +72,7 @@ Validar visualmente a leitura e transferência de PDFs em Safari iPhone físico,
 - `src/data/verifiedManualGuidance.ts`: 6 factos com referência/limite e 17 fichas de triagem detalhada por procedimento. A explicação de cada guião é editorial, não um procedimento homologado.
 - `ManualHub.tsx`: factos verificáveis no início, explicação de cada capítulo antes do teleponto; sem retirar etapas existentes.
 - Exportação PDF e gerador Python atualizados para incluir as mesmas referências e fichas. A CI valida que as 17 fichas estão presentes; os PDFs serão republicados automaticamente após integração.
-- Auditoria: `docs/AUDITORIA-FONTES-MANUAIS-2026-10-22.md`. Estado: PR e CI pendentes antes da publicação v1.9.7.
+- Auditoria: `docs/AUDITORIA-FONTES-MANUAIS-2026-10-22.md`. Estado: PR #28 integrada em `main`, 46 testes unitários aprovados, TypeScript/Vite/npm audit aprovados, 97 testes Playwright aprovados e 3 ignorados (sem falhas). PDFs regenerados: Coca-Cola 110 224 bytes, Burger King 100 819 bytes; GitHub Pages publicado com sucesso.
 
 ## Próximo passo v1.9.7
-Aprovar TypeScript/Vitest/Vite/npm audit, geração PDF e Playwright; integrar PR e confirmar novo index.html, PDFs e deploy. Rever visualmente os PDFs e testar Safari/VoiceOver no iPhone físico. Obter autorização e procedimentos oficiais da entidade empregadora para validar regras internas.
+Aprofundamento técnico publicado. A revisão visual integral dos PDFs em dispositivo real continua pendente: a inspeção automatizada confirmou integridade e não-vazio, mas não comprova composição visual integral. Testar Safari/VoiceOver no iPhone físico e obter autorização/procedimentos aprovados da entidade empregadora antes de considerar regras internas validadas.

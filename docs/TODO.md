@@ -139,8 +139,8 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Integrar factos, limitações e fichas no ManualHub.
 - [x] Incorporar os mesmos conteúdos nos dois PDFs pelo exportador único.
 - [x] Acrescentar testes unitários/E2E de cobertura, fontes, labels e limites.
-- [ ] TypeScript, Vitest, Vite, npm audit, gerador PDF e Playwright aprovados em CI; integrar PR.
-- [ ] Confirmar publicação dos dois PDFs e website atualizados.
+- [x] TypeScript, Vitest (46 testes), Vite, npm audit (0 vulnerabilidades reportadas), gerador PDF e Playwright (97 aprovados, 3 ignorados) aprovados; PR #28 integrada.
+- [x] Confirmada publicação GitHub Pages da v1.9.7, incluindo os dois PDFs com conteúdos aprofundados e o novo index.html.
 - [ ] Inspecionar composição e legibilidade dos PDFs em imagens renderizadas.
 - [ ] Testar iPhone Safari/VoiceOver físicos e obter autorização da empresa.
 - [ ] Obter documentos internos oficiais aprovados para completar os fluxos operacionais em ambiente autorizado, sem publicar conteúdo confidencial.
