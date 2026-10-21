@@ -5,8 +5,8 @@ test('menu principal tem apenas os cinco acessos da imagem', async ({ page, isMo
   if (isMobile) await page.getByRole('button', { name: 'Abrir menu' }).click();
   const menu = page.getByRole('navigation', { name: 'Navegação principal' });
   await expect(menu.getByRole('button')).toHaveCount(5);
-  for (const label of ['Início', 'Coca-Cola', 'Burger King', 'Manual Coca-Cola', 'Manual Burger King']) {
-    await expect(menu.getByRole('button', { name: new RegExp(label) })).toHaveCount(1);
+  for (const [index, label] of ['Início', 'Coca-Cola', 'Burger King', 'Manual Coca-Cola', 'Manual Burger King'].entries()) {
+    await expect(menu.getByRole('button').nth(index)).toContainText(label);
   }
   await expect(menu.getByRole('button', { name: 'Simulações de chamada' })).toHaveCount(0);
 });
