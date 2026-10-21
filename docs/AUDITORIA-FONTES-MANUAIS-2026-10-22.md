@@ -28,6 +28,11 @@ Fontes consultadas em 22/10/2026. Devem ser revistas se o conteúdo oficial muda
 
 ## Controlos
 - Testes unitários cobrem todas as 17 fichas, presença de fontes e ausência de validação institucional.
-- Testes Playwright verificam guia aprofundado e referências em ambos os manuais.
-- CI verifica TypeScript, Vitest, Vite, auditoria npm e geração de PDFs assinados.
+- Testes Playwright verificam guia aprofundado e referências em ambos os manuais. A execução final teve 97 aprovados e 3 ignorados (sem falhas).
+- CI aprovou TypeScript, 46 testes Vitest, Vite, npm audit sem vulnerabilidades reportadas e geração de dois PDFs assinados; PDFs Coca-Cola 110 224 bytes, Burger King 100 819 bytes.
 - Regressões 320px, WebKit emulado e Safari físico: verificar em CI e no equipamento real, respetivamente.
+
+## Estado final da publicação
+- PR #28 integrada com revisão das fontes e 17 explicações de apoio. Build GitHub Pages e deploy da v1.9.7 concluídos com sucesso.
+- Navegação, manuais online e geração dos PDFs passaram na CI. O primeiro teste Playwright foi repetido por erro de certificado TLS num fornecedor de browsers; na repetição, 97 testes passaram e 3 foram ignorados.
+- A assinatura e integridade geral dos PDFs foram verificadas automaticamente; a renderização visual integral e testes no iPhone Safari/VoiceOver continuam por verificar. Não declarar os guiões como procedimentos oficiais da empresa.

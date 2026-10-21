@@ -106,3 +106,5 @@ Decisão: rever fontes públicas oficiais, associar cada facto a um identificado
 
 ## D-033 | Aprofundamento dos 17 guiões com fonte de dados partilhada
 Decisão: criar uma ficha editorial por procedimento, com significado, três perguntas úteis, forma prudente de proceder, verificação no sistema e afirmações a evitar. Mostrar nos manuais online e gerar os mesmos detalhes nos PDFs para evitar versões contraditórias. Manter o menu principal com cinco acessos e os restantes recursos disponíveis.
+
+**Execução D-032/D-033:** entrega v1.9.7 integrada via PR #28, com limites expressos por fonte e versão PDF sincronizada. Nenhuma prova pública foi promovida a homologação de procedimento interno.

@@ -119,9 +119,9 @@ Consultar `../CHANGELOG.md`. As versões anteriores foram preservadas e o desenv
 - Publicação de PDFs gerados integrada na pipeline GitHub Pages e validada na CI.
 - Testes de menu, links e reflow aprovados em CI: TypeScript, Vitest, Vite e auditoria npm aprovados; Playwright 93 aprovados e 3 ignorados. PR #26 integrada e GitHub Pages publicada. PDFs gerados a partir dos 17 guiões: Coca-Cola 93 247 bytes e Burger King 83 304 bytes. Safari iPhone físico e revisão institucional continuam pendentes.
 
-## 22-10-2026 | v1.9.7 (em revisão)
+## 22-10-2026 | v1.9.7 (publicada)
 - Fontes oficiais revistas: Coca-Cola Portugal, suporte Burger King Portugal, ASAE Livro de Reclamações e RGPD artigo 5.º no EUR-Lex.
 - Secção de factos públicos com origem, interpretação e limites de prova, distinguindo conteúdos autorizados publicamente dos guiões não validados.
 - Explicações pormenorizadas para cada um dos 17 assuntos, com três perguntas para clarificar, verificação e afirmações a evitar.
 - Integração nos dois manuais da aplicação e na geração sincronizada dos dois PDFs A4, sem novas regras operacionais inventadas.
-- Testes unitários e E2E; CI, PR e publicação dependem de aprovação.
+- Testes e publicação concluídos: 46 testes unitários aprovados; TypeScript, Vite e auditoria npm aprovados; Playwright 97 testes aprovados e 3 ignorados; PR #28 integrada; PDFs 110 224 e 100 819 bytes e GitHub Pages publicados. Revisão visual completa dos PDFs e Safari iPhone físico/VoiceOver ainda pendentes.
