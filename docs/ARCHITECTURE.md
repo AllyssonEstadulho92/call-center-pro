@@ -126,3 +126,10 @@ Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emula
 - Condição residual: PDFs gerados precisam de verificação de composição visual e teste real de utilização no Safari; publicação pública não equivale a permissão laboral.
 
 **Validação publicada v1.9.6:** PR #26 integrada. TypeScript, Vitest, npm audit e build Vite aprovados. Gerador ReportLab produziu os dois PDFs assinados `%PDF-` e não vazios; GitHub Pages publicou os binários. Playwright 93 testes aprovados e 3 ignorados, incluindo navegabilidade do painel secundário e 320 px. A auditoria visual final dos PDFs e Safari físico continuam pendentes.
+
+## v1.9.7 | Factos auditáveis e explicações por guião
+- `src/data/verifiedManualGuidance.ts`: dois datasets separados. `verifiedManualFacts` associa afirmação, explicação, `sourceId`, limite e âmbito do projeto. `procedureDeepDives` tem uma ficha distinta para cada um dos 17 guiões (explicação e sugestões de formação, não regras operacionais).
+- `publicSources.ts` inclui o artigo 5.º do RGPD (EUR-Lex). `manuals.ts` referencia fonte geral de dados e ASAE.
+- `src/components/ManualHub.tsx` mostra fontes e limites com `target=_blank rel=noopener noreferrer`; no capítulo, mostra significado, perguntas, verificação e afirmações a evitar antes dos passos originais.
+- Exportador `scripts/export-manual-data.mjs` e gerador `scripts/generate_manual_pdfs.py` consomem a mesma base; ambos exigem cobertura dos 17 temas. PDF reproduz fontes e limitações sem atribuir validação institucional.
+- Segurança: zero campos para dados reais nesta nova secção, zero backend ou endpoints adicionais. O site continua público; documentos operacionais restritos não podem ser incorporados.

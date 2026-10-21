@@ -132,3 +132,15 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] PR #26 integrada; dois PDFs produzidos e confirmados no repositório (93 247 e 83 304 bytes). GitHub Pages publicou novos ficheiros e concluiu deploy com sucesso.
 - [ ] Inspecionar visualmente os PDFs finais e validar no Safari/VoiceOver iPhone físicos.
 - [ ] Obter validação institucional do conteúdo e autorização de uso do equipamento de trabalho.
+
+## 22/10/2026 | v1.9.7 - manuais com factos públicos e explicações completas
+- [x] Consultar fontes oficiais Coca-Cola, Burger King, ASAE e EUR-Lex RGPD e registar âmbito de cada afirmação.
+- [x] Criar seis factos rastreáveis e 17 fichas de orientação específicas, sem pressupor aprovação institucional.
+- [x] Integrar factos, limitações e fichas no ManualHub.
+- [x] Incorporar os mesmos conteúdos nos dois PDFs pelo exportador único.
+- [x] Acrescentar testes unitários/E2E de cobertura, fontes, labels e limites.
+- [ ] TypeScript, Vitest, Vite, npm audit, gerador PDF e Playwright aprovados em CI; integrar PR.
+- [ ] Confirmar publicação dos dois PDFs e website atualizados.
+- [ ] Inspecionar composição e legibilidade dos PDFs em imagens renderizadas.
+- [ ] Testar iPhone Safari/VoiceOver físicos e obter autorização da empresa.
+- [ ] Obter documentos internos oficiais aprovados para completar os fluxos operacionais em ambiente autorizado, sem publicar conteúdo confidencial.

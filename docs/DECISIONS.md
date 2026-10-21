@@ -100,3 +100,9 @@ Decisão: apresentar apenas as cinco áreas escolhidas pelo utilizador na navega
 Decisão: usar os 17 guiões e guias já existentes como fonte exclusiva dos dois manuais PDF. Gerar automaticamente no CI e publicar em `manuais/`, com índice, procedimentos, frases ao cliente, «Confirmar», «Evitar», avisos de formação e fontes com limites. Não inserir conteúdo confidencial nem tratar guiões como institucionalmente validados. Motivo: evitar divergência entre aplicação online e material de estudo descarregado.
 
 **Implementação D-030/D-031:** entregue na v1.9.6, PR #26. Os cinco acessos e dois PDFs foram publicados; o conteúdo continua de treino e a empresa não aprovou esta ferramenta ou os procedimentos.
+
+## D-032 | Factos oficiais separados da orientação de treino
+Decisão: rever fontes públicas oficiais, associar cada facto a um identificador de fonte, data de consulta, âmbito e limite de prova. Não inferir política interna Coca-Cola ou Burger King de uma página pública, nem transformar um exemplo em procedimento validado. Motivo: veracidade e rastreabilidade perante dúvidas e auditorias.
+
+## D-033 | Aprofundamento dos 17 guiões com fonte de dados partilhada
+Decisão: criar uma ficha editorial por procedimento, com significado, três perguntas úteis, forma prudente de proceder, verificação no sistema e afirmações a evitar. Mostrar nos manuais online e gerar os mesmos detalhes nos PDFs para evitar versões contraditórias. Manter o menu principal com cinco acessos e os restantes recursos disponíveis.
