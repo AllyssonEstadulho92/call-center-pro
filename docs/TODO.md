@@ -120,3 +120,15 @@ Data de referência: 18-10-2026 | Objetivo: piloto de treino para quarta-feira, 
 - [x] Publicação v1.9.5 confirmada no GitHub Pages com novos ficheiros e index.html atualizado.
 - [ ] Validar ecrã/VoiceOver no Safari iPhone real.
 - [ ] Obter autorização para utilizar aplicação externa no posto de trabalho e validação operacional dos guiões.
+
+## 21/10/2026 | v1.9.6 | Simplificação do menu e dois manuais em PDF
+- [x] Auditar menu atual, 17 guiões, manuais existentes e publicação GitHub Pages.
+- [x] Manter apenas os cinco acessos da captura no menu principal e no rodapé móvel.
+- [x] Preservar nove recursos secundários num painel expansível da página inicial.
+- [x] Implementar exportação dos mesmos guiões/guia/fontes e geração de PDFs A4 separados por serviço.
+- [x] Disponibilizar dois links PDF no Início e nos respetivos manuais.
+- [x] Alargar os testes E2E e workflow para validar geração e links.
+- [ ] Verificar CI completa, PDFs gerados e ausência de regressões em 320 px.
+- [ ] Integrar PR, publicar PDFs e verificar disponibilidade nos links HTTPS.
+- [ ] Validar visualmente o PDF e no Safari/VoiceOver físicos.
+- [ ] Obter validação institucional do conteúdo e autorização de uso do equipamento de trabalho.

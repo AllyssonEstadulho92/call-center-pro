@@ -115,3 +115,12 @@ Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emula
 - Segurança: nem sistemas SAP nem Burger King são consultados; a ferramenta permanece pública e exclusivamente orientada a estudo. Fontes e autorização operacional pendentes.
 
 **Resultado de publicação v1.9.5:** PR #24 integrada, TypeScript/Vitest/build e auditoria npm aprovados; Playwright 87 aprovados, 3 ignorados. GitHub Pages compilado e publicado com novos assets. Safari/VoiceOver físicos continuam por verificar.
+
+## v1.9.6 | Menu de cinco acessos e manuais PDF sincronizados
+- `src/App.tsx`: menu lateral e navegação inferior com cinco acessos escolhidos; restantes nove destinos `Page` preservados e recuperáveis em `details` na página inicial, além da pesquisa permanente no cabeçalho. A navegação não remove páginas, estado nem rotas.
+- `src/components/ManualHub.tsx`: ligação de transferência por serviço, construída com `import.meta.env.BASE_URL`, compatível com a subpasta GitHub Pages.
+- `scripts/export-manual-data.mjs`: utiliza `esbuild` (dependência transitiva atual) para construir um módulo temporário e extrair diretamente os 17 guiões, guias editoriais, respostas, fechos condicionais e fontes. Falha em caso de catálogo incompleto. Não existe fetch de cliente nem integração externa.
+- `scripts/generate_manual_pdfs.py`: produz duas edições A4 via ReportLab a partir do JSON, com tipografia Unicode, capa, índice paginado, capítulos, frases, verificações e limites. Os PDFs não devem incluir dados confidenciais.
+- `.github/workflows/quality.yml`: além de TypeScript/testes/npm audit/build, prepara ambiente Python isolado e executa o gerador; verifica ambos os artefactos.
+- `.github/workflows/build-static-site.yml`: gera e publica `manuais/*.pdf` juntamente com assets/index.html; o conteúdo dos PDFs só muda quando o código fonte correspondente mudar ou o gerador mudar.
+- Condição residual: PDFs gerados precisam de verificação de composição visual e teste real de utilização no Safari; publicação pública não equivale a permissão laboral.
