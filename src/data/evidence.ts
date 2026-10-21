@@ -15,7 +15,7 @@ export interface OperationalGap {
   validationNeeded: string;
 }
 
-export const sourceReviewDate = '19/10/2026';
+export const sourceReviewDate = '22/10/2026';
 
 export const confirmedPublicClaims: PublicClaim[] = [
   {
@@ -66,3 +66,11 @@ export function getEvidenceSummary() {
     pendingOperationalAreas: pendingOperationalGaps.length,
   };
 }
+
+/** Informação revista em 22/10/2026 no âmbito de manuais públicos. */
+export const furtherVerifiedManualAreas = [
+  'Princípio de minimização dos dados pessoais do artigo 5.º, n.º 1, alínea c), RGPD.',
+  'Distinção entre contacto de consumidor e assuntos de distribuição no portal Coca-Cola.',
+  'Categorias de ajuda pública Burger King por entrega, recolha, restaurante e informação.',
+  'Equivalência geral de validade do Livro de Reclamações físico e eletrónico indicada pela ASAE.',
+] as const;

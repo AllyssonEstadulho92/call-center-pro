@@ -12,6 +12,8 @@ import { formatGreeting, getDefaultGreeting } from '../lib/greeting';
 import { getClosingText, type ClosingStatus } from '../lib/callOutcomes';
 import { ClosingStatusPicker } from './ClosingStatusPicker';
 import { CallSafetyReplies } from './CallSafetyReplies';
+import { factsForProject, procedureDeepDives } from '../data/verifiedManualGuidance';
+import { publicSources } from '../data/publicSources';
 import type { Procedure, Project } from '../types';
 
 export interface ManualHubProps {
@@ -36,6 +38,8 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
   const current = selected?.steps[stage] ?? null;
   const chapterSources = selected ? getProcedureSources(selected.id) : [];
   const generalSources = getPublicSources(guide.factIds);
+  const sourcedFacts = factsForProject(project);
+  const chapterDetail = selected ? procedureDeepDives[selected.id] : null;
 
   function selectChapter(id: string) {
     setSelectedId(id);
@@ -132,7 +136,19 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
         {!selected ? <>
           <div className="manual-opening"><span className="manual-overline">COMEÇA AQUI</span><h2>Um atendimento de cada vez, sem te perderes</h2><p>{guide.introduction}</p></div>
           <div className="manual-opening-phrase"><strong>Exemplo de abertura</strong><blockquote>“{formatGreeting(guide.opening, getDefaultGreeting())}”</blockquote><SpeechPlayer text={formatGreeting(guide.opening, getDefaultGreeting())} compact/></div>
-          <h3 className="manual-section-title">Roteiro do princípio ao fim</h3>
+          <section className="manual-facts" aria-label="Informação confirmada por fontes oficiais">
+             <h3 className="manual-section-title">O que as fontes oficiais realmente confirmam</h3>
+             <p>As informações abaixo têm fontes públicas específicas. As sugestões de atendimento e os procedimentos internos são apresentados separadamente.</p>
+             {sourcedFacts.map(fact => {
+               const source = publicSources.find(item => item.id === fact.sourceId);
+               return <article key={fact.id} className="manual-fact">
+                 <strong>{fact.title}</strong><p><b>Facto verificado:</b> {fact.statement}</p><p><b>Como interpretar:</b> {fact.explanation}</p>
+                 <p className="manual-fact-limit"><b>O que não comprova:</b> {fact.limitation}</p>
+                 {source && <a href={source.url} target="_blank" rel="noopener noreferrer">Fonte: {source.publisher} · verificada em {source.confirmed}<ExternalLink size={14}/></a>}
+               </article>;
+             })}
+           </section>
+           <h3 className="manual-section-title">Roteiro do princípio ao fim</h3>
           <div className="manual-phase-list">{guide.phases.map((phase,i) => <section key={phase.title} className="manual-phase">
             <span className="manual-phase-number">{String(i + 1).padStart(2, '0')}</span><div><h4>{phase.title}</h4><p>{phase.guidance}</p><small><ShieldAlert size={14}/> {phase.notice}</small></div>
           </section>)}</div>
@@ -146,6 +162,16 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
           <span className="manual-overline">CAPÍTULO · {selected.category}</span>
           <h2>{selected.title}</h2>
           <p className="manual-chapter-summary">{selected.summary}</p>
+           {chapterDetail && <section className="manual-deep-dive" aria-label="Explicação detalhada deste assunto">
+             <h3>Compreender e tratar este assunto</h3>
+             <p><strong>O que significa:</strong> {chapterDetail.meaning}</p>
+             <h4>Perguntas para esclarecer a situação (exemplos de treino)</h4>
+             <ol>{chapterDetail.questions.map((question, index) => <li key={index}>{question}</li>)}</ol>
+             <p><strong>Como proceder com segurança:</strong> {chapterDetail.howToProceed}</p>
+             <p><strong>O que verificar no sistema autorizado:</strong> {chapterDetail.evidenceToCheck}</p>
+             <p className="manual-deep-avoid"><strong>Não afirmar nem prometer:</strong> {chapterDetail.neverAssume}</p>
+             <small>Explicação editorial de apoio; não comprova procedimento aprovado nem substitui o sistema oficial.</small>
+           </section>}
           <div className="manual-verification"><CircleAlert size={17}/><strong>{selected.status === 'exemplo' ? 'Exemplo de formação' : 'Por confirmar na operação'}</strong><span>Nunca tratado como validado apenas por constar neste manual.</span></div>
           <div className="manual-chapter-progress"><span>{showAll ? 'Consulta integral do guião' : `Etapa ${stage + 1} de ${selected.steps.length}`}</span><span>{doneSteps.length}/{selected.steps.length} consultadas</span></div>
           <div className="manual-step-picker" role="group" aria-label="Escolher etapa do guião">

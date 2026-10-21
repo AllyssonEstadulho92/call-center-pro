@@ -247,3 +247,8 @@ O workflow GitHub Actions exporta os dados via `node scripts/export-manual-data.
 A utilização em contexto profissional depende da autorização da empresa, e os conteúdos continuam classificados como formação/por confirmar. A compatibilidade no Safari físico e VoiceOver necessita de verificação manual.
 
 A v1.9.6 foi integrada e publicada. Os ficheiros disponíveis no GitHub Pages são [Manual Coca-Cola](https://allyssonestadulho92.github.io/call-center-pro/manuais/manual-coca-cola.pdf) e [Manual Burger King](https://allyssonestadulho92.github.io/call-center-pro/manuais/manual-burger-king.pdf). A compilação e geração passaram nos testes automáticos, mas o Safari físico e a aprovação institucional mantêm-se pendentes.
+
+## v1.9.7 | Manuais mais detalhados e fontes rastreáveis (em revisão)
+Manual Coca-Cola e Manual Burger King passam a apresentar, na entrada, uma secção de factos oficialmente documentados, com ligações às fontes e informação sobre os seus limites. Cada um dos 17 capítulos explica o significado do assunto, três perguntas possíveis, como proceder prudentemente, o que verificar na ferramenta da operação e o que evitar. As duas edições PDF são geradas a partir da mesma base e incorporam o mesmo aprofundamento.
+
+**Não confundir:** factos públicos verificados não equivalem a guiões internos aprovados. Sem documentação institucional de SAP, prazos, piquetes, códigos, reembolsos ou permissões, essas regras não são incluídas como instruções oficiais. Nenhum dado real de clientes deve ser introduzido na aplicação pública.

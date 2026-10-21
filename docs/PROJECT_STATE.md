@@ -65,3 +65,14 @@ Validar comportamento no Safari iPhone físico e com VoiceOver, sem garantir equ
 
 ## Próximo passo v1.9.6
 Validar visualmente a leitura e transferência de PDFs em Safari iPhone físico, incluindo VoiceOver e abertura na aplicação Ficheiros. Obter autorização institucional para utilizar o site no posto de trabalho e validar os guiões com documentação interna aprovada, sem publicá-la.
+
+## 22/10/2026 | v1.9.7 em revisão - manuais aprofundados e fontes oficiais
+- Objetivo: dois manuais completos no âmbito dos guiões disponíveis, com explicações específicas de cada assunto e fontes confiáveis verificadas, diretamente na aplicação e PDFs.
+- Verificados websites Coca-Cola, Burger King, ASAE e EUR-Lex RGPD. Só factos públicos expressamente suportados foram classificados como confirmados.
+- `src/data/verifiedManualGuidance.ts`: 6 factos com referência/limite e 17 fichas de triagem detalhada por procedimento. A explicação de cada guião é editorial, não um procedimento homologado.
+- `ManualHub.tsx`: factos verificáveis no início, explicação de cada capítulo antes do teleponto; sem retirar etapas existentes.
+- Exportação PDF e gerador Python atualizados para incluir as mesmas referências e fichas. A CI valida que as 17 fichas estão presentes; os PDFs serão republicados automaticamente após integração.
+- Auditoria: `docs/AUDITORIA-FONTES-MANUAIS-2026-10-22.md`. Estado: PR e CI pendentes antes da publicação v1.9.7.
+
+## Próximo passo v1.9.7
+Aprovar TypeScript/Vitest/Vite/npm audit, geração PDF e Playwright; integrar PR e confirmar novo index.html, PDFs e deploy. Rever visualmente os PDFs e testar Safari/VoiceOver no iPhone físico. Obter autorização e procedimentos oficiais da entidade empregadora para validar regras internas.

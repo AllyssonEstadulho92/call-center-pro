@@ -132,13 +132,13 @@ def build_pdf(src, project, outdir):
     p(story, guide['title'], styles['cover'])
     p(story, guide['subtitle'], styles['lead'])
     p(story, 'GUIA DE ESTUDO E CONSULTA · ' + str(len(scripts)) + ' GUIÕES', styles['tag'])
-    p(story, 'Conteúdo derivado da base de treino da aplicação Call Center Pro, versão 1.9.6. '
+    p(story, 'Conteúdo derivado da base de treino da aplicação Call Center Pro, versão 1.9.7. '
              'Inclui frases para dizer ao cliente, pontos a confirmar e situações a evitar. '
              'Os procedimentos da operação não foram institucionalmente validados.', styles['lead'])
     p(story, 'Este documento não permite confirmar avarias, encomendas, reembolsos, visitas, '
              'prazos ou competências da linha. Verifica sempre o sistema e os manuais autorizados. '
              'Não escrevas NIF, moradas, nomes ou informações reais de clientes neste PDF.', styles['body'])
-    p(story, 'Data de edição: 21/10/2026. Apenas para formação e referência pessoal.', styles['small'])
+    p(story, 'Data de edição: 22/10/2026. Apenas para formação e referência pessoal.', styles['small'])
     story.append(PageBreak())
 
     append_heading(story, 'Índice de consulta', styles['h1'], 0, 0)
@@ -162,6 +162,22 @@ def build_pdf(src, project, outdir):
         p(story, phase['guidance'], styles['body'])
         p(story, 'ATENÇÃO: ' + phase['notice'], styles['small'])
 
+    append_heading(story, 'Factos verificados e âmbito das fontes', styles['h1'], 0, 7)
+    p(story, 'Nesta secção, cada afirmação factual pública identifica a sua fonte, '
+             'explica a interpretação e declara o que a fonte NÃO comprova. As perguntas de '
+             'atendimento pertencem à formação e não são procedimentos homologados.', styles['body'])
+    for fact in src['verifiedManualFacts']:
+        if fact['project'] not in (project, 'geral'):
+            continue
+        p(story, fact['title'], styles['h2'])
+        p(story, 'FACTO VERIFICADO: ' + fact['statement'], styles['body'])
+        p(story, 'COMO INTERPRETAR: ' + fact['explanation'], styles['body'])
+        p(story, 'LIMITE: ' + fact['limitation'], styles['small'])
+        source = next((s for s in src['publicSources'] if s['id'] == fact['sourceId']), None)
+        if source:
+            p(story, 'FONTE: ' + source['publisher'] + ' · ' + source['url'], styles['small'])
+            p(story, 'Verificação de conteúdo público: ' + source['confirmed'], styles['small'])
+
     append_heading(story, '2. Princípios essenciais', styles['h1'], 0, 2)
     for rule in guide['principles']:
         p(story, '•  ' + rule, styles['body'])
@@ -183,6 +199,16 @@ def build_pdf(src, project, outdir):
         p(story, procedure['category'] + '  ·  ' + procedure['summary'], styles['body'])
         p(story, 'ESTADO: ' + ('Exemplo de treino' if procedure['status'] == 'exemplo' else 'Por confirmar na operação'),
           styles['tag'])
+        details = src['procedureDeepDives'][procedure['id']]
+        p(story, 'Explicação detalhada deste assunto', styles['h2'])
+        p(story, 'O QUE SIGNIFICA: ' + details['meaning'], styles['body'])
+        p(story, 'PERGUNTAS ÚTEIS PARA ESCLARECER:', styles['h2'])
+        for question in details['questions']:
+            p(story, '•  ' + question, styles['body'])
+        p(story, 'COMO PROCEDER COM SEGURANÇA: ' + details['howToProceed'], styles['body'])
+        p(story, 'O QUE CONFERIR NO SISTEMA AUTORIZADO: ' + details['evidenceToCheck'], styles['body'])
+        p(story, 'NÃO AFIRMAR NEM PROMETER: ' + details['neverAssume'], styles['small'])
+        p(story, 'Este aprofundamento é editorial/de treino e NÃO corresponde a uma regra interna validada.', styles['small'])
         for idx, step in enumerate(procedure['steps'], 1):
             phrase = step['say']
             hd = Paragraph('ETAPA ' + str(idx) + '  ·  ' + text(step['title']), styles['h2'])
@@ -215,6 +241,7 @@ def build_pdf(src, project, outdir):
     source_ids = set(guide['factIds'])
     if project == 'burger-king':
         source_ids.update(('reclamacoes','reclamacoes-asae'))
+    source_ids.update(fact['sourceId'] for fact in src['verifiedManualFacts'] if fact['project'] in (project, 'geral'))
     for source in src['publicSources']:
         if source['id'] not in source_ids:
             continue
@@ -238,6 +265,8 @@ def main():
     src = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
     if len(src.get('procedures', [])) != 17:
         raise ValueError('Catálogo diferente de 17 guiões; não publicar PDF incompleto.')
+    if len(src.get('procedureDeepDives', {})) != 17:
+        raise ValueError('Explicações detalhadas incompletas; não publicar PDF incompleto.')
     outdir = Path(sys.argv[2])
     outdir.mkdir(parents=True, exist_ok=True)
     for project in ('coca-cola', 'burger-king'):

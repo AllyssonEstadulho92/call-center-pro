@@ -9,11 +9,14 @@ import { manualGuides } from './src/data/manuals.ts';
 import { callSafetyPhrases } from './src/data/callSafetyPhrases.ts';
 import { getClosingGuidance } from './src/lib/callOutcomes.ts';
 import { publicSources } from './src/data/publicSources.ts';
+import { verifiedManualFacts, procedureDeepDives } from './src/data/verifiedManualGuidance.ts';
 export const exported = {
   procedures,
   manualGuides,
   callSafetyPhrases,
   publicSources,
+  verifiedManualFacts,
+  procedureDeepDives,
   closingOptions: Object.fromEntries(procedures.map(p => [
     p.id,
     p.steps.map(s => getClosingGuidance(p,s)),
@@ -27,6 +30,7 @@ const bundled = await build({
 const moduleUrl = 'data:text/javascript;base64,' + Buffer.from(bundled.outputFiles[0].contents).toString('base64');
 const { exported } = await import(moduleUrl);
 if (exported.procedures.length !== 17) throw new Error('Catálogo inesperado: os 17 guiões devem estar presentes.');
+if (Object.keys(exported.procedureDeepDives).length !== 17) throw new Error('Explicações de guiões incompletas.');
 for (const project of ['coca-cola','burger-king']) {
   if (!exported.procedures.some(p => p.project === project) || !exported.manualGuides[project]) {
     throw new Error('Manual sem conteúdo: ' + project);
