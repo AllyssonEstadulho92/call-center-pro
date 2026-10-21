@@ -48,7 +48,7 @@ describe('salvaguardas de comunicação para auditoria de chamadas', () => {
     const digital = procedures.find(p => p.id === 'bk-app')!;
     expect(digital.steps.find(s => s.id === 'fecho')!.say).not.toMatch(/não conseguir resolver diretamente/);
     const telephone = procedures.find(p => p.id === 'bk-telefone')!;
-    expect(telephone.steps.find(s => s.id === 'final')!.say).toMatch(/confirmar no sistema/);
+    expect(telephone.steps.find(s => s.id === 'final')!.say).toMatch(/verificar no sistema.*confirmar o resultado/);
     expect(procedures.every(p => p.status !== 'validado' && p.lastValidated === null)).toBe(true);
   });
 });
