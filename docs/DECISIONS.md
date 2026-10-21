@@ -90,3 +90,5 @@ Decisão: separar o encerramento genérico Coca-Cola (`ccEndGeneral`) do fecho c
 
 ## D-029 | Frases rápidas com verificação interna separada
 Decisão: acrescentar um painel reutilizável, inicialmente fechado, com quatro respostas por serviço. Mostrar claramente a frase ao cliente e, em separado, o que o operador precisa de confirmar. Motivo: reduzir hesitação e promessas indevidas sem alterar procedimentos nem recolher dados pessoais. As frases não são aprovadas pela empresa e não substituem decisões da operação.
+
+**Implementação D-028/D-029:** publicada na v1.9.5 através da PR #24. Os testes aprovados comprovam os comportamentos automatizados verificados, não a aprovação das regras de atendimento pela entidade empregadora.

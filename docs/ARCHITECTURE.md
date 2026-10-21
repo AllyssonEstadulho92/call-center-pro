@@ -113,3 +113,5 @@ Validação da v1.9.4: testes automáticos Playwright em Chromium e WebKit emula
 - `src/data/knowledge.ts`: `ccEndGeneral` usado em cinco situações Coca-Cola sem registo técnico garantido, substituindo o fecho de ocorrência `ccEnd` que permanece nos três guiões técnicos principais.
 - Testes em `src/data/knowledge.test.ts`, `src/data/callSafetyPhrases.test.ts` e E2E: sem promoção de conteúdos a validados, sem pressuposição de registos e alternância entre serviços.
 - Segurança: nem sistemas SAP nem Burger King são consultados; a ferramenta permanece pública e exclusivamente orientada a estudo. Fontes e autorização operacional pendentes.
+
+**Resultado de publicação v1.9.5:** PR #24 integrada, TypeScript/Vitest/build e auditoria npm aprovados; Playwright 87 aprovados, 3 ignorados. GitHub Pages compilado e publicado com novos assets. Safari/VoiceOver físicos continuam por verificar.
