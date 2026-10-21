@@ -49,3 +49,14 @@ test('manual mostra frase de fecho de acordo com escolha e limpa-a ao mudar de a
   await page.getByRole('button', { name: 'Ler guião completo' }).click();
   await expect(status).toHaveValue('neutro');
 });
+
+test('resposta rápida de contingência no manual mantém o capítulo aberto', async ({ page, isMobile }) => {
+  await goToManual(page, 'Manual Burger King', isMobile);
+  const chapters = page.getByRole('navigation', { name: 'Capítulos do manual' });
+  await chapters.getByRole('button', { name: /Pedido incompleto/ }).click();
+  const help = page.locator('.manual-reading .call-safety-replies');
+  await help.locator('summary').click();
+  await help.getByRole('button', { name: 'Quero um reembolso.' }).click();
+  await expect(help.locator('blockquote')).toContainText('Não consigo confirmar um reembolso');
+  await expect(page.getByRole('heading', { level: 2, name: 'Pedido incompleto' })).toBeVisible();
+});
