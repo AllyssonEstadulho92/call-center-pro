@@ -3,8 +3,8 @@ import {
   BookOpen, Check, CheckCheck, ChevronLeft, ChevronRight, CircleAlert,
   Coffee, Copy, FileCheck2, Headphones, HelpCircle, History, Home, Info, LockKeyhole,
   Menu, MessageCircle, MonitorSmartphone, Moon, Search, ShieldCheck, SlidersHorizontal,
-  PhoneCall, RotateCcw, ZoomIn, ZoomOut, ExternalLink, Compass,
-  Sparkles, Star, Sun, X, GraduationCap,
+  PhoneCall, RotateCcw, ZoomIn, ZoomOut, ExternalLink,
+  Sparkles, Star, Sun, X,
 } from 'lucide-react';
 import { procedures, projectLabels } from './data/knowledge';
 import { searchProcedures } from './lib/search';
@@ -27,7 +27,7 @@ import { CallSafetyReplies } from './components/CallSafetyReplies';
 import type { Greeting } from './lib/greeting';
 import type { Page, Procedure, Project, Status } from './types';
 
-const VERSION = '1.9.5';
+const VERSION = '1.9.6';
 const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
 const THEME_KEY = 'call-center-pro-tema-v1';
 
@@ -223,15 +223,6 @@ function App() {
     { id: 'burger-king', label: 'Burger King', icon: Headphones, secondary: 'Apoio ao Cliente' },
     { id: 'manual-coca-cola', label: 'Manual Coca-Cola', icon: BookOpen, secondary: 'Passo a passo · Avarias' },
     { id: 'manual-burger-king', label: 'Manual Burger King', icon: BookOpen, secondary: 'Passo a passo · Pedidos' },
-    { id: 'triagem', label: 'Decidir encaminhamento', icon: Compass },
-    { id: 'faq', label: 'Perguntas frequentes', icon: HelpCircle },
-    { id: 'simulacoes', label: 'Simulações de chamada', icon: GraduationCap },
-    { id: 'respostas', label: 'Respostas rápidas', icon: MessageCircle },
-    { id: 'pesquisa', label: 'Pesquisa', icon: Search },
-    { id: 'favoritos', label: 'Favoritos', icon: Star },
-    { id: 'formacao', label: 'Área de estudo', icon: BookOpen },
-    { id: 'versoes', label: 'Histórico de versões', icon: History },
-    { id: 'seguranca', label: 'Segurança e fontes', icon: ShieldCheck },
   ];
   const pageName: Record<Page, string> = { inicio: 'Visão geral', 'coca-cola': 'Coca-Cola', 'burger-king': 'Burger King', 'manual-coca-cola': 'Manual Coca-Cola', 'manual-burger-king': 'Manual Burger King', triagem: 'Triagem', faq: 'Perguntas frequentes', simulacoes: 'Simulações', respostas: 'Respostas rápidas', pesquisa: 'Pesquisa', favoritos: 'Favoritos', formacao: 'Área de estudo', versoes: 'Versões', seguranca: 'Segurança e fontes' };
 
@@ -282,7 +273,28 @@ function App() {
             </section>
             <LiveCallPanel onOpen={openProcedure}/>
           </div>
-          <DashboardResources onNavigate={navigate} onOpen={openProcedure} favoriteCount={favorites.length}/>
+          <section className="home-download-manuals" aria-label="Manuais PDF para consulta">
+            <div><span className="eyebrow"><BookOpen size={15}/> MANUAIS PARA ESTUDO</span><h2>Os dois manuais em PDF</h2><p>Guarda-os no telemóvel ou computador. Contêm os guiões de treino e os limites de validação.</p></div>
+            <div className="home-download-links">
+              <a href={`${import.meta.env.BASE_URL}manuais/manual-coca-cola.pdf`} download><BookOpen size={18}/> Manual Coca-Cola · PDF</a>
+              <a href={`${import.meta.env.BASE_URL}manuais/manual-burger-king.pdf`} download><BookOpen size={18}/> Manual Burger King · PDF</a>
+            </div>
+          </section>
+          <details className="home-extra-tools">
+            <summary><SlidersHorizontal size={18}/> Outras ferramentas de apoio <span>Mostrar apenas quando precisares</span></summary>
+            <div className="home-extra-inside">
+              <nav className="home-extra-links" aria-label="Ferramentas complementares">
+                {([
+                  ['pesquisa', 'Pesquisa de assuntos'], ['respostas', 'Respostas rápidas'],
+                  ['favoritos', 'Favoritos'], ['triagem', 'Decidir encaminhamento'],
+                  ['faq', 'Perguntas frequentes'], ['simulacoes', 'Simulações de chamada'],
+                  ['formacao', 'Área de estudo'], ['seguranca', 'Segurança e fontes'],
+                  ['versoes', 'Histórico de versões'],
+                ] as const).map(([id,label]) => <button type="button" key={id} onClick={() => navigate(id)}>{label}<ChevronRight size={16}/></button>)}
+              </nav>
+              <DashboardResources onNavigate={navigate} onOpen={openProcedure} favoriteCount={favorites.length}/>
+            </div>
+          </details>
         </>}
         {(page === 'coca-cola' || page === 'burger-king') && (selected ? <Workflow key={selected.id} data={selected} onBack={() => setSelectedId(null)} isFavorite={favorites.includes(selected.id)} onFavorite={() => toggleFavorite(selected.id)} /> : <><div className={`service-header service-${page}`}><ProjectMark project={page}/><div><div className="eyebrow">BIBLIOTECA DE ATENDIMENTO</div><h1>{projectLabels[page]}</h1><p>Seleciona a situação relatada para abrir o atendimento orientado.</p></div></div><button className="manual-service-cta" type="button" onClick={() => navigate(page === "coca-cola" ? "manual-coca-cola" : "manual-burger-king")}><BookOpen size={17}/> Consultar manual deste serviço <ChevronRight size={17}/></button><div className="alert-lite"><Info size={17}/> Guiões de apoio e treino. Nenhum procedimento desta versão está validado institucionalmente.</div><div className="section-heading"><div><h2>Situações e procedimentos</h2><p>{procedures.filter((p) => p.project === page).length} guiões disponíveis</p></div></div>{renderCards(procedures.filter((p) => p.project === page))}</>)}
         {(page === 'manual-coca-cola' || page === 'manual-burger-king') && <ManualHub key={page} project={page === 'manual-coca-cola' ? 'coca-cola' : 'burger-king'} onOpenProcedure={openProcedure} onSwitch={project => navigate(project === 'coca-cola' ? 'manual-coca-cola' : 'manual-burger-king')}/>}
@@ -297,7 +309,7 @@ function App() {
         {page === 'seguranca' && <><div className="page-intro"><div className="eyebrow"><LockKeyhole size={15}/> BOAS PRÁTICAS</div><h1>Segurança, fontes e limites</h1><p>O Call Center Pro é uma ferramenta independente de apoio pessoal ao atendimento, sem ligação aos sistemas oficiais das marcas.</p></div><div className="info-grid"><section className="info-card"><ShieldCheck size={24}/><h3>Estado da informação</h3><p><strong>Validado:</strong> exige confirmação da regra operacional concreta. As páginas públicas agora referenciadas não confirmam automaticamente os procedimentos internos.</p><p><strong>Por confirmar:</strong> precisa de confirmação do responsável competente.</p><p><strong>Exemplo:</strong> texto útil para treino, não vinculativo.</p></section><section className="info-card"><LockKeyhole size={24}/><h3>Dados pessoais</h3><p>Não introduzas dados de clientes, NIF, moradas, telefones, números de encomenda, credenciais ou informação de chamadas nesta aplicação.</p><p>Os favoritos guardam apenas identificadores de guiões no navegador.</p></section><section className="info-card"><MonitorSmartphone size={24}/><h3>Publicação no GitHub</h3><p>O GitHub Pages serve páginas estáticas e não proporciona autenticação do conteúdo. Só publica informação que esteja autorizada para divulgação pública.</p><p>Procedimentos internos devem ficar num sistema com acesso controlado.</p></section><section className="info-card"><FileCheck2 size={24}/><h3>Fontes e revisão</h3><p>Os guiões foram preparados para treino e consulta com base em relatos do operador e versões de estudo dos seus manuais. Os procedimentos internos permanecem por validar.</p><p>As fontes públicas abaixo comprovam apenas as informações explicitamente descritas em cada página. Confirma sempre ações operacionais na ferramenta autorizada.</p></section></div><div className="section-heading secondary-heading"><div><h2>Fontes oficiais consultáveis</h2><p>Abre as páginas originais e verifica se a informação continua atual.</p></div></div><div className="public-source-grid">{publicSources.map(source => <article className="public-source-card" key={source.id}><span className="eyebrow">{source.publisher} · Consultado em {source.confirmed}</span><h3>{source.title}</h3><p>{source.scope}</p><p className="source-limitation"><Info size={15}/>{source.limitation}</p><a href={source.url} target="_blank" rel="noopener noreferrer">Abrir fonte oficial <ExternalLink size={16}/></a></article>)}</div><EvidenceAuditPanel/></>}
       </main>
       <footer className="app-footer"><span><HelpCircle size={15}/> Ferramenta de apoio independente. Confirma as instruções operacionais antes de as aplicares.</span><span>Call Center Pro · v{VERSION}</span></footer>
-      <nav className="mobile-bottom-nav" aria-label="Acesso rápido no telemóvel"><button type="button" aria-current={page === "inicio" ? "page" : undefined} onClick={() => navigate("inicio")}><Home size={19}/>Início</button><button type="button" aria-current={page === "coca-cola" ? "page" : undefined} onClick={() => navigate("coca-cola")}><Coffee size={19}/>Coca-Cola</button><button type="button" aria-current={page === "burger-king" ? "page" : undefined} onClick={() => navigate("burger-king")}><Headphones size={19}/>Burger King</button><button type="button" aria-current={page === "pesquisa" ? "page" : undefined} onClick={openSearch}><Search size={19}/>Pesquisa</button></nav>
+      <nav className="mobile-bottom-nav" aria-label="Acesso rápido no telemóvel"><button type="button" aria-current={page === "inicio" ? "page" : undefined} onClick={() => navigate("inicio")}><Home size={19}/>Início</button><button type="button" aria-current={page === "coca-cola" ? "page" : undefined} onClick={() => navigate("coca-cola")}><Coffee size={19}/>Coca-Cola</button><button type="button" aria-current={page === "burger-king" ? "page" : undefined} onClick={() => navigate("burger-king")}><Headphones size={19}/>Burger King</button><button type="button" aria-current={page === "manual-coca-cola" ? "page" : undefined} aria-label="Manual Coca-Cola" onClick={() => navigate("manual-coca-cola")}><BookOpen size={19}/>Manual CC</button><button type="button" aria-current={page === "manual-burger-king" ? "page" : undefined} aria-label="Manual Burger King" onClick={() => navigate("manual-burger-king")}><BookOpen size={19}/>Manual BK</button></nav>
     </div>
   </div>;
 }

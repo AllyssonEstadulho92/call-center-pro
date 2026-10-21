@@ -34,3 +34,11 @@ jobs:
         run: npm test
       - name: Compilar para produção
         run: npm run build
+      - name: Gerar e validar os dois manuais PDF
+        run: |
+          python3 -m venv .venv-manual
+          .venv-manual/bin/python -m pip install --disable-pip-version-check --no-input reportlab==4.4.9
+          node scripts/export-manual-data.mjs .tmp/manual-data.json
+          .venv-manual/bin/python scripts/generate_manual_pdfs.py .tmp/manual-data.json manuais
+          test -s manuais/manual-coca-cola.pdf
+          test -s manuais/manual-burger-king.pdf

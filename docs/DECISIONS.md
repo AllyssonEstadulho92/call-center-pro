@@ -92,3 +92,9 @@ Decisão: separar o encerramento genérico Coca-Cola (`ccEndGeneral`) do fecho c
 Decisão: acrescentar um painel reutilizável, inicialmente fechado, com quatro respostas por serviço. Mostrar claramente a frase ao cliente e, em separado, o que o operador precisa de confirmar. Motivo: reduzir hesitação e promessas indevidas sem alterar procedimentos nem recolher dados pessoais. As frases não são aprovadas pela empresa e não substituem decisões da operação.
 
 **Implementação D-028/D-029:** publicada na v1.9.5 através da PR #24. Os testes aprovados comprovam os comportamentos automatizados verificados, não a aprovação das regras de atendimento pela entidade empregadora.
+
+## D-030 | Cinco acessos primários, restantes funcionalidades recuperáveis
+Decisão: apresentar apenas as cinco áreas escolhidas pelo utilizador na navegação principal e inferior. Guardar pesquisa, FAQ, triagem, formação, simulações, favoritos, respostas rápidas, fontes e histórico numa área secundária fechada por defeito no Início, sem apagar código ou capacidades. Motivo: reduzir densidade e esforço cognitivo no smartphone preservando recursos úteis.
+
+## D-031 | PDFs gerados de uma base única, sem regras inventadas
+Decisão: usar os 17 guiões e guias já existentes como fonte exclusiva dos dois manuais PDF. Gerar automaticamente no CI e publicar em `manuais/`, com índice, procedimentos, frases ao cliente, «Confirmar», «Evitar», avisos de formação e fontes com limites. Não inserir conteúdo confidencial nem tratar guiões como institucionalmente validados. Motivo: evitar divergência entre aplicação online e material de estudo descarregado.

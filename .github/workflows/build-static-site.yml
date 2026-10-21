@@ -6,6 +6,7 @@ on:
     paths:
       - 'app.html'
       - 'src/**'
+      - 'scripts/**'
       - 'package.json'
       - 'package-lock.json'
       - 'vite.config.ts'
@@ -39,6 +40,14 @@ jobs:
           npm run typecheck
           npm test
           npm run build
+      - name: Gerar e validar os dois manuais PDF
+        run: |
+          python3 -m venv .venv-manual
+          .venv-manual/bin/python -m pip install --disable-pip-version-check --no-input reportlab==4.4.9
+          node scripts/export-manual-data.mjs .tmp/manual-data.json
+          .venv-manual/bin/python scripts/generate_manual_pdfs.py .tmp/manual-data.json manuais
+          test -s manuais/manual-coca-cola.pdf
+          test -s manuais/manual-burger-king.pdf
       - name: Preparar versão pública estática
         run: |
           test -s dist/app.html
@@ -63,7 +72,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A index.html assets .nojekyll
+          git add -A index.html assets manuais .nojekyll
           if ! git diff --cached --quiet; then
             git commit -m "build: atualizar versão web compilada"
             git push

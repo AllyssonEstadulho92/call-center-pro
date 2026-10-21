@@ -53,3 +53,15 @@ Confirmar a experiência no iPhone Safari físico, incluindo zoom, leitura por v
 
 ## Próximo passo
 Validar comportamento no Safari iPhone físico e com VoiceOver, sem garantir equivalência da emulação WebKit. Solicitar autorização de utilização no posto de trabalho e os critérios reais da auditoria, antes de tratar qualquer guião como procedimento institucionalmente aprovado.
+
+## 21/10/2026 | Auditoria e redução de navegação v1.9.6 (em revisão)
+- Pedido: menu principal com apenas Início, Coca-Cola, Burger King, Manual Coca-Cola e Manual Burger King; manter funcionalidades secundárias úteis e disponibilizar dois manuais PDF separados.
+- Achado: menu da v1.9.5 tinha 14 links; o rodapé móvel tinha apenas quatro atalhos, incluindo Pesquisa. Não há necessidade de remover código, dados ou funcionalidades.
+- A alteração preserva os recursos da aplicação num painel secundário expansível na página inicial, e mantém Pesquisa acessível pelo cabeçalho e via Ctrl/Cmd+K.
+- Gerador de PDFs sincronizado com `knowledge.ts`, `manuals.ts`, `callSafetyPhrases.ts`, `callOutcomes.ts` e `publicSources.ts`, sem copiar manuais internos privados.
+- PDFs públicos esperados: `manuais/manual-coca-cola.pdf` e `manuais/manual-burger-king.pdf` em GitHub Pages, com índice, sequência e verificação por etapa.
+- Estado: alterações em PR; CI, renderização final, integração e publicação ainda a confirmar.
+- Auditoria: `docs/AUDITORIA-MENU-MANUAIS-2026-10-21.md`.
+
+## Próximo passo v1.9.6
+Validar TypeScript/Vitest/Vite/npm audit, testes móveis e geração de PDFs no CI; aprovar PR, publicar e verificar os dois links. Continuam pendentes autorização institucional e Safari físico.
