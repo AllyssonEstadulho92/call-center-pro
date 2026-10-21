@@ -5,7 +5,7 @@ import { procedures } from './knowledge';
 
 describe('revisão de fontes e conteúdo operacional', () => {
   it('guarda identificadores e datas de revisão únicas, sem fontes fictícias', () => {
-    expect(sourceReviewDate).toBe('19/10/2026');
+    expect(sourceReviewDate).toBe('22/10/2026');
     expect(new Set(publicSources.map(source => source.id)).size).toBe(publicSources.length);
     expect(publicSources.every(source => source.confirmed === sourceReviewDate)).toBe(true);
     expect(publicSources.every(source => source.url.startsWith('https://') && source.limitation.length > 30)).toBe(true);
