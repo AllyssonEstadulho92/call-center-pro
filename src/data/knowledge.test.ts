@@ -35,7 +35,7 @@ describe('salvaguardas de comunicação para auditoria de chamadas', () => {
   });
 
   it('não considera concluído um registo que ainda não foi confirmado', () => {
-    for (const p of procedures.filter(p => p.project === 'coca-cola' && p.steps.some(s => s.id === 'fecho'))) {
+    for (const p of procedures.filter(p => ['cc-sem-funcionar', 'cc-nao-refrigera', 'cc-sem-produto'].includes(p.id))) {
       const closing = p.steps.find(s => s.id === 'fecho')!;
       expect(closing.say).toMatch(/verificar no sistema o estado do registo/);
       expect(closing.note).toMatch(/Se o sistema confirmar o registo/);
@@ -50,5 +50,22 @@ describe('salvaguardas de comunicação para auditoria de chamadas', () => {
     const telephone = procedures.find(p => p.id === 'bk-telefone')!;
     expect(telephone.steps.find(s => s.id === 'final')!.say).toMatch(/confirmar no sistema/);
     expect(procedures.every(p => p.status !== 'validado' && p.lastValidated === null)).toBe(true);
+  });
+});
+
+describe('fecho adequado à natureza do contacto', () => {
+  it('não pressupõe registo de avaria em pedidos comerciais, consumidor e triagem geral', () => {
+    for (const id of ['cc-falta-produto', 'cc-limpeza', 'cc-outras', 'cc-consumidor', 'cc-comercial']) {
+      const procedure = procedures.find(p => p.id === id)!;
+      const closing = procedure.steps.find(step => step.id === 'fecho')!;
+      expect(closing.title).toBe('Encerramento sem assumir registo');
+      expect(closing.say).not.toMatch(/estado do registo|a ocorrência ficou registada/i);
+      expect(closing.avoid).toMatch(/Não afirmar que houve abertura/);
+    }
+  });
+  it('preserva o fecho dependente de confirmação nas três avarias técnicas', () => {
+    for (const id of ['cc-sem-funcionar', 'cc-nao-refrigera', 'cc-sem-produto']) {
+      expect(procedures.find(p => p.id === id)!.steps.at(-1)?.title).toBe('Confirmar resultado antes de encerrar');
+    }
   });
 });
