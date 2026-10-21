@@ -227,3 +227,10 @@ Nos três guiões principais de avarias Coca-Cola e no de encomenda por telefone
 Esta funcionalidade não consulta, aprova ou guarda registos e não substitui as instruções autorizadas pela entidade empregadora. A aplicação pública não deve receber dados de clientes.
 
 Testes: `npm ci && npm run typecheck && npm test && npm run build && npm run test:e2e`. Safari físico, VoiceOver e validação institucional continuam pendentes.
+
+## 21/10/2026 | v1.9.5: respostas claras durante a chamada (em revisão)
+Os 17 guiões continuam a ser conteúdos de treino ou por confirmar, sem validação institucional. Cinco contactos Coca-Cola de abastecimento, manutenção, triagem geral, consumidor e apoio comercial deixaram de usar o fecho que pressupunha o registo de uma avaria.
+
+No teleponto, painel inicial, capítulos de manual e página de respostas rápidas (quando é escolhido um serviço) existe agora **«Se o cliente fizer outra pergunta»**. A secção mostra quatro temas de dúvida por serviço, uma frase curta para dizer e uma verificação apenas para leitura interna. Não decide reembolsos, não garante visitas ou prazos, não consulta sistemas e não recolhe dados reais de clientes.
+
+Os encaminhamentos, registos e condições concretas continuam a depender do sistema e das orientações aprovadas. A utilização da ferramenta num computador da entidade empregadora requer autorização.
