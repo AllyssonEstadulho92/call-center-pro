@@ -23,10 +23,11 @@ import { ServiceArtwork } from './components/ServiceArtwork';
 import { formatGreeting, getDefaultGreeting } from './lib/greeting';
 import { getClosingText, type ClosingStatus } from './lib/callOutcomes';
 import { ClosingStatusPicker } from './components/ClosingStatusPicker';
+import { CallSafetyReplies } from './components/CallSafetyReplies';
 import type { Greeting } from './lib/greeting';
 import type { Page, Procedure, Project, Status } from './types';
 
-const VERSION = '1.9.4';
+const VERSION = '1.9.5';
 const FAVORITES_KEY = 'call-center-pro-favoritos-v1';
 const THEME_KEY = 'call-center-pro-tema-v1';
 
@@ -160,6 +161,7 @@ function Workflow({ data, onBack, isFavorite, onFavorite }: {
           <blockquote className="script-text" style={reading ? {fontSize: `${fontSize}px`} : undefined}>“{readableScript}”</blockquote><SpeechPlayer text={readableScript}/>
           <div className="stage-footer"><button className="outline-button" type="button" onClick={copyScript}><Copy size={16}/>{copied ? 'Frase copiada' : 'Copiar frase'}</button><label className="check-line"><input type="checkbox" checked={completed.has(current.id)} onChange={markStep}/><span>Etapa consultada</span></label></div>{copyError && <p className="copy-error" role="alert">Não foi possível copiar. Seleciona a frase manualmente.</p>}
         </section>
+        <CallSafetyReplies key={data.id} project={data.project}/>
         <div className="step-navigation"><button type="button" className="outline-button" disabled={index === 0} onClick={() => setIndex(index - 1)}><ChevronLeft size={18}/> Anterior</button><span>Etapa {index + 1} / {data.steps.length}</span><button type="button" className="primary-button" disabled={index === data.steps.length - 1} onClick={() => setIndex(index + 1)}>Próxima etapa <ChevronRight size={18}/></button></div>
         <section className="step-list"><h3>Etapas da chamada</h3><div className="step-pills">{data.steps.map((s, i) => <button type="button" key={s.id} className={`step-pill ${index === i ? 'active' : ''} ${completed.has(s.id) ? 'done' : ''}`} onClick={() => setIndex(i)} aria-current={index === i ? 'step' : undefined}><span>{completed.has(s.id) ? <Check size={15}/> : i + 1}</span>{s.title}</button>)}</div></section>
       </div>

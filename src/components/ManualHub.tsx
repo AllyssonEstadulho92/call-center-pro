@@ -11,6 +11,7 @@ import { SpeechPlayer } from './SpeechPlayer';
 import { formatGreeting, getDefaultGreeting } from '../lib/greeting';
 import { getClosingText, type ClosingStatus } from '../lib/callOutcomes';
 import { ClosingStatusPicker } from './ClosingStatusPicker';
+import { CallSafetyReplies } from './CallSafetyReplies';
 import type { Procedure, Project } from '../types';
 
 export interface ManualHubProps {
@@ -160,6 +161,7 @@ export function ManualHub({ project, onOpenProcedure, onSwitch }: ManualHubProps
             {showAll ? selected.steps.map((step, index) => renderStage(step, index, selected)) : current && renderStage(current, stage, selected)}
           </div>
           {!showAll && <div className="manual-stage-nav"><button type="button" className="outline-button" disabled={stage === 0} onClick={() => changeStage(stage - 1)}><ChevronLeft size={17}/> Anterior</button><button type="button" className="primary-button" disabled={stage === selected.steps.length - 1} onClick={() => changeStage(stage + 1)}>Seguinte <ChevronRight size={17}/></button></div>}
+          <CallSafetyReplies key={project} project={project}/>
           <button type="button" className="manual-open-live" onClick={() => onOpenProcedure(selected)}><BookOpen size={18}/> Abrir este assunto no Atendimento em Direto <ChevronRight size={16}/></button>
           <div className="manual-origin"><strong><FileText size={18}/> Origem deste guião</strong><p>{selected.source}</p><p>Data de validação operacional: <strong>{selected.lastValidated ?? 'Não existe validação institucional registada'}</strong>.</p></div>
           <div className="manual-source-limits"><strong>Fontes públicas relacionadas com este capítulo</strong>{chapterSources.length > 0 ? chapterSources.map(source => <div key={source.id} className="manual-source-mini"><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={14}/></a><p>{source.limitation}</p></div>) : <p>Não existe fonte pública associada diretamente a este procedimento. A sequência depende de confirmação interna.</p>}</div>
